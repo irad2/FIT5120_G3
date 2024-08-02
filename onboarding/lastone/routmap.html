@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Map Of Accident And Risk</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <style>
+        .container {
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            gap: 20px;
+            /* 设置两个元素之间的间距 */
+        }
+        
+        .map {
+            flex: 3;
+            /* 地图占用的宽度是输入框的两倍 */
+            background-color: #f0f0f0;
+            /* 示例背景色 */
+            height: 500px;
+            /* 设置地图的高度 */
+            border: 1px solid #ccc;
+        }
+        
+        .form-container {
+            flex: 1;
+            /* 输入框占用的宽度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* 垂直居中输入框 */
+            padding: 20px;
+        }
+        
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            border: 0px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            /* 输入框之间的间距 */
+        }
+        
+        .button-container {
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            justify-content: center;
+            /* 水平居中对齐 */
+            gap: 10px;
+            /* 设置按钮之间的间距 */
+            margin-top: 20px;
+            /* 可选：设置容器的上边距 */
+        }
+        
+        .clear_btn {
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            width: 70px;
+        }
+        
+        .search_btn {
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            width: 70px;
+        }
+        
+        .clear_btn:hover,
+        .search_btn:hover {
+            background-color: #cce82c;
+        }
+    </style>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- owl stylesheets -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a href="index.html" class="logo"><img src="images/logo1.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+             </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accidentmap.html">Accident and risk map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="routmap.html">Cycling Route</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        <!-- banner section start -->
+        <div id="main_slider" class="carousel slide" data-ride="carousel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="image_1"><img src="images/img-1.png"></div>
+                    </div>
+                    <div class="col-md-5">
+                        <h1 class="banner_taital">Melbourne Cycling</h1>
+                        <p class="banner_text">Safe Road.Safe Ride.</p>
+                        <div class="contact_bt"><a href="https://bicyclenetwork.com.au/tips-resources/?gad_source=1" target="_blank">Explore Now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner section end -->
+    </div>
+    <div class="map_section layout_padding">
+        <h1 class="map_taital">Map Of Cycling Road</h1>
+
+        <div class="container">
+            <div class="map" id="map">Map</div>
+            <div class="form-container">
+                <input type="text" id="startingInput" placeholder="Starting">
+                <input type="text" id="destinationInput" placeholder="Destination">
+                <div class="button-container">
+                    <button class="clear_btn" onclick="clearInputs()">clear</button>
+                    <button class="search_btn">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript -->
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+
+        }
+
+        $("#main").click(function() {
+            $("#navbarSupportedContent").toggleClass("nav-normal")
+        })
+    </script>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaGVyeTExMTMiLCJhIjoiY2xucHI1a201MHEzYjJqbGdpZW03ZnB0dCJ9.GgZ0WS63qmsdukDHO-o7_A';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [144.9631, -37.8136],
+            zoom: 9
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>
+    <script>
+        function clearInputs() {
+            document.getElementById('startingInput').value = '';
+            document.getElementById('destinationInput').value = '';
+        }
+    </script>
+</body>
+
+</html>
