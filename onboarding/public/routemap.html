@@ -107,6 +107,9 @@
     <!-- owl stylesheets -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/4.5.5/typescript.min.js"></script>
+    
 </head>
 
 <body>
@@ -126,7 +129,7 @@
                         <a class="nav-link" href="accidentmap.html">Accident and risk map</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="routmap.html">Cycling Route</a>
+                        <a class="nav-link" href="routemap.html">Cycling Route</a>
                     </li>
                 </ul>
             </div>
@@ -159,7 +162,7 @@
                 <input type="text" id="destinationInput" placeholder="Destination">
                 <div class="button-container">
                     <button class="clear_btn" onclick="clearInputs()">clear</button>
-                    <button class="search_btn">Search</button>
+                    <button class="search_btn" id="search_btn">Search</button>
                 </div>
             </div>
         </div>
@@ -192,7 +195,13 @@
             $("#navbarSupportedContent").toggleClass("nav-normal")
         })
     </script>
-    <script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD86HVoelH6hAMHnX5HuyTKoX2O_EoPgGo&libraries=places&callback=initMap" async defer></script>
+    <script src="mapscript.js">
+        
+    </script>
+
+    <!-- <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiaGVyeTExMTMiLCJhIjoiY2xucHI1a201MHEzYjJqbGdpZW03ZnB0dCJ9.GgZ0WS63qmsdukDHO-o7_A';
 
         var map = new mapboxgl.Map({
@@ -203,7 +212,7 @@
         });
 
         map.addControl(new mapboxgl.NavigationControl());
-    </script>
+    </script> -->
     <script>
         function clearInputs() {
             document.getElementById('startingInput').value = '';
