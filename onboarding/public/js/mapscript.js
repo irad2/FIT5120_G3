@@ -1,4 +1,13 @@
 /// <reference types="@types/googlemaps" />
+
+function loadGoogleMapsScript() {
+    const script = document.getElementById('google-maps-script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}&libraries=places&callback=initMap`;
+    script.async = true;
+    script.defer = true;
+  }
+loadGoogleMapsScript();
+
 var map, directionsService, directionsRenderer, autocompleteStart, autocompleteEnd, unsafeZones = [];
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
