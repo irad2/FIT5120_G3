@@ -17,28 +17,21 @@
     <style>
         .container {
             display: flex;
-            /* 使用 Flexbox 布局 */
             gap: 20px;
-            /* 设置两个元素之间的间距 */
         }
         
         .map {
             flex: 3;
-            /* 地图占用的宽度是输入框的两倍 */
             background-color: #f0f0f0;
-            /* 示例背景色 */
             height: 500px;
-            /* 设置地图的高度 */
             border: 1px solid #ccc;
         }
         
         .form-container {
             flex: 1;
-            /* 输入框占用的宽度 */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* 垂直居中输入框 */
             padding: 20px;
         }
         
@@ -48,18 +41,13 @@
             border: 0px;
             margin-bottom: 10px;
             border-radius: 10px;
-            /* 输入框之间的间距 */
         }
         
         .button-container {
             display: flex;
-            /* 使用 Flexbox 布局 */
             justify-content: center;
-            /* 水平居中对齐 */
             gap: 10px;
-            /* 设置按钮之间的间距 */
             margin-top: 20px;
-            /* 可选：设置容器的上边距 */
         }
         
         .clear_btn {
@@ -109,7 +97,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/4.5.5/typescript.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -130,6 +118,9 @@
                     </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="routemap.html">Cycling Route</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accidentananlysis.html">Data Analysis</a>
                     </li>
                 </ul>
             </div>
@@ -198,7 +189,6 @@
     <script id="google-maps-script"></script>
     <script src="config.js"></script>
     <script src="/js/mapscript.js">
-        
     </script>
 
     <!-- <script>

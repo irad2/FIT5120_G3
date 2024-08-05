@@ -1,0 +1,25 @@
+[{
+        "Age Range": "0 to 4",
+        "Count": 27
+    },
+    {
+        "Age Range": "5 to 15",
+        "Count": 59
+    },
+    {
+        "Age Range": "16 to 17",
+        "Count": 60
+    },
+    {
+        "Age Range": "18 to 20",
+        "Count": 194
+    },
+    {
+        "Age Range": "21 to 25",
+        "Count": 247
+    },
+    {
+        "Age Range": "26 to 29",
+        "Count": 216
+    }
+]
