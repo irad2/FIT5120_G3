@@ -1,0 +1,13 @@
+[
+    {"Road":"Mount Alexander Rd", "Suburbs":"Essendon, Moonee Ponds, Ascot Vale", "Issues Raised":"Several confusing roundabouts, dangerous for pedestrians attempting to cross and lack of safe bike riding infrastructure.", "Latitude":-37.7626, "Longitude":144.9231},
+    {"Road":"Dandenong Rd", "Suburbs":"Windsor, Prahran, Caulfield", "Issues Raised":"Pedestrian crossings inadequate for school children, inappropriate clearway times causing risky merging and sudden drops in speed not well observed.", "Latitude":-37.8593, "Longitude":145.0116},
+    {"Road":"Sydney Rd", "Suburbs":"Brunswick, Coburg", "Issues Raised":"Unsafe interaction between motorists, cyclists, pedestrians and trams.", "Latitude":-37.7667, "Longitude":144.9612},
+    {"Road":"North Rd", "Suburbs":"McKinnon, Oakleigh, Clayton", "Issues Raised":"Speed zone inconsistency, unsafe driving and disconnected cycling path.", "Latitude":-37.9153, "Longitude":145.0606},
+    {"Road":"Calder Fwy", "Suburbs":"Keilor Park, Keilor, Taylors Lakes", "Issues Raised":"Unsafe driving, with heavy congestion inducing risk-taking behaviours.", "Latitude":-37.7, "Longitude":144.8},
+    {"Road":"Clyde Rd \/ Berwick-Cranbourne Rd", "Suburbs":"Berwick, Clyde", "Issues Raised":"Unsafe driving, with heavy congestion inducing risk-taking behaviours. Insufficient separation of cyclists.", "Latitude":-38.0459, "Longitude":145.344},
+    {"Road":"Point Cook Rd", "Suburbs":"Point Cook, Seabrook", "Issues Raised":"Unsafe driving, with heavy congestion inducing risk-taking behaviours. Insufficient separation of cyclists.", "Latitude":-37.9125, "Longitude":144.7623},
+    {"Road":"St Kilda Rd", "Suburbs":"Melbourne", "Issues Raised":"Motorists and cyclists experiencing confusion since the cycling infrastructure upgrades. Further awareness and education required to mitigate this perception issue.", "Latitude":-37.8409, "Longitude":144.9785},
+    {"Road":"Barkly St \/ Hopkins St", "Suburbs":"Footscray", "Issues Raised":"Inadequate or missing bike infrastructure, narrow footpaths and heavy trucks mixing with bike riders.", "Latitude":-37.7993, "Longitude":144.8955},
+    {"Road":"Western Fwy", "Suburbs":"Melton, Rockbank", "Issues Raised":"Two lanes insufficient to service major growth area (Melton) \/ absence of adequate merging lanes and overall road quality insufficient.", "Latitude":-37.6869, "Longitude":144.7489}
+]
+
