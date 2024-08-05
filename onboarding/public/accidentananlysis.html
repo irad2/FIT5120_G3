@@ -97,9 +97,14 @@
         <!-- banner section end -->
 
     </div>
-    <div class="chart_taital">Age range of accidents</div>
-    <div id="barchart" width="100" height="200">
+    <div class="chart_taital">Age Range Of Accidents</div>
+    <div id="barchart">
         <canvas id="ageChart"></canvas>
+
+    </div>
+    <div class="chart_taital">Number of Accidents by Hour of the Day</div>
+    <div id="barchart">
+        <canvas id="accidentsChart"></canvas>
     </div>
     <script>
         var ctx = document.getElementById('ageChart').getContext('2d');
@@ -139,7 +144,35 @@
         });
     </script>
 
+    <script>
+        const data = {
+            labels: ["12AM-2AM", "2AM-4AM", "4AM-6AM", "6AM-8AM", "8AM-10AM", "10AM-12PM", "12PM-2PM", "2PM-4PM", "4PM-6PM", "6PM-8PM", "8PM-10PM", "10PM-12AM"],
+            datasets: [{
+                label: 'Number of Accidents',
+                data: [146, 108, 113, 215, 219, 247, 301, 368, 337, 252, 198, 169],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
 
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('accidentsChart'),
+            config
+        );
+    </script>
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
