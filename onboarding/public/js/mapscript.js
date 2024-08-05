@@ -23,7 +23,7 @@ function initMap() {
     
     async function fetchUnsafeZones() {
         try {
-            const response = await fetch('/most_dangerous.json');
+            const response = await fetch('/data/most_dangerous.json');
             return await response.json();
         } catch (error) {
             console.error('Failed to fetch unsafe zones:', error);
@@ -46,7 +46,7 @@ function initMap() {
                 }
             });
 
-            
+
     
             var circle = new google.maps.Circle({
                 strokeColor: '#FF0000',
