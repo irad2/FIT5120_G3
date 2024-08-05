@@ -92,12 +92,12 @@ function initMap() {
                     if (status === "OK") {
                         var routePath = response.routes[0].overview_path;
                         if (!checkRouteSafety(routePath)) {
-                            directionsRenderer.setDirections(response);
+                            
                             console.log("Directions found");
                         } else {
-                            alert('No route available that avoids all unsafe zones.');
+                            alert('Your route passes through an unsafe area. Please choose a different route or be careful');
                         }
-                        
+                        directionsRenderer.setDirections(response);
                     } else {
                         console.error("Directions request failed due to " + status);
                     }
