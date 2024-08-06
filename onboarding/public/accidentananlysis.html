@@ -114,6 +114,7 @@
             try {
                 const response = await fetch('/data/age_range.json');
                 return await response.json();
+                
 
             } catch (error) {
                 console.error("failed to fetch age range data");
@@ -121,16 +122,27 @@
             }
         }
 
-        const response = fetchData();
+        async function processData() {
+        const data = await fetchData();
+        var labels = [];
+        var values = [];
+
+        data.forEach(item => {
+            labels.push(item['Age Range']);
+            values.push(item['Count']);
+        });
+
+        console.log(labels);
+        console.log(values);
 
         var ctx = document.getElementById('ageChart').getContext('2d');
         var ageChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['0 to 4', '5 to 15', '16 to 17', '18 to 20', '21 to 25', '26 to 29'],
+                labels: labels,
                 datasets: [{
                     label: 'Count of Range',
-                    data: jlkj
+                    data: values,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -158,6 +170,10 @@
                 }
             }
         });
+
+    }
+    processData(); 
+        
     </script>
 
     <script>
