@@ -17,43 +17,37 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <style>
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-        
         .map {
             flex: 3;
             background-color: #f0f0f0;
-            height: 500px;
-            border: 1px solid #ccc;
+            height: 700px;
+            margin-right: 50px;
+            margin-left: 50px;
         }
         
-        .form-container {
-            flex: 1;
-            display: flex;
+        .flex-container {
             flex-direction: column;
             justify-content: center;
-            padding: 20px;
+            padding-left: 50px;
+            padding-bottom: 30px;
         }
         
-        .form-container input {
-            width: 100%;
+        .flex-container input {
+            width: 10%;
             padding: 10px;
             border: 0px;
-            margin-bottom: 10px;
+            margin-left: 20px;
             border-radius: 10px;
         }
         
         .button-container {
-            display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
         }
         
         .clear_btn {
-            padding: 10px 10px;
+            padding: 5px 5px;
             border: none;
             border-radius: 5px;
             background-color: white;
@@ -61,10 +55,11 @@
             cursor: pointer;
             font-size: 16px;
             width: 70px;
+            margin-left: 20px;
         }
         
         .search_btn {
-            padding: 10px 10px;
+            padding: 5px 5px;
             border: none;
             border-radius: 5px;
             background-color: black;
@@ -72,6 +67,7 @@
             cursor: pointer;
             font-size: 16px;
             width: 70px;
+            margin-left: 20px;
         }
         
         .clear_btn:hover,
@@ -104,9 +100,9 @@
 
 <body>
     <!-- header section start -->
-    <div class="header_section header_bg">
+    <div class="routemap_head header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="index.html" class="logo"><img src="images/logo1.png"></a>
+            <a href="index.html" class="logo"><img src="images/logo3.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
              </button>
@@ -121,44 +117,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="routemap.html">Cycling Route</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="accidentananlysis.html">Data Analysis</a>
-                    </li>
+
                 </ul>
             </div>
 
         </nav>
         <!-- banner section start -->
-        <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="image_1"><img src="images/img-1.png"></div>
-                    </div>
-                    <div class="col-md-5">
-                        <h1 class="banner_taital">Melbourne Cycling</h1>
-                        <p class="banner_text">Safe Road.Safe Ride.</p>
-                        <div class="contact_bt"><a href="https://bicyclenetwork.com.au/tips-resources/?gad_source=1" target="_blank">Explore Now</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- banner section end -->
     </div>
-    <div class="map_section layout_padding">
+    <div class="map_section">
         <h1 class="map_taital">Melbourne Cycling Route Map</h1>
-
-        <div class="container">
-            <div class="map" id="map">Map</div>
-            <div class="form-container">
-                <input type="text" id="startingInput" placeholder="Starting">
-                <input type="text" id="destinationInput" placeholder="Destination">
-                <div class="button-container">
-                    <button class="clear_btn" onclick="clearInputs()">clear</button>
-                    <button class="search_btn" id="search_btn">Search</button>
-                </div>
-            </div>
+        <div class="flex-container">
+            <input type="text" id="startingInput" placeholder="Starting">
+            <input type="text" id="destinationInput" placeholder="Destination">
+            <button class="search_btn" id="search_btn">Search</button>
+            <button class="clear_btn" onclick="clearInputs()">clear</button>
         </div>
+        <div class="map" id="map">Map</div>
+
     </div>
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>

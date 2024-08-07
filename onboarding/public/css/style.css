@@ -212,7 +212,15 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-image: linear-gradient(-13deg, #ffffff 30%, #8950e3 20%);
+    background-image: linear-gradient(-13deg, #ffffff 30%, #325662 20%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.routemap_head {
+    width: 100%;
+    float: left;
+    background-color: #325662;
     position: relative;
     overflow-x: hidden;
 }
@@ -847,9 +855,10 @@ button {
 .map_section {
     width: 100%;
     float: left;
-    background-color: #8950e3;
+    background-color: #325662;
     height: auto;
-    padding: 90px 0px;
+    padding-top: 20px;
+    padding-bottom: 170px;
 }
 
 .map_taital {
@@ -863,7 +872,7 @@ button {
 .news_section {
     width: 100%;
     float: left;
-    background-color: #8950e3;
+    background-color: #325662;
     height: auto;
     padding: 90px 0px;
 }
