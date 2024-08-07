@@ -1181,5 +1181,12 @@ textarea#comment::placeholder {
     transform: none;
 }
 
+@media (max-width: 768px) {
+    input[type="text"] {
+        width: 80%;
+        font-size: 14px;
+    }
+}
+
 
 /* contact section end*/
