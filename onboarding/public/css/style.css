@@ -212,7 +212,6 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-image: linear-gradient(-13deg, #ffffff 30%, #325662 20%);
     position: relative;
     overflow-x: hidden;
 }
@@ -230,7 +229,8 @@ button {
     float: left;
 }
 
-.header_section::after {
+
+/* .header_section::after {
     content: '';
     background-color: #ffffff;
     position: absolute;
@@ -241,11 +241,12 @@ button {
     display: flex;
     height: 500px;
     left: 0;
-}
+} */
 
-.header_section.header_bg::after {
+
+/* .header_section.header_bg::after {
     height: 100%;
-}
+} */
 
 .bg-light {
     background-color: transparent !important;
@@ -264,14 +265,14 @@ button {
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 15px;
     padding-left: 15px;
-    color: #e0dcdc !important;
+    color: #f7c17b !important;
     display: flex;
     font-size: 18px;
 }
 
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
-    color: #f7c17b !important;
+    color: #553aa1 !important;
 }
 
 .sidenav {
@@ -361,7 +362,7 @@ button {
 }
 
 .banner_taital {
-    width: 50%;
+    width: 80%;
     float: left;
     font-size: 50px;
     color: #ffffff;
@@ -382,12 +383,13 @@ button {
     width: 100%;
     float: left;
     margin-top: 20px;
+    margin-top: 30px;
 }
 
 .contact_bt a {
-    width: 180px;
+    width: 230px;
     float: left;
-    font-size: 18px;
+    font-size: 23px;
     color: #ffffff;
     text-align: center;
     background-color: #f7c17b;

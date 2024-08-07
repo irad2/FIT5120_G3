@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Map Of Accident And Risk</title>
+    <title>BikeSafeMEL</title>
     <link rel="icon1" href="images/logo3.png" type="image/x-icon">
     <link rel="shortcut icon" href="images/logo3.png" type="image/x-icon">
     <meta name="keywords" content="">
@@ -31,15 +31,36 @@
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- owl stylesheets -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        .head_style {
+            background-image: url(images/homepage2.png);
+            background-size: cover;
+            background-position: center;
+            height: 800px;
+        }
+        
+        .head_container {
+            width: 600px;
+            margin-left: 150px;
+        }
+        
+        .head_container .banner_taital {
+            font-size: 70px;
+            margin-top: 60px;
+        }
+        
+        .head_container .banner_text {
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
     <!-- header section start -->
-    <div class="header_section header_bg">
+    <div class="head_style">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="index.html" class="logo"><img src="images/logo3.png"></a>
+            <!-- <a href="index.html" class="logo"><img src="images/logo3.png"></a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,18 +77,13 @@
             </div>
         </nav>
         <!-- banner section start -->
+
         <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="image_1"><img src="images/img-1.png"></div>
-                    </div>
-                    <div class="col-md-5">
-                        <h1 class="banner_taital">Melbourne Cycling</h1>
-                        <p class="banner_text">Safe Road.Safe Ride.</p>
-                        <div class="contact_bt"><a href="routemap.html">Explore Now</a></div>
-                    </div>
-                </div>
+
+            <div class="head_container">
+                <h1 class="banner_taital">Riding Safely in Melbourne</h1>
+                <p class="banner_text">Safe Road.Safe Ride.</p>
+                <div class="contact_bt"><a href="routemap.html">Find Your Route</a></div>
             </div>
         </div>
         <!-- banner section end -->
