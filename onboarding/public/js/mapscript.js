@@ -35,9 +35,23 @@ function initMap() {
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
-    fetchUnsafeZones().then(data => {
-        displayUnsafeZones(data, map);
-    });
+    var riskbutton = document.createElement('button');
+    riskbutton.textContent = 'Risk Areas';
+    riskbutton.className = 'map-button';
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(riskbutton);
+
+    riskbutton.onclick = function() {
+        showUnsafeZones = !showUnsafeZones;
+        if (showUnsafeZones) {
+            fetchUnsafeZones().then(data => {
+                displayUnsafeZones(data, map);
+            });
+            riskbutton.textContent = 'Hide Risk Areas';
+        } else {
+            hideUnsafeZones(map);
+            riskbutton.textContent = 'Risk Areas';
+        }
+    };
 
     setupDirections(directionsService, directionsRenderer);
 
@@ -98,8 +112,18 @@ function displayUnsafeZones(data, map) {
         console.log("Unsafe zone added: " + zone.Latitude + ", " + zone.Longitude);
 
         // Store the circle object for later use in routing checks
-        unsafeZones.push(circle);
+        unsafeZones.push({ marker, circle });
     });
+}
+var showUnsafeZones = false;
+var unsafeZones = [];
+
+function hideUnsafeZones(map) {
+    unsafeZones.forEach(({ marker, circle }) => {
+        marker.setMap(null);
+        circle.setMap(null);
+    });
+    unsafeZones = [];
 }
 
 function setupDirections(directionsService, directionsRenderer) {
