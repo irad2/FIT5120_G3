@@ -16,7 +16,20 @@ function initMap() {
         zoom: 11,
     });
     const bikeLayer = new google.maps.BicyclingLayer();
-    bikeLayer.setMap(map);
+    var button = document.createElement('button');
+    button.textContent = 'Bicycle Layer';
+    button.className = 'map-button';
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
+
+    button.onclick = function() {
+        if (bikeLayer.getMap()) {
+            bikeLayer.setMap(null);
+            button.textContent = 'Bicycle Layer';
+        } else {
+            bikeLayer.setMap(map);
+            button.textContent = 'Hide Bicycle Layer';
+        }
+    };
     console.log("Map initialized");
 
     const directionsService = new google.maps.DirectionsService();
@@ -30,6 +43,7 @@ function initMap() {
 
 
 }
+
 
 async function fetchUnsafeZones() {
     try {
