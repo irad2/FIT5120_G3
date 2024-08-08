@@ -1,5 +1,50 @@
 /// <reference types="@types/googlemaps" />
 
+function loadGeoJson(map) {
+    fetch('../data/suburb.geojson')
+      .then(response => response.json())
+      .then(data => {
+        const polygonFeatures = {
+            type: "FeatureCollection",
+            features: data.features.filter(feature => feature.geometry.type === "Polygon")
+        };
+        map.data.addGeoJson(polygonFeatures);
+        map.data.setStyle({
+            fillColor: 'green',
+        });
+      })
+      .catch(error => console.error('Error loading GeoJSON:', error));
+  }
+  
+function showSeverityAreas(map) {
+    Promise.all([
+        fetch('../data/suburb.geojson').then(response => response.json()),
+        fetch('../data/postcode_counts.json').then(response => response.json())
+    ]).then(([geoJsonData, postcodeData]) => {
+        const postcodeMap = new Map(postcodeData.map(item => [item.POSTCODE.toString(), item.COUNT]));
+        console.log(postcodeMap);
+                const counts = postcodeData.map(item => item.COUNT);
+                const minCount = Math.min(...counts);
+                const maxCount = Math.max(...counts);
+                const polygonFeatures = {
+                    type: "FeatureCollection",
+                    features: geoJsonData.features.filter(feature => feature.geometry.type === "Polygon")
+                };
+                map.data.addGeoJson(polygonFeatures);
+                map.data.setStyle(feature => {
+                    const postcode = feature.getProperty('postal_code');
+                    const count = postcodeMap.get(postcode) || 0;
+                    const normalizedCount = (count - minCount) / (maxCount - minCount);
+                    const color = getColorForPercentage(normalizedCount);
+                    return {
+                        fillColor: color,
+                        fillOpacity: 0.4,
+                        strokeWeight: 1,
+                        strokeColor: '#000000'
+                    };
+                }); });
+}
+
 function loadGoogleMapsScript() {
     const script = document.getElementById('google-maps-script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}&libraries=places&callback=initMap`;
@@ -46,6 +91,7 @@ function initMap() {
             fetchUnsafeZones().then(data => {
                 displayUnsafeZones(data, map);
             });
+            showSeverityAreas(map);
             riskbutton.textContent = 'Hide Risk Areas';
         } else {
             hideUnsafeZones(map);
@@ -56,8 +102,15 @@ function initMap() {
     setupDirections(directionsService, directionsRenderer);
 
 
-}
+    
 
+    // loadGeoJson(map);
+
+}
+function getColorForPercentage(pct) {
+    const hue = ((1 - pct) * 120).toString(10);
+    return `hsl(${hue}, 100%, 50%)`;
+}
 
 async function fetchUnsafeZones() {
     try {
@@ -124,6 +177,10 @@ function hideUnsafeZones(map) {
         circle.setMap(null);
     });
     unsafeZones = [];
+    map.data.setStyle({
+        fillOpacity: 0,
+        strokeWeight: 0
+    });
 }
 
 function setupDirections(directionsService, directionsRenderer) {
@@ -153,7 +210,7 @@ function setupDirections(directionsService, directionsRenderer) {
 
                         console.log("Directions found");
                     } else {
-                        alert('Your route passes through an unsafe area. Please choose a different route or be careful');
+                        alert('Your route passes through a notably high-risk area. Please be careful');
                     }
                     directionsRenderer.setDirections(response);
                 } else {
