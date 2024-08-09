@@ -246,7 +246,7 @@ function displayUnsafeZones(data, map) {
     var infoWindow = new google.maps.InfoWindow();
 
     data.forEach(zone => {
-        var zonePosition = { lat: zone.Latitude, lng: zone.Longitude };
+        var zonePosition = new google.maps.LatLng(zone.Latitude, zone.Longitude);
         var marker = new google.maps.Marker({
             position: zonePosition,
             map: map,
@@ -260,14 +260,9 @@ function displayUnsafeZones(data, map) {
 
         marker.addListener('click', function() {
             infoWindow.setContent('<strong>' + zone.Road + '</strong><br>' +
-                'Issues Raised: ' + zone['Issues Raised'] + '</div>'
-            );
-
+                'Issues Raised: ' + zone['Issues Raised'] + '</div>');
             infoWindow.open(map, marker);
         });
-
-
-
 
         var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
@@ -275,33 +270,47 @@ function displayUnsafeZones(data, map) {
             strokeWeight: 2,
             fillColor: '#FF0000',
             fillOpacity: 0.35,
-            map,
+            map: map,
             center: zonePosition,
-            radius: 500, // radius should be adjusted based on your specific needs,
-            label: "Unsafe Zone: " + zone.Road
+            radius: 500,
         });
 
-        console.log("Unsafe zone added: " + zone.Latitude + ", " + zone.Longitude);
-
-        // Store the circle object for later use in routing checks
-        unsafeZones.push({ marker, circle });
+        // Store circle and marker
+        unsafeZones.push(circle);
+        unsafeMarkers.push(marker); // Ensure this array is initialized
     });
 }
+
 var showUnsafeZones = false;
 var unsafeZones = [];
 var showInsights = false;
 
 function hideUnsafeZones(map) {
-    unsafeZones.forEach(({ marker, circle }) => {
-        marker.setMap(null);
+    // Hide circles
+    unsafeZones.forEach(circle => {
         circle.setMap(null);
     });
-    unsafeZones = [];
-    map.data.setStyle({
-        fillOpacity: 0,
-        strokeWeight: 0
+    unsafeZones = []; // Clear the circle array
+
+    // If markers are stored in a separate array, iterate and remove them
+    if (unsafeMarkers && unsafeMarkers.length > 0) {
+        unsafeMarkers.forEach(marker => {
+            marker.setMap(null);
+        });
+        unsafeMarkers = []; // Clear the marker array
+    }
+
+    // Hide Data Layer elements
+    map.data.forEach(function(feature) {
+        map.data.remove(feature); // This will remove each feature from the data layer
     });
+
+    console.log("All unsafe zones, markers, and data layers have been hidden.");
 }
+
+// Ensure you define or initialize unsafeMarkers somewhere in your global scope if not already defined
+var unsafeMarkers = [];
+
 
 function setupDirections(directionsService, directionsRenderer) {
     const originInput = document.getElementById("startingInput");
@@ -343,8 +352,10 @@ function setupDirections(directionsService, directionsRenderer) {
 
 function checkRouteSafety(routePath) {
     return routePath.some(pathPoint => {
-        return unsafeZones.some(zone => {
-            return google.maps.geometry.spherical.computeDistanceBetween(pathPoint, zone.getCenter()) < zone.getRadius();
+        return unsafeZones.some(circle => {
+            var center = circle.getCenter();
+            var radius = circle.getRadius();
+            return google.maps.geometry.spherical.computeDistanceBetween(pathPoint, center) < radius;
         });
     });
 }
