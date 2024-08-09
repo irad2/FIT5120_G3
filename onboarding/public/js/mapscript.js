@@ -1,5 +1,6 @@
 /// <reference types="@types/googlemaps" />
-
+document.addEventListener('DOMContentLoaded', function() {
+let chart;
 function loadGeoJson(map) {
     fetch('../data/suburb.geojson')
       .then(response => response.json())
@@ -15,7 +16,45 @@ function loadGeoJson(map) {
       })
       .catch(error => console.error('Error loading GeoJSON:', error));
   }
-  
+
+  function showChart() {
+    const chartContainer = document.getElementById('chartContainer');
+    chartContainer.style.display = 'block';
+
+    const ctx = document.getElementById('accidentChart').getContext('2d');
+    
+    const data = {
+        labels: ["12AM-2AM", "2AM-4AM", "4AM-6AM", "6AM-8AM", "8AM-10AM", "10AM-12PM", "12PM-2PM", "2PM-4PM", "4PM-6PM", "6PM-8PM", "8PM-10PM", "10PM-12AM"],
+        datasets: [{
+            label: 'Number of Accidents',
+            data: [146, 108, 113, 215, 219, 247, 301, 368, 337, 252, 198, 169],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    processData();
+}
+function closeChart() {
+    const chartContainer = document.getElementById('chartContainer');
+    chartContainer.style.display = 'none';
+    if (chart) {
+        chart.destroy();
+    }
+}
 function showSeverityAreas(map) {
     Promise.all([
         fetch('../data/suburb.geojson').then(response => response.json()),
@@ -99,6 +138,24 @@ function initMap() {
         }
     };
 
+    var chartbutton = document.createElement('button');
+    chartbutton.textContent = 'Show Insights';
+    chartbutton.className = 'map-button';
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(chartbutton);
+    chartbutton.onclick = function() {
+        showInsights = !showInsights;
+        if (showInsights) {
+            showChart();
+            chartbutton.textContent = 'Hide Insights';
+        } else {
+            closeChart();
+            chartbutton.textContent = 'Show Insights';
+        }
+
+
+        
+    };
+
     setupDirections(directionsService, directionsRenderer);
 
 
@@ -121,7 +178,69 @@ async function fetchUnsafeZones() {
         return [];
     }
 }
+async function fetchData() {
+    try {
+        const response = await fetch('../data/age_range.json');
+        return await response.json();
 
+
+    } catch (error) {
+        console.error("failed to fetch age range data");
+        return [];
+    }
+}
+
+async function processData() {
+    const data = await fetchData();
+    var labels = [];
+    var values = [];
+
+    data.forEach(item => {
+        labels.push(item['Age Range']);
+        values.push(item['Count']);
+    });
+
+    console.log(labels);
+    console.log(values);
+
+    var ctx = document.getElementById('ageChart').getContext('2d');
+    var ageChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Count of Range',
+                data: values,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+}
+processData();
 
 function displayUnsafeZones(data, map) {
     var infoWindow = new google.maps.InfoWindow();
@@ -170,6 +289,7 @@ function displayUnsafeZones(data, map) {
 }
 var showUnsafeZones = false;
 var unsafeZones = [];
+var showInsights = false;
 
 function hideUnsafeZones(map) {
     unsafeZones.forEach(({ marker, circle }) => {
@@ -236,4 +356,4 @@ window.onload = function() {
     } else {
         console.error("Google Maps API not loaded");
     }
-};
+};});

@@ -16,6 +16,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .map {
             flex: 3;
@@ -87,6 +88,20 @@
         .clear_btn:hover,
         .search_btn:hover {
             background-color: #60bedd;
+        
+        }
+        #chartContainer {
+            display: none;
+            position: absolute;
+            top: 45%;
+            left: 20%;
+            
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
     </style>
 
@@ -143,6 +158,10 @@
             <button class="clear_btn" onclick="clearInputs()">Clear</button>
         </div>
         <div class="map" id="map">Map</div>
+        <div id="chartContainer">
+            <canvas id="accidentChart"></canvas>
+            <canvas id="ageChart"></canvas>
+        </div>
 
     </div>
     <!-- Javascript files-->
@@ -177,19 +196,6 @@
     <script src="config.js"></script>
     <script src="/js/mapscript.js">
     </script>
-
-    <!-- <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiaGVyeTExMTMiLCJhIjoiY2xucHI1a201MHEzYjJqbGdpZW03ZnB0dCJ9.GgZ0WS63qmsdukDHO-o7_A';
-
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [144.9631, -37.8136],
-            zoom: 9
-        });
-
-        map.addControl(new mapboxgl.NavigationControl());
-    </script> -->
     <script>
         function clearInputs() {
             document.getElementById('startingInput').value = '';
