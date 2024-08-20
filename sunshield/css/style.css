@@ -1,0 +1,388 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.menu-toggle {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.hamburger-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+
+.hamburger-icon img {
+    width: 4%;
+    height: auto;
+    cursor: pointer;
+}
+
+#sidebar {
+    width: 17%;
+    position: fixed;
+    left: -17%;
+    top: 0;
+    height: 100%;
+    background-color: #46837e;
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 1000;
+    font-size: 1vw;
+    opacity: 0.9;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20%;
+}
+
+#sidebar ul li a {
+    padding: 7% 21%;
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+#sidebar ul li a:hover {
+    color: #a1a1a1;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.moduel-container img {
+    width: 100%;
+}
+
+.moduel-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    line-height: 0;
+}
+
+.background-png {
+    position: relative;
+    width: 100%;
+}
+
+.background-png img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.mid-png {
+    position: relative;
+    width: 100%;
+}
+
+.mid-png img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlap-png {
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    width: 35%;
+}
+
+.overlap-png img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.lion-png {
+    width: 20%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.end-moduel-color {
+    background-color: #1B7F7A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    color: #1B7F7A;
+    font-size: 5vw;
+    text-align: left;
+    width: 10%;
+    height: auto;
+    font-family: "Finger Paint", sans-serif;
+}
+
+.introduction-msg {
+    position: absolute;
+    top: 42%;
+    left: 25%;
+    color: #000;
+    font-size: 1.2vw;
+    text-align: left;
+    width: 23%;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    word-wrap: break-word;
+    line-height: 100%;
+}
+
+.ab-btn {
+    position: absolute;
+    top: 53%;
+    left: 25%;
+    width: 20%;
+    background-color: #FFC107;
+    color: #000;
+    border: none;
+    padding: 1% 2%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    display: inline-block;
+}
+
+.ab-btn:hover {
+    background-color: #f9d978;
+    color: #fff;
+}
+
+.mid-head {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    font-size: 4vw;
+    transform: translateX(-50%);
+}
+
+.part1 {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    text-align: center;
+    width: 20%;
+}
+
+.part2 {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    text-align: center;
+    width: 20%;
+}
+
+.part3 {
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    text-align: center;
+    width: 20%;
+}
+
+.part4 {
+    position: absolute;
+    top: 55%;
+    left: 25%;
+    text-align: center;
+    width: 20%;
+}
+
+.part5 {
+    position: absolute;
+    top: 55%;
+    left: 45%;
+    text-align: center;
+    width: 20%;
+}
+
+.part6 {
+    position: absolute;
+    top: 55%;
+    left: 65%;
+    text-align: center;
+    width: 20%;
+}
+
+.part1-title,
+.part2-title,
+.part3-title,
+.part4-title,
+.part5-title,
+.part6-title {
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 3vw;
+}
+
+.part1-text,
+.part2-text,
+.part3-text,
+.part4-text,
+.part5-text,
+.part6-text {
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1.2vw;
+    word-wrap: break-word;
+    line-height: 80%;
+    text-align: center;
+}
+
+.part1-icon,
+.part2-icon,
+.part3-icon,
+.part4-icon,
+.part5-icon,
+.part6-icon {
+    position: absolute;
+    width: 50%;
+    transform: translateX(50%);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.part1-icon:hover,
+.part2-icon:hover,
+.part3-icon:hover,
+.part4-icon:hover,
+.part5-icon:hover,
+.part6-icon:hover {
+    animation: bounce 1s;
+}
+
+.section1 {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    line-height: 100%;
+    width: 23%;
+    text-align: left;
+}
+
+.num1,
+.num2,
+.num3,
+.num4 {
+    font-size: 4vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    word-wrap: break-word;
+    line-height: 100%;
+}
+
+.title1,
+.title2,
+.title3,
+.title4 {
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1.7vw;
+    color: #fff;
+    word-wrap: break-word;
+    line-height: 100%;
+}
+
+.text1,
+.text2,
+.text3,
+.text4 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1vw;
+    color: #fff;
+    word-wrap: break-word;
+    line-height: 100%;
+}
+
+.section2 {
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    line-height: 100%;
+    width: 23%;
+    text-align: right;
+}
+
+.section3 {
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    line-height: 100%;
+    width: 23%;
+    text-align: right;
+}
+
+.section4 {
+    position: absolute;
+    top: 60%;
+    left: 65%;
+    line-height: 100%;
+    width: 23%;
+    text-align: left;
+}
+
+.head-text {
+    position: absolute;
+    top: 2%;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    font-size: 4vw;
+}
+
+@keyframes bounce {
+    0%,
+    10%,
+    20%,
+    40%,
+    50%,
+    70%,
+    80%,
+    100% {
+        transform: translateX(50%) translateY(0);
+    }
+    40% {
+        transform: translateX(50%) translateY(-30px);
+    }
+    60% {
+        transform: translateX(50%) translateY(-15px);
+    }
+}
