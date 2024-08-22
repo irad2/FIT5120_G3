@@ -399,6 +399,7 @@ body {
 
 .ab-content {
     display: flex;
+    background-color: #1B7F7A;
 }
 
 .ab-container {
@@ -419,6 +420,7 @@ body {
     font-size: 5vw;
     font-family: "Finger Paint", sans-serif;
     color: #000;
+    top: 30%;
 }
 
 .sun_pic {
@@ -440,6 +442,7 @@ body {
 .ab-text {
     margin-right: 10%;
     font-size: 1.5vw;
+    color: #fff;
 }
 
 .pys img {
