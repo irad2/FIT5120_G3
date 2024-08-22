@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 .menu-toggle {
@@ -385,4 +386,229 @@ body {
     60% {
         transform: translateX(50%) translateY(-15px);
     }
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+}
+
+.ab-head img {
+    width: 100%;
+}
+
+.ab-content {
+    display: flex;
+}
+
+.ab-container {
+    width: 40%;
+}
+
+.ab-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+}
+
+.ab-title {
+    position: absolute;
+    font-size: 5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+}
+
+.sun_pic {
+    padding-left: 10%;
+    padding-top: 5%;
+    width: 40%;
+}
+
+.sun_pic img {
+    width: 100%;
+}
+
+.ab-subtitle {
+    font-size: 5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+}
+
+.ab-text {
+    margin-right: 10%;
+    font-size: 1.5vw;
+}
+
+.pys img {
+    width: 100%;
+}
+
+.pys {
+    position: relative;
+    text-align: center;
+    line-height: 0;
+}
+
+.pys-title {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+    line-height: 10%;
+}
+
+.pys-sec-title {
+    font-size: 1vw;
+    font-family: "Finger Paint", sans-serif;
+}
+
+.pys-section1 {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+}
+
+.pys-section2 {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+}
+
+.pys-section3 {
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+}
+
+.pys-section4 {
+    position: absolute;
+    top: 35%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+}
+
+.pys-section5 {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+}
+
+.pys-img:hover {
+    display: inline-block;
+    animation: tada 1.2s;
+}
+
+@keyframes tada {
+    0% {
+        transform: scale(1);
+    }
+    10%,
+    20% {
+        transform: scale(0.9) rotate(-3deg);
+    }
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    40%,
+    60%,
+    80% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+.tips {
+    align-items: center;
+    justify-content: center;
+}
+
+.tip-sunsceen,
+.tip-sunhat,
+.tip-clothes,
+.tip-sunglasses,
+.tip-tree {
+    padding: 5%;
+}
+
+.tip-color {
+    background-color: #1B7F7A;
+}
+
+.tip-clothes,
+.tip-tree {
+    background-color: #Fc9731;
+}
+
+.tip-head {
+    display: flex;
+    position: relative;
+    top: 5%;
+    left: 5%;
+    font-size: 1.5vw;
+    font-family: "Finger Paint", sans-serif;
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+}
+
+.tip-head img {
+    width: 8%;
+}
+
+.tip-clothes .tip-head img,
+.tip-sunhat .tip-head img,
+.tip-tree .tip-head img,
+.tip-sunglasses .tip-head img {
+    padding-left: 2%;
+    width: 7%
+}
+
+.tip-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.tip-text {
+    width: 20%;
+    /* This sets the flex-grow property */
+    font-size: 1.3vw;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5%;
+    color: #fff;
+    /* Slight margin between text and video */
+}
+
+.tip-video {
+    width: 50%;
+    /* This sets the flex-grow property */
+    padding-left: 30%;
+    /* Padding to create spacing from the text */
+}
+
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* Setting a fixed height for the iframe */
 }
