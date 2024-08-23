@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 require('dotenv').config();
 
-app.get('/openweather/api/uv-index', async (req, res) => {
+app.get('/openweather/api/uv-index', async(req, res) => {
     const { lat, lon } = req.query;
     const apiKey = process.env.WEATHER_API_KEY;
     console.log(lat, lon);
@@ -26,6 +26,8 @@ app.use(express.static('public'));
 // Route for the home page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    res.sendFile(path.join(__dirname, 'public', 'uv_annlysis.html'));
+
 });
 
 // Start the server
