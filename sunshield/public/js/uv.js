@@ -1,4 +1,4 @@
-const apiKey = "apikey"
+const apiKey = "d1e6a760f216f0d15e3041df144692ab"
 document.addEventListener("DOMContentLoaded", () => {
     function getGeolocation() {
         const defaultLocation = {
@@ -56,25 +56,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Updates the UI
-    function updateUVIndexes(uvIndexes) {
-        uvIndexes.forEach((uvIndex, index) => {
+    function updateUVIndexes(indexDict) {
+        Object.entries(indexDict).forEach(([timestamp, uvIndex], index) => {
             const uvIndexElement = document.getElementById(`uv-index-${index}`);
-
-            if (uvIndex !== null && uvIndexElement !== null) {
-                uvIndexElement.textContent = uvIndex;
-                if (uvIndex < 3) {
-                    uvIndexElement.style.backgroundColor = 'green';
-                } else if (uvIndex < 6) {
-                    uvIndexElement.style.backgroundColor = 'yellow';
-                } else if (uvIndex < 8) {
-                    uvIndexElement.style.backgroundColor = 'orange';
-                } else if (uvIndex < 11) {
-                    uvIndexElement.style.backgroundColor = 'red';
+            if (uvIndexElement) {
+                const date = new Date(timestamp * 1000);
+                const today = new Date();
+                let formattedDate;
+                
+                if (date.toDateString() === today.toDateString()) {
+                    formattedDate = 'Today';
                 } else {
-                    uvIndexElement.style.backgroundColor = 'purple';
+                    formattedDate = date.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: '2-digit' });
                 }
-            } else {
-                if (uvIndexElement) uvIndexElement.textContent = 'N/A';
+
+                let uvText = 'N/A';
+                let bgColor = 'gray';
+
+                if (uvIndex !== null) {
+                    uvText = uvIndex.toFixed(1);
+                    if (uvIndex < 3) {
+                        bgColor = 'green';
+                    } else if (uvIndex < 6) {
+                        bgColor = 'yellow';
+                    } else if (uvIndex < 8) {
+                        bgColor = 'orange';
+                    } else if (uvIndex < 11) {
+                        bgColor = 'red';
+                    } else {
+                        bgColor = 'purple';
+                    }
+                }
+
+                uvIndexElement.innerHTML = `
+                    <p>${formattedDate}</p>
+                    <p>UV Index: ${uvText}</p>
+                `;
+                uvIndexElement.style.backgroundColor = bgColor;
             }
         });
     }
@@ -83,8 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const { lat, lon } = await getGeolocation();
             const uvIndexes = await getUVIndexes(lat, lon, targetTimes);
-            console.log("UVIs:", uvIndexes)
-            updateUVIndexes(uvIndexes);
+            const indexDict = {}
+            targetTimes.forEach((time, index) => {
+                indexDict[time] = uvIndexes[index];
+            });
+            console.log("indexDict:", indexDict);
+            updateUVIndexes(indexDict);
         } catch (error) {
             console.error(error);
             updateUVIndexes(new Array(targetTimes.length).fill(null));
@@ -124,4 +146,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     displayUVIndexes(nextWeekNoonTimestamps);
+
+    // Function to get the current UV index
+    async function getCurrentUVIndex() {
+        try {
+            const { lat, lon } = await getGeolocation();
+            const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=daily,minutely,hourly,alerts`);
+            const data = await response.json();
+            console.log(data);
+            return data.current.uvi;
+        } catch (error) {
+            console.error('Error fetching current UV index:', error);
+            return null;
+        }
+    }
+
+    // Function to display the current UV index
+    async function displayCurrentUVIndex() {
+        try {
+            const currentUVElement = document.getElementById('current-uv-index');
+            if (currentUVElement) {
+                currentUVElement.innerHTML = `
+                <p>Current UV Index in:</p>
+                <p>_</p>
+                <p>Loading...</p>
+                `;
+            }
+            const { lat, lon } = await getGeolocation();
+            const currentUVIndex = await getCurrentUVIndex();
+            console.log(lat, lon, currentUVIndex);
+            
+            if (currentUVElement) {
+                if (currentUVIndex !== null) {
+                    const locationName = await getLocationName(lat, lon);
+                    currentUVElement.innerHTML = `
+                        <p>Current UV Index in</p>
+                        <p>${locationName}:</p>
+                        <p>${currentUVIndex.toFixed(1)}</p>
+                    `;
+                } else {
+                    currentUVElement.textContent = 'Current UV Index: Unavailable';
+                }
+            }
+        } catch (error) {
+            console.error('Error displaying current UV index:', error);
+            const currentUVElement = document.getElementById('current-uv-index');
+            if (currentUVElement) {
+                currentUVElement.textContent = 'Unable to fetch location and UV index';
+            }
+        }
+    }
+    async function getLocationName(lat, lon) {
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+        const data = await response.json();
+        return data.address?.city || data.address?.town || data.address?.village || 'Unknown Location';
+    }
+
+    // Call the function to display the current UV index
+    displayCurrentUVIndex();
+
+    // Update the current UV index every 5 minutes
+    setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
 });

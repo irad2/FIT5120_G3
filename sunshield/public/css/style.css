@@ -30,6 +30,18 @@ body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+    .hamburger-icon img {
+        width: 6%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hamburger-icon img {
+        width: 10%;
+    }
+}
+
 #sidebar {
     width: 17%;
     position: fixed;
@@ -619,4 +631,42 @@ iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
     /* Setting a fixed height for the iframe */
+}
+
+.uv-index-button {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid #1B7F7A;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #1B7F7A;
+    transition: background-color 0.3s, color 0.3s;
+    min-width: 120px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.uv-index-button:hover {
+    background-color: #1B7F7A;
+    color: white;
+}
+
+#current-uv-index {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .uv-index-button {
+        padding: 6px 12px;
+        min-width: 100px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .uv-index-button {
+        padding: 4px 8px;
+        min-width: 80px;
+        font-size: 10px;
+    }
 }
