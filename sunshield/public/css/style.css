@@ -646,7 +646,7 @@ iframe {
     transition: background-color 0.3s, color 0.3s;
     min-width: 120px;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .uv-index-button:hover {
@@ -724,6 +724,11 @@ iframe {
     font-size: 2em; 
     color: white;
 }
+.uv-subtitle2 {
+    text-align: center;
+    font-size: 1em; 
+    color: white;
+}
 
 .uvi-number {
     background-image: url('../Resource/bg_white_circle.png');
@@ -739,6 +744,5 @@ iframe {
     height: 40px;
     font-family: 'Arial', sans-serif; 
     font-weight: bold; 
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 

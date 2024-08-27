@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (date.toDateString() === today.toDateString()) {
                     formattedDate = 'Today';
                 } else {
-                    formattedDate = date.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: '2-digit' });
+                    formattedDate = date.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
                 }
 
                 let uvText = 'N/A';
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         textColor = "green";
                     } else if (uvIndex < 6) {
                         uvIndexText = "Moderate";
-                        textColor = "yellow";
+                        textColor = "#Fc9731";
                     } else if (uvIndex < 8) {
                         uvIndexText = "High";
                         textColor = "orange";
@@ -220,6 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (currentUVElement) {
                 if (currentUVIndex !== null) {
                     const locationName = await getLocationName(lat, lon);
+                    const locationNameMain = document.getElementById('location-name');
+                    if (locationNameMain) {
+                        locationNameMain.textContent = locationName;
+                    }
                     currentUVElement.innerHTML = `
                         <p>Current UV Index in</p>
                         <p>${locationName}:</p>
@@ -236,8 +240,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentDateElement = document.getElementById('current-date');
             if (currentDateElement) {
                 currentDateElement.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+                
             }
-
+            const currentDateMain = document.getElementById('current-date-main');
+                if (currentDateMain) {
+                    currentDateMain.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+                }
             var uvIndexText = "";
             var uvIndexColor = "";
             if (currentUVIndex !== null) {
