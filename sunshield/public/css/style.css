@@ -22,6 +22,9 @@ body {
     width: 100%;
     padding-bottom: 1%;
     padding-top: 1%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .hamburger-icon img {
@@ -670,3 +673,72 @@ iframe {
         font-size: 10px;
     }
 }
+
+.uv-container, .uv-forecast-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.uv-item, .uv-forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.uv-box {
+    width: 300px; /* Set this to match your background image width */
+    height: 100px; /* Adjust this if needed to match your image aspect ratio */
+    border-radius: 15px;
+    padding: 10px;
+    color: black;
+    font-size: 1.2em;
+    background-size: 100% 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .uv-container, .uv-forecast-container {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 480px) {
+    .uv-container, .uv-forecast-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.uv-subtitle {
+    text-align: center;
+    font-size: 2em; 
+    color: white;
+}
+
+.uvi-number {
+    background-image: url('../Resource/bg_white_circle.png');
+    background-size: cover;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-family: 'Arial', sans-serif; 
+    font-weight: bold; 
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+

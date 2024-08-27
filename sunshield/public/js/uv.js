@@ -1,4 +1,4 @@
-const apiKey = "API_KEY_HERE"
+const apiKey = "d1e6a760f216f0d15e3041df144692ab"
 
 
 
@@ -76,27 +76,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let uvText = 'N/A';
                 let bgColor = 'gray';
-
+                var uvIndexText = "";
+                var textColor = "gray";
                 if (uvIndex !== null) {
                     uvText = uvIndex.toFixed(1);
                     if (uvIndex < 3) {
-                        bgColor = 'green';
+                        uvIndexText = "Low";
+                        textColor = "green";
                     } else if (uvIndex < 6) {
-                        bgColor = 'yellow';
+                        uvIndexText = "Moderate";
+                        textColor = "yellow";
                     } else if (uvIndex < 8) {
-                        bgColor = 'orange';
+                        uvIndexText = "High";
+                        textColor = "orange";
                     } else if (uvIndex < 11) {
-                        bgColor = 'red';
+                        uvIndexText = "Very High";
+                        textColor = "red";
                     } else {
-                        bgColor = 'purple';
+                        uvIndexText = "Extreme";
+                        textColor = "purple";
                     }
                 }
-
-                uvIndexElement.innerHTML = `
-                    <p>${formattedDate}</p>
-                    <p>UV Index: ${uvText}</p>
-                `;
-                uvIndexElement.style.backgroundColor = bgColor;
+                
+                const dateElement = document.getElementById(`uv-index-${index}-date`);
+                const uvIndexTextElement = document.getElementById(`uv-index-${index}-text`);
+                const uvIndexUVIElement = document.getElementById(`uv-index-${index}-uvi`);
+                if (dateElement) {
+                    dateElement.textContent = formattedDate;
+                }
+                if (uvIndexTextElement) {
+                    uvIndexTextElement.textContent = uvIndexText;
+                }
+                if (uvIndexUVIElement) {
+                    uvIndexUVIElement.textContent = uvText;
+                    uvIndexUVIElement.style.color = textColor; // Ensure text color is applied correctly
+                }
+                switchBackground(uvIndexElement, uvIndexText);
             }
         });
     }
@@ -117,6 +132,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function switchBackground(element, uvIndexText) {
+        switch(uvIndexText) {
+            case "Low":
+                element.style.backgroundImage = "url('Resource/bg_uv_green.png')";
+                break;
+            case "Moderate":
+                element.style.backgroundImage = "url('Resource/bg_uv_yellow.png')";
+                break;
+            case "High":
+                element.style.backgroundImage = "url('Resource/bg_uv_orange.png')";
+                break;
+            case "Very High":
+                element.style.backgroundImage = "url('Resource/bg_uv_red.png')";
+                break;
+            case "Extreme":
+                element.style.backgroundImage = "url('Resource/bg_uv_purple.png')";
+                break;
+            default:
+                element.style.backgroundImage = "url('Resource/bg_uv_green.png')";
+                break;
+        }
+    }
 
     function getNextWeekDates() {
         var dates = [];
@@ -188,9 +225,51 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>${locationName}:</p>
                         <p>${currentUVIndex.toFixed(1)}</p>
                     `;
+                    const locationNameElement = document.getElementById('location-name');
+                    if (locationNameElement) {
+                        locationNameElement.textContent = locationName;
+                    }
                 } else {
                     currentUVElement.textContent = 'Current UV Index: Unavailable';
                 }
+            }
+            const currentDateElement = document.getElementById('current-date');
+            if (currentDateElement) {
+                currentDateElement.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+            }
+
+            var uvIndexText = "";
+            var uvIndexColor = "";
+            if (currentUVIndex !== null) {
+                if (currentUVIndex < 3) {
+                    uvIndexText = "Low";
+                    uvIndexColor = "green"; 
+                } else if (currentUVIndex < 6) {
+                    uvIndexText = "Moderate";
+                    uvIndexColor = "yellow"; 
+                } else if (currentUVIndex < 8) {
+                    uvIndexText = "High";
+                    uvIndexColor = "orange"; 
+                } else if (currentUVIndex < 11) {
+                    uvIndexText = "Very High";
+                    uvIndexColor = "red"; 
+                } else {
+                    uvIndexText = "Extreme";
+                    uvIndexColor = "purple"; 
+                }
+            }
+
+            const currentUVIndex2Element = document.getElementById('current-uv-index-container');
+            if (currentUVIndex2Element) {
+                const currentUVIndex2UVIElement = document.getElementById('current-uv-index2-uvi');
+                currentUVIndex2UVIElement.innerHTML = `${currentUVIndex.toFixed(1)} `;
+                currentUVIndex2UVIElement.style.color = uvIndexColor; 
+                const uvIndexTextElement = document.getElementById('current-uv-index-text');
+                if (uvIndexTextElement) {
+                    uvIndexTextElement.textContent = uvIndexText;
+                    
+                }
+                switchBackground(currentUVIndex2Element, uvIndexText);
             }
         } catch (error) {
             console.error('Error displaying current UV index:', error);
