@@ -647,6 +647,7 @@ iframe {
     min-width: 120px;
     text-align: center;
     font-size: 12px;
+    font-family: "Finger Paint", sans-serif;
 }
 
 .uv-index-button:hover {
@@ -728,6 +729,9 @@ iframe {
     text-align: center;
     font-size: 1em; 
     color: white;
+    padding-left: 10px;
+    gap: 10px; 
+    padding: 20px;
 }
 
 .uvi-number {
