@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sunshield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
     <script src="js/uv.js"></script>
-
+    <title>UV</title>
     <style>
         body {
-            background-color: #Fc9731;
-            font-family: "Finger Paint", sans-serif;
+            background-color: #f09737;
         }
     </style>
 </head>
 
 <body>
-    <header class="menu-toggle" onclick="toggleMenu()">
-        <div class="hamburger-icon">
+    <header class="menu-toggle">
+        <div class="hamburger-icon" onclick="toggleMenu()">
             <img src="Resource/hamburger-icon.png" alt="">
         </div>
         <nav id="sidebar" class="hide">
@@ -34,76 +35,98 @@
                 <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
             </ul>
         </nav>
-        <a href="uv_analysis.html" class="uv-index-button"><div id="current-uv-index"></div></a>
+        <a href="uv_analysis.html" class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </a>
     </header>
-    <div id="uv-container">
-        <p class="uv-subtitle">Current UV Index</p>
-        <p class="uv-subtitle2"> 
-            <span id="location-name">Location loading...</span>
-            
-            <span id="current-date-main">Date loading...</span>
-        </p>
-        <div class="uv-item">
-            <div class="uv-box" id="current-uv-index-container">
-                <span class="uvi-number" id="current-uv-index2-uvi"></span>
-                <span id="current-uv-index-text">Loading...</span>
+    <div class="uv-title">
+        <p>UV Analysis</p>
+    </div>
+    <div class="bk-img">
+        <div id="location-display">
+            <h3>Location: <span id="location-name">Loading...</span></h3>
+        </div>
+        <div id="date-display">
+            <h3>Today's Date: <span id="current-date">Loading...</span></h3>
+        </div>
+        <div id="row1">
+            <div id="current-uv-box">
+                <div id="box-title-1">
+                    <p>Current UV</p>
+                </div>
+                <div class="box-img">
+                    <img src="Resource/bg_white_circle.png" alt="">
+                    <div id="num-1">
+                        <span id="cur-uv">NA</span>
+                    </div>
+                </div>
+                <div id="box-level-1">
+                    <span id="box-level-cr">NA</span>
+                </div>
             </div>
-        </div>    
-        <div class="uv-item">
-            <p class="uv-subtitle">Daily Max UV Forecast</p>
-            <div class="uv-box" id="uv-index-0">
-                <span class="uvi-number" id="uv-index-0-uvi"></span>
-                <span id="uv-index-0-text"></span>
+            <div id="td-uv-box">
+                <div id="box-title-2">
+                    <p>Today UV</p>
+                </div>
+                <div class="box-img">
+                    <img src="Resource/bg_white_circle.png" alt="">
+                    <div id="num-2">
+                        <span id="td-uv">NA</span>
+                    </div>
+                </div>
+                <div id="box-level-2">
+                    <span id="box-level-td">NA</span>
+                </div>
+            </div>
+        </div>
+        <div id="uv-subtitle">
+            <p>Daliy UV Forecast</p>
+        </div>
+        <div id="row2">
+            <div id="forecast-1">
+                <div id="forecast-day-1">
+                    <span id="date1">NA</span>
+                </div>
+                <div class="box-img-1">
+                    <img src="Resource/bg_white_circle.png" alt="">
+                    <div id="num-3">
+                        <span id="day1-uv">NA</span>
+                    </div>
+                </div>
+                <div id="box-level-3">
+                    <span id="box-level-d1">NA</span>
+                </div>
+            </div>
+            <div id="forecast-2">
+                <div id="forecast-day-2">
+                    <span id="date2">NA</span>
+                </div>
+                <div class="box-img-1">
+                    <img src="Resource/bg_white_circle.png" alt="">
+                    <div id="num-4">
+                        <span id="day2-uv">NA</span>
+                    </div>
+                </div>
+                <div id="box-level-4">
+                    <span id="box-level-d2">NA</span>
+                </div>
+            </div>
+            <div id="forecast-3">
+                <div id="forecast-day-3">
+                    <span id="date3">NA</span>
+                </div>
+                <div class="box-img-1">
+                    <img src="Resource/bg_white_circle.png" alt="">
+                    <div id="num-5">
+                        <span id="day3-uv">NA</span>
+                    </div>
+                </div>
+                <div id="box-level-5">
+                    <span id="box-level-d3">NA</span>
+                </div>
             </div>
         </div>
     </div>
-    <p class="uv-subtitle">Daily Max UV</p>
-    <div class="uv-forecast-container">
-            
-            <div class="uv-forecast-item">
-                <span id="uv-index-1-date"></span>
-                <div class="uv-box" id="uv-index-1">
-                    <span class="uvi-number" id="uv-index-1-uvi"></span>
-                    <span id="uv-index-1-text"></span>
-                </div>
-            </div>
-            <div class="uv-forecast-item">
-                <span id="uv-index-2-date"></span>
-                <div class="uv-box" id="uv-index-2">
-                    <span class="uvi-number" id="uv-index-2-uvi"></span>
-                    <span id="uv-index-2-text"></span>
-                </div>
-            </div>
-            <div class="uv-forecast-item">
-                <span id="uv-index-3-date"></span>
-                <div class="uv-box" id="uv-index-3">
-                    <span class="uvi-number" id="uv-index-3-uvi"></span>
-                    <span id="uv-index-3-text"></span>
-                </div>
-            </div>
-            <!-- <div class="uv-forecast-item">
-                <span id="uv-index-4-date"></span>
-                <div class="uv-box" id="uv-index-4">
-                    <span class="uvi-number" id="uv-index-4-uvi"></span>
-                    <span id="uv-index-4-text"></span>
-                </div>
-            </div>
-            <div class="uv-forecast-item">
-                <span id="uv-index-5-date"></span>
-                <div class="uv-box" id="uv-index-5">
-                    <span class="uvi-number" id="uv-index-5-uvi"></span>
-                    <span id="uv-index-5-text"></span>
-                </div>
-            </div>
-            <div class="uv-forecast-item">
-                <span id="uv-index-6-date"></span>
-                <div class="uv-box" id="uv-index-6">
-                    <span class="uvi-number" id="uv-index-6-uvi"></span>
-                    <span id="uv-index-6-text"></span>
-                </div>
-            </div> -->
-</div>
 </body>
-
 
 </html>

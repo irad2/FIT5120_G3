@@ -17,23 +17,23 @@ body {
 
 .hamburger-icon {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding-bottom: 1%;
-    padding-top: 1%;
+    padding-bottom: 0%;
+    padding-top: 0%;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    height: auto;
 }
 
 .hamburger-icon img {
-    width: 4%;
-    height: auto;
+    display: flex;
+    width: 6%;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+
+/* @media screen and (max-width: 768px) {
     .hamburger-icon img {
         width: 6%;
     }
@@ -43,7 +43,7 @@ body {
     .hamburger-icon img {
         width: 10%;
     }
-}
+} */
 
 #sidebar {
     width: 17%;
@@ -386,7 +386,6 @@ body {
 
 .uv-index {
     margin-left: auto;
-    
 }
 
 @keyframes bounce {
@@ -614,40 +613,38 @@ body {
 
 .tip-text {
     width: 20%;
-    /* This sets the flex-grow property */
     font-size: 1.3vw;
     align-items: center;
     justify-content: center;
     padding-left: 5%;
     color: #fff;
-    /* Slight margin between text and video */
 }
 
 .tip-video {
     width: 50%;
-    /* This sets the flex-grow property */
     padding-left: 30%;
-    /* Padding to create spacing from the text */
 }
 
 iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
-    /* Setting a fixed height for the iframe */
 }
 
 .uv-index-button {
-    display: inline-block;
-    padding: 8px 15px;
+    display: flex;
+    padding-right: 2%;
+    padding-left: 2%;
+    font-size: 1.3vw;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
     border: 2px solid #1B7F7A;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #1B7F7A;
     transition: background-color 0.3s, color 0.3s;
-    min-width: 120px;
-    text-align: center;
-    font-size: 12px;
-    font-family: "Finger Paint", sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    line-height: 50%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .uv-index-button:hover {
@@ -656,10 +653,11 @@ iframe {
 }
 
 #current-uv-index {
-    margin: 0;
+    text-align: center;
 }
 
-@media screen and (max-width: 768px) {
+
+/* @media screen and (max-width: 768px) {
     .uv-index-button {
         padding: 6px 12px;
         min-width: 100px;
@@ -673,18 +671,40 @@ iframe {
         min-width: 80px;
         font-size: 10px;
     }
+} */
+
+.uv-container {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    font-size: 2vw;
 }
 
-.uv-container, .uv-forecast-container {
+.uv-forecast-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    /* gap: 20px; */
+    padding-bottom: 5%;
 }
 
-.uv-item, .uv-forecast-item {
+.current-uv-index2-uvi {
+    display: flex;
+    width: 100%;
+}
+
+
+/* .uv-item-2 {
+    display: flex;
+    justify-content: center;
+} */
+
+.uv-item-2-text {
+    display: flex;
+}
+
+.uv-forecast-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -692,29 +712,31 @@ iframe {
 }
 
 .uv-box {
-    width: 300px; /* Set this to match your background image width */
-    height: 100px; /* Adjust this if needed to match your image aspect ratio */
+    width: 300px;
+    /* Set this to match your background image width */
+    height: 100px;
+    /* Adjust this if needed to match your image aspect ratio */
     border-radius: 15px;
     padding: 10px;
     color: black;
     font-size: 1.2em;
     background-size: 100% 100%;
     text-align: center;
-    display: flex;
-    flex-direction: row;
+    flex: 1;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
 
 @media (max-width: 768px) {
-    .uv-container, .uv-forecast-container {
+    .uv-container,
+    .uv-forecast-container {
         justify-content: space-around;
     }
 }
 
 @media (max-width: 480px) {
-    .uv-container, .uv-forecast-container {
+    .uv-container,
+    .uv-forecast-container {
         flex-direction: column;
         align-items: center;
     }
@@ -722,31 +744,206 @@ iframe {
 
 .uv-subtitle {
     text-align: center;
-    font-size: 2em; 
+    font-size: 2vw;
     color: white;
 }
+
 .uv-subtitle2 {
     text-align: center;
-    font-size: 1em; 
+    font-size: 1vw;
     color: white;
+    padding-top: 5%;
     padding-left: 10px;
-    gap: 10px; 
-    padding: 20px;
+    /* gap: 10px; */
 }
 
 .uvi-number {
     background-image: url('../Resource/bg_white_circle.png');
     background-size: cover;
-    padding: 10px;
-    font-weight: bold;
-    color: black;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    font-family: 'Arial', sans-serif; 
-    font-weight: bold; 
 }
 
+.main-container {
+    background-image: url('../Resource/uvbk.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 10%;
+}
+
+.main-bk {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    font-size: 2vw;
+}
+
+.td-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uv-title {
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+}
+
+.bk-img {
+    background-image: url('../Resource/uv-bk.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#location-display {
+    text-align: center;
+    padding-top: 0.5%;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1.2vw;
+}
+
+#date-display {
+    text-align: center;
+    padding-bottom: 0.5%;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1.2vw;
+}
+
+#current-uv-box,
+#td-uv-box {
+    background-image: url('../Resource/bg_uv_green.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex: 1;
+    font-family: "Finger Paint", sans-serif;
+}
+
+#num-1,
+#num-2 {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-65%, -65%);
+    font-size: 3vw;
+}
+
+#box-title-1,
+#box-title-2 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    flex: 1;
+    text-align: center;
+    font-size: 2vw;
+    padding-left: 10%;
+}
+
+.box-img {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+#box-level-1,
+#box-level-2 {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    flex: 1;
+    text-align: center;
+    font-size: 2vw;
+    padding-right: 10%;
+    flex: 1;
+}
+
+.box-img img {
+    width: 100%;
+    height: auto;
+}
+
+#row1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#uv-subtitle {
+    text-align: center;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1.5vw;
+}
+
+#row2 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 5%;
+}
+
+#forecast-1,
+#forecast-2,
+#forecast-3 {
+    background-image: url('../Resource/bg_uv_green.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex: 1;
+    font-family: "Finger Paint", sans-serif;
+}
+
+#forecast-day-1,
+#forecast-day-2,
+#forecast-day-3 {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    flex: 1;
+    text-align: center;
+    font-size: 1.5vw;
+    padding-left: 10%;
+}
+
+.box-img-1 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.box-img-1 img {
+    width: 100%;
+    height: auto;
+}
+
+#num-3,
+#num-4,
+#num-5 {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -60%);
+    font-size: 2vw;
+}
+
+#box-level-3,
+#box-level-4,
+#box-level-5 {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    flex: 1;
+    text-align: center;
+    font-size: 1.5vw;
+    padding-right: 10%;
+}
