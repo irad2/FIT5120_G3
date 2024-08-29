@@ -1,22 +1,9 @@
-function toggleMenu() {
-    var sidebar = document.getElementById('sidebar');
-    var overlay = document.getElementById('overlay');
-    sidebar.classList.toggle('active');
-    if (sidebar.classList.contains('active')) {
-        overlay.style.display = 'block';
-    } else {
-        overlay.style.display = 'none';
-    }
-}
-
-
-
 function updateAdvice() {
     var boxLevel = document.getElementById('box-level-d1').textContent;
     var adviceText = 'Loading';
 
     if (boxLevel == 'NA') {
-        adviceText = 'Loading ';
+        adviceText = 'Loading';
     } else if (boxLevel == 'Low') {
         adviceText = 'No limit, but wear sunglasses on bright days';
 
