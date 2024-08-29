@@ -1,5 +1,4 @@
-// const apiKey = "";
-const apiKey = "f2f2901950b652278a8f5e613a92c850";
+const apiKey = "API_KEY";
 
 document.addEventListener("DOMContentLoaded", () => {
     function getGeolocation() {
