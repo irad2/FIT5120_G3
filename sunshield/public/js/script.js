@@ -8,3 +8,66 @@ function toggleMenu() {
         overlay.style.display = 'none';
     }
 }
+
+function typeWriter(textId, speed) {
+    const textElement = document.getElementById(textId);
+    const text = textElement.innerText;
+    let i = 0;
+    textElement.innerText = '';
+
+    function typing() {
+        if (i < text.length) {
+            textElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
+
+    typing();
+}
+
+function updateAdvice() {
+    var boxLevel = document.getElementById('box-level-d1').textContent;
+    var adviceText = 'Loading';
+
+    if (boxLevel == 'NA') {
+        adviceText = 'Loading';
+    } else if (boxLevel == 'Low') {
+        adviceText = 'No limit, but wear sunglasses on bright days';
+
+    } else if (boxLevel == 'Moderate') {
+        adviceText = 'Up to 2 hours, with sunscreen and protective clothing';
+
+    } else if (boxLevel == 'High') {
+        adviceText = 'Up to 1 hour, avoid midday sun, use high SPF sunscreen';
+
+    } else if (boxLevel == 'Very High') {
+        adviceText = 'Up to 30 minutes, avoid midday sun, seek shade';
+
+    } else if (boxLevel == 'Extreme') {
+        adviceText = 'Avoid outdoor activities, if necessary, stay in the shade with full protection';
+
+    } else {
+        adviceText = 'UV level data not available';
+    }
+
+    document.getElementById('advice-1').querySelector('p').textContent = adviceText;
+}
+
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.type === 'characterData' || mutation.type === 'childList') {
+            updateAdvice();
+        }
+    });
+});
+
+var config = { characterData: true, childList: true, subtree: true };
+
+observer.observe(document.getElementById('box-level-d1'), config);
+
+updateAdvice();
+
+document.addEventListener('DOMContentLoaded', () => {
+    typeWriter('typewriter-text', 25);
+});

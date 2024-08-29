@@ -1,6 +1,5 @@
-const apiKey = "";
-
-
+// const apiKey = "";
+const apiKey = "f2f2901950b652278a8f5e613a92c850";
 
 document.addEventListener("DOMContentLoaded", () => {
     function getGeolocation() {
@@ -399,21 +398,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-
-
-
     async function getLocationName(lat, lon) {
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
         const data = await response.json();
         return data.address.city || data.address.town || data.address.village || 'Unknown Location';
     }
 
-    // Call the function to display the current UV index
     displayCurrentUVIndex();
     displayCurrentUVI();
     displayTodaysUV();
     displayNextThreeDaysUV();
-    // Update the current UV index every 5 minutes
     setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
 });

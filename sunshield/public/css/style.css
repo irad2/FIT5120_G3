@@ -785,7 +785,7 @@ iframe {
 
 .uv-title {
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 2.2vw;
     font-family: "Finger Paint", sans-serif;
     color: #000;
 }
@@ -946,4 +946,172 @@ iframe {
     text-align: center;
     font-size: 1.5vw;
     padding-right: 10%;
+}
+
+#advice-btn {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 1% 2%;
+    background-color: #FFA500;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border: none;
+    font-size: 1.3vw;
+    font-family: "Finger Paint", sans-serif;
+}
+
+#advice-btn:hover {
+    background-color: #e69500;
+}
+
+#advice-btn:active {
+    background-color: #cc8400;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-center {
+    text-align: center;
+}
+
+#advice-info {
+    background-color: #1B7F7A;
+}
+
+.ad-title {
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    color: #fff;
+    font-size: 2.2vw;
+    font-family: "Finger Paint", sans-serif;
+}
+
+.ad-row1-title {
+    text-align: left;
+    font-size: 2.2vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    margin-left: 1%;
+}
+
+#ad-row1 {
+    background-color: #fc9731;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#advice-1 {
+    text-align: left;
+    padding: 1% 10%;
+    color: #fff;
+    font-size: 2vw;
+    font-family: "Finger Paint", sans-serif;
+}
+
+#ad-row2 {
+    margin-top: 3%;
+    background-color: #fc9731;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.lion-img img {
+    width: 15%;
+}
+
+.row2-title {
+    text-align: left;
+    font-size: 2.2vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    margin-left: 1%;
+}
+
+.question {
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #000;
+}
+
+#ad-row2 {
+    display: flex;
+}
+
+.left-part {
+    flex: 2;
+}
+
+.right-part {
+    flex: 3;
+}
+
+.lion-tk img {
+    width: 20%;
+}
+
+#tip-content {
+    text-align: center;
+}
+
+.dialog {
+    background-repeat: no-repeat;
+    margin-top: 5%;
+    position: relative;
+}
+
+.dialog img {
+    width: 80%;
+}
+
+#reg-select {
+    margin-top: 10%;
+    text-align: center;
+}
+
+#reg-Dropdown {
+    width: 50%;
+    padding: 2%;
+    font-size: 1.5vw;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#reg-Dropdown:hover {
+    border-color: #999;
+}
+
+#reg-Dropdown:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 1% rgba(74, 144, 226, 0.2);
+}
+
+#reg-Dropdown option {
+    padding: 10%;
+}
+
+.for-space {
+    padding: 4%;
+}
+
+#reg-tips {
+    position: absolute;
+    top: 17%;
+    left: 23%;
+    width: 55%;
+    font-size: 1.3vw;
+    font-family: "Finger Paint", sans-serif;
+    text-align: left;
 }
