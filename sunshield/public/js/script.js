@@ -25,6 +25,9 @@ function typeWriter(textId, speed) {
 
     typing();
 }
+document.addEventListener('DOMContentLoaded', () => {
+    typeWriter('typewriter-text', 25);
+});
 
 function updateAdvice() {
     var boxLevel = document.getElementById('box-level-d1').textContent;
@@ -67,7 +70,3 @@ var config = { characterData: true, childList: true, subtree: true };
 observer.observe(document.getElementById('box-level-d1'), config);
 
 updateAdvice();
-
-document.addEventListener('DOMContentLoaded', () => {
-    typeWriter('typewriter-text', 25);
-});

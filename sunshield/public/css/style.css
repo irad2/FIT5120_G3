@@ -1063,7 +1063,7 @@ iframe {
 }
 
 .dialog img {
-    width: 80%;
+    width: 85%;
 }
 
 #reg-select {
@@ -1109,8 +1109,8 @@ iframe {
 #reg-tips {
     position: absolute;
     top: 17%;
-    left: 23%;
-    width: 55%;
+    left: 21%;
+    width: 60%;
     font-size: 1.3vw;
     font-family: "Finger Paint", sans-serif;
     text-align: left;
