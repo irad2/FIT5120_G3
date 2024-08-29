@@ -198,14 +198,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var selectElement = document.getElementById('reg-Dropdown');
-            var typingTimer; // 用于存储正在进行的打印任务的计时器
+            var typingTimer;
 
             function typeWriter(elementId, text, speed) {
                 const element = document.getElementById(elementId);
                 let i = 0;
-                element.innerText = ''; // 清空现有文本
+                element.innerText = '';
 
-                // 如果已有打印任务，清除它
                 if (typingTimer) {
                     clearTimeout(typingTimer);
                 }
@@ -216,7 +215,7 @@
                         i++;
                         typingTimer = setTimeout(typing, speed);
                     } else {
-                        typingTimer = null; // 打印完成，清除计时器
+                        typingTimer = null;
                     }
                 }
                 typing();
@@ -237,7 +236,6 @@
             function updateTipContent(region) {
                 var tipText = getTipTextByRegion(region);
                 var tipElement = document.getElementById('typewriter-text');
-                // 确保使用最新的文本重新启动打印机效果
                 typeWriter('typewriter-text', tipText, 25);
             }
 
