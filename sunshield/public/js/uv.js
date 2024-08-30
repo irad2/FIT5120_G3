@@ -1,7 +1,25 @@
-const apiKey = "API_KEY";
+document.addEventListener("DOMContentLoaded", async () => {
+    // Function to fetch API key
+    async function fetchApiKey() {
+        try {
+            const response = await fetch('/get-api-key');
+            const data = await response.json();
+            return data.apiKey;
+        } catch (error) {
+            console.error("Failed to fetch API key:", error);
+            return null; // Return null in case of an error
+        }
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-    function getGeolocation() {
+    // Store the API key in a variable
+    const apiKey = await fetchApiKey();
+    if (!apiKey) {
+        console.error('API Key is not available, functionality will be limited.');
+        return; // Early return if API Key couldn't be fetched
+    }
+
+
+    async function getGeolocation() {
         const defaultLocation = {
             lat: -33.8688,
             lon: 151.2093
@@ -29,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Fetches the current UV index
-    function getUVIndexes(lat, lon, targetDates) {
+    async function getUVIndexes(lat, lon, targetDates) {
         console.log(lat, lon, apiKey);
         return fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=minutely,hourly,current,alerts`)
             .then((response) => {
@@ -57,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Updates the UI
-    function updateUVIndexes(indexDict) {
+    async function updateUVIndexes(indexDict) {
         Object.entries(indexDict).forEach(([timestamp, uvIndex], index) => {
             const uvIndexElement = document.getElementById(`uv-index-${index}`);
             if (uvIndexElement) {
