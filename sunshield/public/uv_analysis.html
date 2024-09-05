@@ -23,23 +23,24 @@
 
 <body>
     <header class="menu-toggle">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-            <img src="Resource/hamburger-icon.png" alt="">
+        <div class="hamburger-icon">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
         </div>
         <nav id="sidebar" class="hide">
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a href="uv_analysis.html">Uv Analysis</a></li>
-                <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
                 <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
-                <li><a href="mole _detection.html">Mole Detection</a></li>
-                <li><a href="skin_health _game.html">Skin Health Game</a></li>
+                <!-- <li><a href="mole _detection.html">Mole Detection</a></li> -->
+                <!-- <li><a href="skin_health _game.html">Skin Health Game</a></li> -->
                 <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
             </ul>
         </nav>
-        <a href="uv_analysis.html" class="uv-index-button">
+        <div class="uv-index-button">
             <div id="current-uv-index"></div>
-        </a>
+        </div>
     </header>
     <div class="uv-title">
         <p>UV Analysis</p>
@@ -130,71 +131,9 @@
         </div>
     </div>
     <div class="btn-center">
-        <a href="#advice-info"><button id="advice-btn">See Protection Advice</button></a>
+        <a href="daily_sun _protection_advice.html"><button id="advice-btn">See Protection Advice</button></a>
     </div>
-    <div id="advice-info">
-        <div class="ad-title">
-            <p>Sunshine Safety Guide</p>
-        </div>
-        <div id="ad-row1">
-            <div class="ad-row1-title">
-                <p>Tomorrow Advice For Outside</p>
-            </div>
-            <div id="advice-1">
-                <p>Loading</p>
-            </div>
-        </div>
-        <div id="ad-row2">
-            <div class="left-part">
-                <div class="row2-title">
-                    <p>UV Tips For You</p>
-                </div>
-                <div class="question">
-                    <p>
-                        Where Are You From?
-                    </p>
-                </div>
-                <div id="reg-select">
-                    <select id="reg-Dropdown">
-                        <option value="north_africa">North Africa</option>
-                        <option value="sub_saharan_africa">Sub-Saharan Africa</option>
-                        <option value="central_asia">Central Asia</option>
-                        <option value="east_asia">East Asia</option>
-                        <option value="south_asia">South Asia</option>
-                        <option value="southeast_asia">Southeast Asia</option>
-                        <option value="western_europe">Western Europe</option>
-                        <option value="northern_europe">Northern Europe</option>
-                        <option value="southern_europe">Southern Europe</option>
-                        <option value="eastern_europe">Eastern Europe</option>
-                        <option value="north_america">North America</option>
-                        <option value="central_america">Central America</option>
-                        <option value="south_america">South America</option>
-                        <option value="oceania">Oceania (Australia & New Zealand)</option>
-                        <option value="pacific_islands">Pacific Islands</option>
-                        <option value="middle_east">Middle East</option>
-                    </select>
-                </div>
-            </div>
-            <div class="right-part">
-                <div id="tip-content">
-                    <div class="dialog">
-                        <img src="Resource/dialog.png" alt="">
-                        <div id="reg-tips">
-                            <p id="typewriter-text">Children from North Africa may lack adequate sun protection knowledge; they should be encouraged to use sunscreen regularly and wear hats due to stronger UV exposure in Australia.</p>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="lion-tk">
-                    <img src="Resource/lion.png" alt="">
-                </div>
-            </div>
-
-
-        </div>
-        <div class="for-space">
-        </div>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var selectElement = document.getElementById('reg-Dropdown');
@@ -279,52 +218,6 @@
             }
 
         });
-
-        function updateAdvice() {
-            var boxLevel = document.getElementById('box-level-d1').textContent;
-            var adviceText = 'Loading';
-
-            if (boxLevel == 'NA') {
-                adviceText = 'Loading';
-            } else if (boxLevel == 'Low') {
-                adviceText = 'No limit, but wear sunglasses on bright days';
-
-            } else if (boxLevel == 'Moderate') {
-                adviceText = 'Up to 2 hours, with sunscreen and protective clothing';
-
-            } else if (boxLevel == 'High') {
-                adviceText = 'Up to 1 hour, avoid midday sun, use high SPF sunscreen';
-
-            } else if (boxLevel == 'Very High') {
-                adviceText = 'Up to 30 minutes, avoid midday sun, seek shade';
-
-            } else if (boxLevel == 'Extreme') {
-                adviceText = 'Avoid outdoor activities, if necessary, stay in the shade with full protection';
-
-            } else {
-                adviceText = 'UV level data not available';
-            }
-
-            document.getElementById('advice-1').querySelector('p').textContent = adviceText;
-        }
-
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'characterData' || mutation.type === 'childList') {
-                    updateAdvice();
-                }
-            });
-        });
-
-        var config = {
-            characterData: true,
-            childList: true,
-            subtree: true
-        };
-
-        observer.observe(document.getElementById('box-level-d1'), config);
-
-        updateAdvice();
     </script>
 </body>
 

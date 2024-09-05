@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async() => {
     // Function to fetch API key
     async function fetchApiKey() {
         try {
@@ -153,8 +153,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const currentUVElement = document.getElementById('current-uv-index');
             if (currentUVElement) {
                 currentUVElement.innerHTML = `
-                <p>Current UV Index in:</p>
-                <p>_:Loading...</p>
+                <p>
+                Location,CurrentUV:Loading...</p>
 
                 `;
             }
@@ -170,8 +170,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         locationNameMain.textContent = locationName;
                     }
                     currentUVElement.innerHTML = `
-                        <p>Current UV Index in</p>
-                        <p>${locationName}:${currentUVIndex.toFixed(1)}</p>
+                        <p>${locationName},CurrentUV:${currentUVIndex.toFixed(1)}</p>
                     `;
                     const locationNameElement = document.getElementById('location-name');
                     if (locationNameElement) {
@@ -179,8 +178,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                 } else {
                     currentUVElement.innerHTML = `
-                    </p>Current UV Index:</p>
-                    <p> Unavailable<p>
+                    <p> Current UVI Unavailable</p>
                     `;
                 }
             }
@@ -343,6 +341,40 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error('Error displaying today\'s UV data:', error);
         }
     }
+    async function displayTomorrowsUV() {
+        try {
+            const { lat, lon } = await getGeolocation();
+
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+
+            const dailyUVIndex = await getUVIndexes(lat, lon, [tomorrow.getTime() / 1000]);
+
+            const boxLevelElement = document.getElementById('trm-uv');
+            if (dailyUVIndex[0] === null) {
+                boxLevelElement.textContent = 'NA';
+            } else {
+                const uvIndex = dailyUVIndex[0];
+                let boxLevelText;
+                if (uvIndex < 3) {
+                    boxLevelText = 'Low';
+                } else if (uvIndex < 6) {
+                    boxLevelText = 'Moderate';
+                } else if (uvIndex < 8) {
+                    boxLevelText = 'High';
+                } else if (uvIndex < 11) {
+                    boxLevelText = 'Very High';
+                } else {
+                    boxLevelText = 'Extreme';
+                }
+                boxLevelElement.textContent = boxLevelText;
+            }
+        } catch (error) {
+            console.error("Error fetching tomorrow's UV data:", error);
+        }
+    }
+
 
     function getNextThreeDays() {
         let dates = [];
@@ -421,9 +453,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         return data.address.city || data.address.town || data.address.village || 'Unknown Location';
     }
 
+
+
     displayCurrentUVIndex();
     displayCurrentUVI();
     displayTodaysUV();
+    displayTomorrowsUV();
     displayNextThreeDaysUV();
     setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
 });

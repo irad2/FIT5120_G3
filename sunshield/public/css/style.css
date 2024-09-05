@@ -8,7 +8,7 @@ body {
 
 .menu-toggle {
     background-color: #fff;
-    display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -16,20 +16,18 @@ body {
 }
 
 .hamburger-icon {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-bottom: 0%;
-    padding-top: 0%;
-    position: relative;
-    height: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 17%;
 }
 
 .hamburger-icon img {
-    display: flex;
-    width: 6%;
+    top: 0%;
+    left: 0%;
     aspect-ratio: 1 / 1;
     cursor: pointer;
+    width: 20%;
 }
 
 
@@ -631,25 +629,24 @@ iframe {
 }
 
 .uv-index-button {
-    display: flex;
-    padding-right: 2%;
-    padding-left: 2%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    align-items: center;
+    justify-content: center;
+    width: 30%;
     font-size: 1.3vw;
     white-space: nowrap;
     align-items: center;
     justify-content: center;
-    border: 2px solid #1B7F7A;
+    border: 2px solid #ffffff;
     transition: background-color 0.3s, color 0.3s;
     text-decoration: none;
     border-radius: 5px;
     line-height: 50%;
     height: 100%;
     box-sizing: border-box;
-}
-
-.uv-index-button:hover {
-    background-color: #1B7F7A;
-    color: white;
 }
 
 #current-uv-index {
