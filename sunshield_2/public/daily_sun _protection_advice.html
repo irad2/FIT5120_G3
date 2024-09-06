@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/uv.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/advice.js"></script>
+    <style>
+        body {
+            background-color: #fc9731;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="menu-toggle">
+        <div class="hamburger-icon">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
+        </div>
+        <nav id="sidebar" class="hide">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
+                <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
+                <!-- <li><a href="mole _detection.html">Mole Detection</a></li> -->
+                <!-- <li><a href="skin_health _game.html">Skin Health Game</a></li> -->
+                <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
+            </ul>
+        </nav>
+        <div class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </div>
+    </header>
+    <span id="trm-uv" style="display: none;"></span>
+    <div id="advice-info">
+        <div class="ad-title">
+            <p>Sunshine Safety Guide</p>
+        </div>
+        <div id="ad-row1">
+            <div class="ad-row1-title">
+                <p>Tomorrow Advice For Outside</p>
+            </div>
+            <div id="advice-1">
+                <p>Loading</p>
+            </div>
+        </div>
+        <div id="ad-row2">
+            <div class="left-part">
+                <div class="row2-title">
+                    <p>UV Tips For You</p>
+                </div>
+                <div class="question">
+                    <p>
+                        Where Are You From?
+                    </p>
+                </div>
+                <div id="reg-select">
+                    <select id="reg-Dropdown">
+                        <option value="north_africa">North Africa</option>
+                        <option value="sub_saharan_africa">Sub-Saharan Africa</option>
+                        <option value="central_asia">Central Asia</option>
+                        <option value="east_asia">East Asia</option>
+                        <option value="south_asia">South Asia</option>
+                        <option value="southeast_asia">Southeast Asia</option>
+                        <option value="western_europe">Western Europe</option>
+                        <option value="northern_europe">Northern Europe</option>
+                        <option value="southern_europe">Southern Europe</option>
+                        <option value="eastern_europe">Eastern Europe</option>
+                        <option value="north_america">North America</option>
+                        <option value="central_america">Central America</option>
+                        <option value="south_america">South America</option>
+                        <option value="oceania">Oceania (Australia & New Zealand)</option>
+                        <option value="pacific_islands">Pacific Islands</option>
+                        <option value="middle_east">Middle East</option>
+                    </select>
+                </div>
+            </div>
+            <div class="right-part">
+                <div id="tip-content">
+                    <div class="dialog">
+                        <img src="Resource/dialog.png" alt="">
+                        <div id="reg-tips">
+                            <p id="typewriter-text">Children from North Africa may lack adequate sun protection knowledge; they should be encouraged to use sunscreen regularly and wear hats due to stronger UV exposure in Australia.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="lion-tk">
+                    <img src="Resource/lion.png" alt="">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="for-space">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectElement = document.getElementById('reg-Dropdown');
+
+            selectElement.addEventListener('change', function() {
+                var selectedRegion = this.value;
+                updateTipContent(selectedRegion);
+            });
+
+            function updateTipContent(region) {
+                var tipText = getTipTextByRegion(region);
+                var tipElement = document.getElementById('typewriter-text');
+                tipElement.innerText = tipText;
+                typeWriter('typewriter-text', 25);
+            }
+
+            function getTipTextByRegion(region) {
+                switch (region) {
+                    case 'north_africa':
+                        return 'Children from North Africa may lack adequate sun protection knowledge; they should be encouraged to use sunscreen regularly and wear hats due to stronger UV exposure in Australia.';
+                    case 'sub_saharan_africa':
+                        return 'Children from Sub-Saharan Africa may not be accustomed to using sun protection products; they should be encouraged to apply sunscreen before and after outdoor activities and wear long sleeves.';
+                    case 'central_asia':
+                        return 'Children from Central Asia need to adjust to Australia\'s higher UV intensity, especially in summer, by applying sunscreen and avoiding midday outdoor activities.';
+                    case 'east_asia':
+                        return 'Children from East Asia might not use enough sun protection during outdoor activities; they should develop a habit of regularly applying sunscreen and learning how to choose appropriate sun protection products.';
+                    case 'south_asia':
+                        return 'Children from South Asia should be aware of Australia\'s consistently high UV index and avoid outdoor activities during peak sunlight hours, wearing more sun-protective clothing.';
+                    case 'southeast_asia':
+                        return 'Children from Southeast Asia may not be used to the dry conditions with strong UV radiation; they should carry sunscreen and stay hydrated to prevent sunburn.';
+                    case 'western_europe':
+                        return 'Children from Western Europe may be familiar with high UV levels but should be aware of the even stronger UV radiation in Australia, increasing the frequency of sunscreen application.';
+                    case 'northern_europe':
+                        return 'Children from Northern Europe may not be accustomed to year-round high UV levels; they should apply sunscreen regularly and wear hats and sun-protective clothing during outdoor activities.';
+                    case 'southern_europe':
+                        return 'Children from Southern Europe need to be cautious of the stronger sun exposure in Australia, avoiding prolonged sun exposure between 10 AM and 4 PM.';
+                    case 'eastern_europe':
+                        return 'Children from Eastern Europe need to adjust to Australia\'s higher UV levels by using high-SPF sunscreen daily, especially during outdoor activities.';
+                    case 'north_america':
+                        return 'Children from North America may be familiar with sun protection but should be aware of Australia\'s stronger UV intensity, increasing the frequency of sunscreen application and wearing sun-protective clothing.';
+                    case 'central_america':
+                        return 'Children from Central America should be cautious of Australia\'s continuously high UV index, wearing long sleeves and applying sunscreen regularly.';
+                    case 'south_america':
+                        return 'Children from South America need to adjust to Australia\'s higher UV index by applying sunscreen frequently during outdoor activities and wearing hats.';
+                    case 'oceania':
+                        return 'Children from Oceania may already be familiar with sun protection measures but should ensure consistency, such as reapplying sunscreen regularly.';
+                    case 'pacific_islands':
+                        return 'Children from the Pacific Islands should be cautious of Australia\'s high UV intensity, applying high-SPF sunscreen before outdoor activities and wearing sun-protective hats.';
+                    case 'middle_east':
+                        return 'Children from the Middle East should be aware of Australia\'s consistently high UV index, increasing the use of sun protection products and wearing long sleeves during outdoor activities.';
+                    default:
+                        return 'Please select a region for specific sun protection tips.';
+                }
+            }
+
+        });
+
+        function updateAdvice() {
+            var boxLevel = document.getElementById('trm-uv').textContent;
+            var adviceText = 'Loading';
+
+            if (boxLevel == 'NA') {
+                adviceText = 'Loading';
+            } else if (boxLevel == 'Low') {
+                adviceText = 'No limit, but wear sunglasses on bright days';
+
+            } else if (boxLevel == 'Moderate') {
+                adviceText = 'Up to 2 hours, with sunscreen and protective clothing';
+
+            } else if (boxLevel == 'High') {
+                adviceText = 'Up to 1 hour, avoid midday sun, use high SPF sunscreen';
+
+            } else if (boxLevel == 'Very High') {
+                adviceText = 'Up to 30 minutes, avoid midday sun, seek shade';
+
+            } else if (boxLevel == 'Extreme') {
+                adviceText = 'Avoid outdoor activities, if necessary, stay in the shade with full protection';
+
+            } else {
+                adviceText = 'Loading';
+            }
+
+            document.getElementById('advice-1').querySelector('p').textContent = adviceText;
+        }
+
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'characterData' || mutation.type === 'childList') {
+                    updateAdvice();
+                }
+            });
+        });
+
+        var config = {
+            characterData: true,
+            childList: true,
+            subtree: true
+        };
+
+        observer.observe(document.getElementById('trm-uv'), config);
+
+        updateAdvice();
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/uv.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/advice.js"></script>
+</head>
+
+<body>
+    <header class="menu-toggle">
+        <div class="hamburger-icon">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
+        </div>
+        <nav id="sidebar" class="hide">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
+                <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
+                <!-- <li><a href="mole _detection.html">Mole Detection</a></li> -->
+                <!-- <li><a href="skin_health _game.html">Skin Health Game</a></li> -->
+                <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
+            </ul>
+        </nav>
+        <div class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </div>
+    </header>
+    <div class="pys">
+        <img src="Resource/pys.jpg" alt="">
+        <div class="pys-title">
+            <p>Skin health</p>
+            <p>Protection Tips</p>
+        </div>
+        <div class="pys-section1">
+            <div class="pys-sec-title">
+                <p>Sun Protection Clothes</p>
+            </div>
+            <div class="pys-img">
+                <a href="#tip-clothes"><img src="Resource/shirt.png" alt=""></a>
+            </div>
+        </div>
+        <div class="pys-section2">
+            <div class="pys-sec-title">
+                <p>Sunscreen</p>
+            </div class>
+            <div class="pys-img">
+                <a href="#tip-sunsceen"><img src="Resource/sunscreen.png" alt=""></a>
+            </div>
+        </div>
+        <div class="pys-section3">
+            <div class="pys-sec-title">
+                <p>Find The Shade</p>
+            </div>
+            <div class="pys-img">
+                <a href="#tip-tree"><img src="Resource/tree.png" alt=""></a>
+            </div>
+        </div>
+        <div class="pys-section4">
+            <div class="pys-sec-title">
+                <p>Sun Hat</p>
+            </div>
+            <div class="pys-img">
+                <a href="#tip-sunhat"><img src="Resource/hat.png" alt=""></a>
+            </div>
+        </div>
+        <div class="pys-section5">
+            <div class="pys-sec-title">
+                <p>Sunglasses</p>
+            </div>
+            <div class="pys-img">
+                <a href="#tip-sunglasses"><img src="Resource/glasses.jpg" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div class="tips tip-color">
+        <div class="tip-sunsceen" id="tip-sunsceen">
+            <div class="tip-head">
+                <p>Sunscreen</p>
+                <img src="Resource/sunscreen.png" alt="">
+            </div>
+            <div class="tip-content">
+                <div class="tip-text">
+                    <p>Choose a broad-spectrum sunscreen with SPF 30+, apply evenly 15-30 minutes before going out, covering all exposed skin, and reapply every two hours, especially after swimming or sweating</p>
+                </div>
+                <div class="tip-video">
+                    <iframe src="https://www.youtube.com/embed/nKUQBKX1x4Q?autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tip-clothes" id="tip-clothes">
+            <div class="tip-head">
+                <p>Sun Protection Clothes</p>
+                <img src="Resource/shirt.png" alt="">
+            </div>
+            <div class="tip-content">
+                <div class="tip-text">
+                    <p>Sun protective clothing with UPF 50+ effectively blocks most UV rays. Opt for long sleeves and lightweight, breathable fabric for full-body protection in hot weather</p>
+                </div>
+                <div class="tip-video">
+                    <iframe src="https://www.youtube.com/embed/slA17a0VciY?autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tip-sunhat" id="tip-sunhat">
+            <div class="tip-head">
+                <p>Sun hat</p>
+                <img src="Resource/hat.png" alt="">
+            </div>
+            <div class="tip-content">
+                <div class="tip-text">
+                    <p>A sun hat is an effective UV protection. Choose a wide-brimmed hat (at least 7.5 cm) to cover your face, ears, and neck. Ensure it's made from densely woven material to block UV rays</p>
+                </div>
+                <div class="tip-video">
+                    <iframe src="https://www.youtube.com/embed/h7zNlMoi02M?autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tip-tree" id="tip-tree">
+            <div class="tip-head">
+                <p>Find The Shade</p>
+                <img src="Resource/tree.png" alt="">
+            </div>
+            <div class="tip-content">
+                <div class="tip-text">
+                    <p>Finding shade is a simple, effective way to avoid direct sun exposure. Prioritize shaded areas, especially during peak UV times, to significantly reduce the risk of sunburn</p>
+                </div>
+                <div class="tip-video">
+                    <iframe src="https://www.youtube.com/embed/zgW4szN-eRc?autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tip-sunglasses" id="tip-sunglasses">
+            <div class="tip-head">
+                <p>Sunglasses</p>
+                <img src="Resource/glasses.jpg" alt="">
+            </div>
+            <div class="tip-content">
+                <div class="tip-text">
+                    <p>Sunglasses with UV400 or 100% UV protection effectively block UVA and UVB rays. Wrap-around frames offer better protection by blocking UV rays from the sides</p>
+                </div>
+                <div class="tip-video">
+                    <iframe src="https://www.youtube.com/embed/fZIFAM9j7G4?autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
