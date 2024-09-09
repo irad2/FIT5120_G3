@@ -134,9 +134,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
 
     // Function to get the current UV index
-    async function getCurrentUVIndex() {
+    async function getCurrentUVIndex(lat, lon) {
         try {
-            const { lat, lon } = await getGeolocation();
             const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=daily,minutely,hourly,alerts`);
             const data = await response.json();
             console.log(data);
@@ -146,6 +145,7 @@ document.addEventListener("DOMContentLoaded", async() => {
             return null;
         }
     }
+
 
     // Function to display the current UV index
     async function displayCurrentUVIndex() {
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 `;
             }
             const { lat, lon } = await getGeolocation();
-            const currentUVIndex = await getCurrentUVIndex();
+            const currentUVIndex = await getCurrentUVIndex(lat, lon);
             console.log(lat, lon, currentUVIndex);
 
             if (currentUVElement) {
@@ -247,7 +247,8 @@ document.addEventListener("DOMContentLoaded", async() => {
                 console.error('UI element for displaying current UV index or level not found');
                 return;
             }
-            const currentUVIndex = await getCurrentUVIndex();
+            const { lat, lon } = await getGeolocation();
+            const currentUVIndex = await getCurrentUVIndex(lat, lon);
             if (currentUVIndex !== null) {
                 currentUVElement.textContent = currentUVIndex.toFixed(1);
                 let bgImagePath;
@@ -453,8 +454,41 @@ document.addEventListener("DOMContentLoaded", async() => {
         return data.address.city || data.address.town || data.address.village || 'Unknown Location';
     }
 
+    document.querySelectorAll('#dropdownMenu li').forEach(item => {
+        item.addEventListener('click', function() {
+            const lat = this.getAttribute('data-lat');
+            const lon = this.getAttribute('data-lon');
+            displayCurrentUVIndex1(lat, lon);
+        });
+    });
 
+    async function displayCurrentUVIndex1(lat, lon) {
+        const currentUVElement = document.getElementById('current-uv-index');
+        try {
+            currentUVElement.innerHTML = `
+                <p>
+                Location,CurrentUV:Loading...</p>
 
+                `;
+            const currentUVIndex = await getCurrentUVIndex(lat, lon);
+            const locationName = await getLocationName(lat, lon);
+            currentUVElement.innerHTML = `
+            <p>${locationName},CurrentUV:${currentUVIndex.toFixed(1)}</p>
+        `;;
+        } catch (error) {
+            console.error('Error displaying current UV index:', error);
+            currentUVElement.innerHTML = '<p>Unable to fetch location and UV index</p>';
+        }
+    }
+
+    document.querySelector('.change-btn p').addEventListener('click', function() {
+        var dropdown = document.getElementById('dropdownMenu').querySelector('ul');
+        if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+            dropdown.style.display = 'block';
+        } else {
+            dropdown.style.display = 'none';
+        }
+    });
     displayCurrentUVIndex();
     displayCurrentUVI();
     displayTodaysUV();

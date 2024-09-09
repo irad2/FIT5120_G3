@@ -12,7 +12,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: auto;
 }
 
 .hamburger-icon {
@@ -29,6 +28,16 @@ body {
     cursor: pointer;
     width: 20%;
 }
+
+
+/* .change-btn {
+    position: absolute;
+    top: 0%;
+    left: 60%;
+    color: #4a90e2;
+    font-weight: bold;
+    text-decoration: underline;
+} */
 
 
 /* @media screen and (max-width: 768px) {
@@ -153,10 +162,10 @@ body {
 
 .home-title {
     position: absolute;
-    top: 20%;
+    top: 18%;
     left: 25%;
     color: #1B7F7A;
-    font-size: 5vw;
+    font-size: 8vw;
     text-align: left;
     width: 10%;
     height: auto;
@@ -165,7 +174,7 @@ body {
 
 .introduction-msg {
     position: absolute;
-    top: 42%;
+    top: 52%;
     left: 25%;
     color: #000;
     font-size: 1.2vw;
@@ -630,12 +639,12 @@ iframe {
 
 .uv-index-button {
     position: relative;
-    top: 50%;
+    top: 18%;
     left: 50%;
     transform: translate(-50%, 0%);
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 18%;
     font-size: 1.3vw;
     white-space: nowrap;
     align-items: center;
@@ -651,6 +660,26 @@ iframe {
 
 #current-uv-index {
     text-align: center;
+}
+
+.change-btn {
+    position: absolute;
+    top: 0%;
+    left: 60%;
+    align-items: center;
+    justify-content: center;
+    line-height: 60%;
+}
+
+.change-btn p {
+    font-size: 1.3vw;
+    font-weight: bold;
+    color: #4a90e2;
+    text-decoration: underline;
+}
+
+.change-btn :hover {
+    cursor: pointer;
 }
 
 
@@ -687,7 +716,6 @@ iframe {
 }
 
 .current-uv-index2-uvi {
-    display: flex;
     width: 100%;
 }
 
@@ -906,7 +934,7 @@ iframe {
     margin-bottom: 5%;
     flex: 1;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     padding-left: 10%;
 }
 
@@ -1111,4 +1139,29 @@ iframe {
     font-size: 1.3vw;
     font-family: "Finger Paint", sans-serif;
     text-align: left;
+}
+
+#dropdownMenu {
+    position: absolute;
+    z-index: 1000;
+}
+
+#dropdownMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    display: none;
+}
+
+#dropdownMenu li {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+#dropdownMenu li:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
 }
