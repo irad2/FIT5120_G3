@@ -54,6 +54,8 @@
             </div>
         </div>
     </header>
+    <div id="overlay" onclick="toggleMenu()" class="overlay"></div>
+
     <span id="trm-uv" style="display: none;"></span>
     <div id="advice-info">
         <div class="ad-title">
@@ -126,6 +128,28 @@
                 var selectedRegion = this.value;
                 updateTipContent(selectedRegion);
             });
+            var currentTimeoutId;
+
+            function typeWriter(elementId, speed) {
+                var element = document.getElementById(elementId);
+                var text = element.innerText;
+                var i = 0;
+                element.innerText = '';
+
+                if (currentTimeoutId) {
+                    clearTimeout(currentTimeoutId);
+                }
+
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        currentTimeoutId = setTimeout(type, speed);
+                    }
+                }
+
+                type();
+            }
 
             function updateTipContent(region) {
                 var tipText = getTipTextByRegion(region);

@@ -6,21 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .text {
-            background-image: url('Resource/uvbk.png');
-            width: 200px;
-            height: 400px;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
+        #quiz-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #answer-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .answer {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        
+        .answer:hover {
+            background-color: #ddd;
+        }
+        
+        #next-button {
+            display: none;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="text">
-        <p>Sunshine is beautiful, but protection is key—creating a safe sun environment for immigrant families.</p>
+    <div id="quiz-container">
+        <div id="question">问题内容</div>
+        <ul id="answer-list">
+            <li class="answer">答案1</li>
+            <li class="answer">答案2</li>
+            <li class="answer">答案3</li>
+            <li class="answer">答案4</li>
+        </ul>
+        <button id="next-button" onclick="loadNextQuestion()">下一题</button>
     </div>
 </body>
+<script>
+    let currentQuestionIndex = 0;
+    const questions = [{
+        question: "问题1?",
+        answers: ["答案A", "答案B", "答案C", "答案D"]
+    }, {
+        question: "问题2?",
+        answers: ["答案A", "答案B", "答案C", "答案D"]
+    }, {
+        question: "问题3?",
+        answers: ["答案A", "答案B", "答案C", "答案D"]
+    }];
+
+    function loadNextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            document.getElementById('quiz-container').innerHTML = '<div>你已完成所有题目！</div>';
+        }
+    }
+
+    function displayQuestion() {
+        const question = questions[currentQuestionIndex];
+        document.getElementById('question').textContent = question.question;
+        const answersHtml = question.answers.map(answer =>
+            `<li class="answer" onclick="selectAnswer()">${answer}</li>`
+        ).join('');
+        document.getElementById('answer-list').innerHTML = answersHtml;
+    }
+
+    function selectAnswer() {
+        document.getElementById('next-button').style.display = 'block';
+    }
+
+    // 初始加载第一题
+    displayQuestion();
+</script>
 
 </html>

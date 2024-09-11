@@ -136,7 +136,7 @@ body {
 
 .overlap-png {
     position: absolute;
-    top: -3%;
+    top: 0%;
     left: -3%;
     width: 35%;
 }
@@ -1164,4 +1164,122 @@ iframe {
 #dropdownMenu li:hover {
     background-color: #f1f1f1;
     cursor: pointer;
+}
+
+.quiz {
+    background-color: #1B7F7A;
+    position: relative;
+    ;
+}
+
+.quiz-title {
+    text-align: center;
+    font-size: 2.5vw;
+    font-family: "Finger Paint", sans-serif;
+    color: #fff;
+    padding-top: 2%;
+}
+
+.quiz-title p {
+    margin: 0;
+    padding: 0;
+}
+
+.notice-box {
+    width: 70%;
+    margin: 5% auto;
+    background-color: #fc9731;
+    text-align: center;
+    position: relative;
+}
+
+.question-img {
+    position: absolute;
+    top: 10%;
+    left: 83%;
+    width: 20%;
+}
+
+.question-img img {
+    width: 40%;
+    transform: rotate(20deg);
+}
+
+.content {
+    font-size: 1vw;
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+    text-align: center;
+    margin: 3% 5%;
+    padding-bottom: 3%;
+}
+
+.q1 {
+    font-size: 1.5vw;
+    padding-bottom: 1%;
+    padding-top: 5%;
+}
+
+.str-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.start {
+    width: 12%;
+    margin-top: 3%;
+    margin-bottom: 20%;
+    padding: 1% 2%;
+    background-color: #FFA500;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border: none;
+    font-size: 1.3vw;
+    font-family: "Finger Paint", sans-serif;
+    z-index: 1000;
+}
+
+.start:hover {
+    background-color: #e69500;
+}
+
+.start:active {
+    background-color: #cc8400;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.left-lion {
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 30%;
+}
+
+.left-lion img {
+    width: 30%;
+}
+
+.lion-dialog {
+    position: absolute;
+    top: 50%;
+    left: 18%;
+    width: 50%;
+}
+
+.lion-dialog img {
+    width: 50%;
+}
+
+.lion-dialog p {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 28%;
+    color: #000;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 1vw;
 }

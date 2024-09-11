@@ -4,32 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sunshield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="js/uv.js"></script>
+    <script src="js/advice.js"></script>
 
 </head>
 
 <body>
-    <header class="menu-toggle" onclick="toggleMenu()">
+    <header class="menu-toggle">
         <div class="hamburger-icon">
-            <img src="Resource/hamburger-icon.png" alt="">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
         </div>
         <nav id="sidebar" class="hide">
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a href="uv_analysis.html">Uv Analysis</a></li>
-                <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
                 <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
-                <li><a href="mole _detection.html">Mole Detection</a></li>
-                <li><a href="skin_health _game.html">Skin Health Game</a></li>
+                <!-- <li><a href="mole _detection.html">Mole Detection</a></li> -->
+                <!-- <li><a href="skin_health _game.html">Skin Health Game</a></li> -->
                 <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
             </ul>
         </nav>
+        <div class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </div>
+        <div class="change-btn">
+            <p>Change Location</p>
+            <div id="dropdownMenu">
+                <ul>
+                    <li data-lat="-31.9505" data-lon="115.8613">WA</li>
+                    <li data-lat="-12.4634" data-lon="130.8456">NT</li>
+                    <li data-lat="-27.5705" data-lon="153.0260">QLD</li>
+                    <li data-lat="-33.8688" data-lon="151.2093">NSW</li>
+                    <li data-lat="-37.8136" data-lon="144.9631">VIC</li>
+                    <li data-lat="-34.9285" data-lon="138.6007">SA</li>
+                    <li data-lat="-42.8821" data-lon="147.3250">TAS</li>
+                    <li data-lat="-35.2809" data-lon="	149.1289">ACT</li>
 
+                </ul>
+            </div>
+        </div>
     </header>
-    <p>This is skin health game page.</p>
+    <div id="overlay" onclick="toggleMenu()" class="overlay"></div>
+    <div class="quiz">
+        <div class="quiz-title">
+            <p>Check Your Knowledge</p>
+        </div>
+        <div class="notice-box">
+            <div class="question-img">
+                <img src="Resource/question.png" alt="">
+            </div>
+            <div class="content">
+                <p class="q1">Before starting the quiz, did you know?</p>
+                <p>Apply Sunscreen: You need to reapply it every two hours, especially after swimming or sweating! </p>
+                <p>Wear a Sun Hat: A wide-brimmed hat can effectively protect your face and neck from the sun.</p>
+                <p>Find Shade: The sun is strongest at noon, so make sure to rest in the shade.</p>
+            </div>
+        </div>
+        <div class="str-btn">
+            <button class="start">Start Now!!!</button>
+        </div>
+        <div class="left-lion">
+            <img src="Resource/lion.png" alt="">
+        </div>
+        <div class="lion-dialog">
+            <img src="Resource/dialog.png" alt="">
+            <p>Click the button below to start the quiz and see how much you know about sun protection!</p>
+        </div>
+
+    </div>
+
 </body>
 
 
