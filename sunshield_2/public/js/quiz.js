@@ -59,8 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             whole.style.display = 'block';
             feedback.style.display = 'none';
+
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.textContent = "Result";
+            } else {
+                nextBtn.textContent = "Next Question";
+            }
         } else {
-            endQuiz();
+            displayResults();
         }
     }
 
@@ -88,12 +94,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function endQuiz() {
-        fbContent.textContent = "You've completed all the questions!";
-        nextBtn.textContent = "Restart";
-        feedback.style.display = 'block';
-        whole.style.display = 'none';
+    function displayResults() {
+        const resultContainer = document.querySelector('.result-content');
+        resultContainer.innerHTML = ''; // 清空先前的结果
+        questions.forEach((question, index) => {
+            const userAnswer = userAnswers[index]; // 假设我们存储了用户的答案
+            const correct = question.answer === userAnswer;
+            resultContainer.innerHTML += `<div class="result-item">
+                <p><b>Question ${index + 1}:</b> ${question.question}</p>
+                <p>Your answer: ${userAnswer} - ${correct ? 'Correct' : 'Incorrect'}</p>
+            </div>`;
+        });
+
+        feedback.style.display = 'none';
+        document.querySelector('.results').style.display = 'block';
     }
+    document.querySelector('.restart-btn').addEventListener('click', function() {
+        currentQuestionIndex = 0;
+        displayQuestion();
+        document.querySelector('.results').style.display = 'none';
+        firstBox.style.display = 'block';
+    });
+
 
     function restartQuiz() {
         currentQuestionIndex = 0;

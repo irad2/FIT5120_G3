@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="str-btn">
-            <button class="start">Start Now!!!</button>
+            <button class="start" id="startButton">Start Now!!!</button>
         </div>
         <div class="left-lion">
             <img src="Resource/lion.png" alt="">
@@ -80,7 +80,12 @@
         </div>
 
     </div>
-
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            window.location.href = 'quiz.html';
+            /
+        });
+    </script>
 </body>
 
 
