@@ -1295,7 +1295,6 @@ iframe {
     font-size: 1.5vw;
     font-family: "Finger Paint", sans-serif;
     margin-top: 2%;
-    padding-bottom: 3%;
     text-align: center;
 }
 
@@ -1313,27 +1312,40 @@ iframe {
 }
 
 .dia img {
-    aspect-ratio: 1.3 / 1;
-    width: 80%;
+    aspect-ratio: 1.8 / 1;
+    width: 50%;
 }
 
 .dia .question-title {
     position: absolute;
     top: 10%;
     left: 50%;
-    font-size: 2.5vw;
+    font-size: 1vw;
     font-family: "Finger Paint", sans-serif;
     transform: translate(-50%, 0%);
 }
 
-.dia .question-content,
+.space {
+    padding: 5%;
+}
+
+.dia .question-content {
+    position: absolute;
+    top: 22%;
+    left: 34%;
+    width: 23%;
+    align-items: center;
+    font-size: 1vw;
+    font-family: "Finger Paint", sans-serif;
+}
+
 .dia .question-content1 {
     position: absolute;
-    top: 25%;
-    left: 30%;
-    width: 33%;
+    top: 28%;
+    left: 34%;
+    width: 23%;
     align-items: center;
-    font-size: 2vw;
+    font-size: 1vw;
     font-family: "Finger Paint", sans-serif;
 }
 
@@ -1351,7 +1363,7 @@ iframe {
 .correct {
     position: absolute;
     top: 55%;
-    left: 30%;
+    left: 35%;
     width: 13%;
     cursor: pointer;
 }
@@ -1359,24 +1371,24 @@ iframe {
 .incorrect {
     position: absolute;
     top: 55%;
-    left: 55%;
+    left: 50%;
     width: 13%;
     cursor: pointer;
 }
 
 .img-1 {
     position: absolute;
-    left: 55%;
-    top: 26%;
-    width: 30%;
+    left: 48%;
+    top: 18%;
 }
 
 .img-1 img {
-    width: 30%;
+    width: 20%;
+    aspect-ratio: 442/565;
 }
 
 .cut-in {
-    margin-left: 10%;
+    margin-left: 25%;
 }
 
 .cut-in img {
@@ -1451,13 +1463,13 @@ iframe {
 .btn-1 {
     position: absolute;
     top: 58%;
-    left: 30%;
+    left: 35%;
 }
 
 .btn-2 {
     position: absolute;
     top: 58%;
-    left: 52%;
+    left: 49%;
 }
 
 .novice,
@@ -1472,7 +1484,7 @@ iframe {
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
     color: #fff;
     border: none;
-    font-size: 1.3vw;
+    font-size: 1vw;
     font-family: "Finger Paint", sans-serif;
     z-index: 1000;
 }
@@ -1490,9 +1502,9 @@ iframe {
 
 .progress-container {
     position: absolute;
-    left: 25%;
+    left: 35%;
     top: 22%;
-    width: 45%;
+    width: 21%;
     border: 2px solid #b9daff;
     padding: 0.3%;
     border-radius: 15px;
@@ -1526,4 +1538,84 @@ iframe {
 
 .feedback {
     display: none;
+}
+
+.results {
+    text-align: center;
+}
+
+.results h1 {
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+}
+
+.results h2 {
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+}
+
+.result-content {
+    background-color: #fc9731;
+    width: 50%;
+    margin-left: 25%;
+    padding-bottom: 1%;
+}
+
+.result-item {
+    padding-left: 5%;
+    padding-right: 5%;
+    border-top: #fff;
+    border-top: 2px solid #ffffff;
+    color: #fff;
+    font-family: "Finger Paint", sans-serif;
+    text-align: left;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+}
+
+.restart-btn,
+.learn-more,
+.back-home {
+    width: 15%;
+    margin-top: 3%;
+    padding: 1% 2%;
+    margin-bottom: 5%;
+    background-color: #f8d97f;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+    color: #000;
+    border: none;
+    font-size: 1vw;
+    font-family: "Finger Paint", sans-serif;
+    z-index: 1000;
+}
+
+.restart-btn:hover,
+.learn-more:hover,
+.back-home:hover {
+    background-color: #e69500;
+}
+
+.restart-btn:active,
+.learn-more:active,
+.back-home:active {
+    background-color: #cc8400;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+/* CSS */
+
+.fade-effect {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
 }

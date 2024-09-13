@@ -13,9 +13,50 @@
     <script src="js/uv.js"></script>
     <script src="js/advice.js"></script>
     <script src="js/quiz.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body>
+    <header class="menu-toggle">
+        <div class="hamburger-icon">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
+        </div>
+        <nav id="sidebar" class="hide">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
+                <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
+                <!-- <li><a href="mole _detection.html">Mole Detection</a></li> -->
+                <!-- <li><a href="skin_health _game.html">Skin Health Game</a></li> -->
+                <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
+            </ul>
+        </nav>
+        <div class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </div>
+        <div class="change-btn">
+            <p>Change Location</p>
+            <div id="dropdownMenu">
+                <ul>
+                    <li data-lat="-31.9505" data-lon="115.8613">WA</li>
+                    <li data-lat="-12.4634" data-lon="130.8456">NT</li>
+                    <li data-lat="-27.5705" data-lon="153.0260">QLD</li>
+                    <li data-lat="-33.8688" data-lon="151.2093">NSW</li>
+                    <li data-lat="-37.8136" data-lon="144.9631">VIC</li>
+                    <li data-lat="-34.9285" data-lon="138.6007">SA</li>
+                    <li data-lat="-42.8821" data-lon="147.3250">TAS</li>
+                    <li data-lat="-35.2809" data-lon="	149.1289">ACT</li>
+
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="overlay" onclick="toggleMenu()" class="overlay"></div>
+
     <div class="quiz-act">
         <div class="qa-title">
             <p>Check Your Knowledge</p>
@@ -31,7 +72,7 @@
                 <img src="Resource/dialog.png" alt="">
 
                 <div class="question-content">
-                    <p>Before We Start, How would you rate your knowledge about sun protection</p>
+                    <p>Before We Start, How would you rate your knowledge about sun protection.</p>
                 </div>
                 <div class="line2">
                     <img src="Resource/line2.jpg" alt="">
@@ -46,10 +87,14 @@
                     <button class="expert">I'm a sun safety expert!</button>
                 </div>
 
+
             </div>
-            <div class="cut-in">
+            <div class="space">
+
+            </div>
+            <!-- <div class="cut-in">
                 <img src="Resource/lion.png" alt="">
-            </div>
+            </div> -->
         </div>
         <div class="whole">
             <div class="dia">
@@ -79,8 +124,11 @@
                     <img src="Resource/incorrect.png" alt="Incorrect" class="answer-btn" data-answer="False">
                 </div>
             </div>
-            <div class="cut-in">
+            <!-- <div class="cut-in">
                 <img src="Resource/lion.png" alt="">
+            </div> -->
+            <div class="space">
+
             </div>
         </div>
         <div class="feedback">
@@ -90,14 +138,25 @@
             <div class="fb-dia">
                 <img src="Resource/dialog.png" alt="">
                 <div class="fb-content">
-                    <p>Loading</p>
+                    <p>Loading...</p>
                 </div>
             </div>
-            <div class="bottom-img">
+            <!-- <div class="bottom-img">
                 <img src="Resource/lion.png" alt="">
-            </div>
+            </div> -->
             <div class="nextQuestion">
                 <button class="next-btn">Next Question</button>
+            </div>
+        </div>
+        <div class="results" style="display: none;">
+            <h1>Quiz Results</h1>
+            <div class="result-content">
+                <!-- Results will be inserted here by JavaScript -->
+            </div>
+            <div class="option">
+                <button class="restart-btn">Restart Quiz</button>
+                <button class="learn-more">Learn More</button>
+                <button class="back-home">Back Home</button>
             </div>
         </div>
 

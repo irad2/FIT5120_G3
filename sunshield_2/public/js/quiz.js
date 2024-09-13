@@ -2,7 +2,7 @@ const questionsNovice = [
     { question: "The UV index is higher during the night. ", answer: "False" },
     { question: "You only need sunscreen on sunny days.", answer: "False" },
     { question: "Wearing a hat can help protect you from the sun.", answer: "True" },
-    { question: "HStaying in the shade can reduce your exposure to UV rays.", answer: "True" },
+    { question: "Staying in the shade can reduce your exposure to UV rays.", answer: "True" },
     { question: "Sunscreen should be applied only once a day. ", answer: "False" },
     { question: "Sunglasses protect your eyes from harmful UV rays.", answer: "True" },
     { question: "The UV index is highest during the middle of the day. ", answer: "True" },
@@ -21,7 +21,7 @@ const questionsExpert = [
 ];
 document.addEventListener('DOMContentLoaded', function() {
     const btnNovice = document.querySelector('.btn-1 button');
-
+    const btnExpert = document.querySelector('.btn-2 button');
     const firstBox = document.querySelector('.first-box');
     const whole = document.querySelector('.whole');
     const feedback = document.querySelector('.feedback');
@@ -29,25 +29,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const fbContent = document.querySelector('.fb-content p');
     const nextBtn = document.querySelector('.feedback .next-btn');
     const answerButtons = document.querySelectorAll('.whole .answer-btn');
-    const btnExpert = document.querySelector('.btn-2 button'); // 获取专家按钮
+    const resultsContainer = document.querySelector('.results');
 
     let questions = questionsNovice;
     let currentQuestionIndex = 0;
+    let userAnswers = [];
 
     btnExpert.addEventListener('click', function() {
         questions = questionsExpert;
-        firstBox.style.display = 'none';
-        whole.style.display = 'block';
-        currentQuestionIndex = 0;
-        displayQuestion();
+        startQuiz();
     });
 
     btnNovice.addEventListener('click', function() {
+        questions = questionsNovice;
+        startQuiz();
+    });
+
+    function startQuiz() {
         firstBox.style.display = 'none';
         whole.style.display = 'block';
         currentQuestionIndex = 0;
+        userAnswers = [];
         displayQuestion();
-    });
+    }
 
     function displayQuestion() {
         if (currentQuestionIndex < questions.length) {
@@ -59,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             whole.style.display = 'block';
             feedback.style.display = 'none';
+            resultsContainer.style.display = 'none';
 
             if (currentQuestionIndex === questions.length - 1) {
-                nextBtn.textContent = "Result";
+                nextBtn.textContent = "See Results";
             } else {
                 nextBtn.textContent = "Next Question";
             }
@@ -78,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkAnswer(selectedAnswer) {
         const correctAnswer = questions[currentQuestionIndex].answer;
+        userAnswers.push(selectedAnswer);
         const answerTitle = document.querySelector('.fb-title p');
         answerTitle.textContent = `Question ${currentQuestionIndex + 1} Of ${questions.length}`;
         fbContent.textContent = (selectedAnswer === correctAnswer) ? 'Correct' : 'Incorrect';
@@ -88,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nextBtn.addEventListener('click', () => {
         if (currentQuestionIndex >= questions.length) {
-            restartQuiz();
+            displayResults();
         } else {
             displayQuestion();
         }
@@ -96,31 +102,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayResults() {
         const resultContainer = document.querySelector('.result-content');
-        resultContainer.innerHTML = ''; // 清空先前的结果
+        resultContainer.innerHTML = '';
+        let correctCount = 0;
+
         questions.forEach((question, index) => {
-            const userAnswer = userAnswers[index]; // 假设我们存储了用户的答案
+            const userAnswer = userAnswers[index];
             const correct = question.answer === userAnswer;
-            resultContainer.innerHTML += `<div class="result-item">
-                <p><b>Question ${index + 1}:</b> ${question.question}</p>
-                <p>Your answer: ${userAnswer} - ${correct ? 'Correct' : 'Incorrect'}</p>
-            </div>`;
+            if (correct) correctCount++;
+            resultContainer.innerHTML += `
+                <div class="result-item">
+                    <p><b>Question ${index + 1}:</b> ${question.question} </p> <p>Your answer: ${userAnswer} </p> <p>Correct answer: ${question.answer}</p>
+                </div>`;
         });
 
+        const scoreElement = document.createElement('h2');
+        scoreElement.textContent = `You got ${correctCount} out of ${questions.length}.`;
+        resultContainer.insertBefore(scoreElement, resultContainer.firstChild);
+
         feedback.style.display = 'none';
-        document.querySelector('.results').style.display = 'block';
+        whole.style.display = 'none';
+        resultsContainer.style.display = 'block';
     }
+
     document.querySelector('.restart-btn').addEventListener('click', function() {
-        currentQuestionIndex = 0;
-        displayQuestion();
-        document.querySelector('.results').style.display = 'none';
+        resultsContainer.style.display = 'none';
         firstBox.style.display = 'block';
+        currentQuestionIndex = 0;
+        userAnswers = [];
     });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const learnMoreButton = document.querySelector('.learn-more');
 
+    learnMoreButton.addEventListener('click', function() {
+        window.location.href = 'protect%20_your_skin.html'; // 替换为您想要跳转的网址
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const backHomeButton = document.querySelector('.back-home');
 
-    function restartQuiz() {
-        currentQuestionIndex = 0;
-        firstBox.style.display = 'block';
-        feedback.style.display = 'none';
-        nextBtn.textContent = "Next Question";
-    }
+    backHomeButton.addEventListener('click', function() {
+        window.location.href = 'home.html';
+    });
 });
