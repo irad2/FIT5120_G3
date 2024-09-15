@@ -1204,7 +1204,6 @@ iframe {
 
 .question-img img {
     width: 40%;
-    transform: rotate(20deg);
 }
 
 .content {
@@ -1378,8 +1377,9 @@ iframe {
 
 .img-1 {
     position: absolute;
-    left: 48%;
+    left: 51%;
     top: 18%;
+    width: 20%;
 }
 
 .img-1 img {
