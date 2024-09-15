@@ -1608,3 +1608,22 @@ iframe {
     background-color: #cc8400;
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
+
+#backToTop {
+    display: none;
+    /* 初始隐藏按钮 */
+    position: fixed;
+    /* 使用 fixed 定位 */
+    bottom: 20px;
+    /* 距离底部 20px */
+    right: 20px;
+    /* 距离右侧 20px */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    /* 确保按钮在其他内容之上 */
+}
