@@ -1,25 +1,19 @@
-const questionsNovice = [
-    { question: "The UV index is higher during the night. ", answer: "False" },
-    { question: "You only need sunscreen on sunny days.", answer: "False" },
-    { question: "Wearing a hat can help protect you from the sun.", answer: "True" },
-    { question: "Staying in the shade can reduce your exposure to UV rays.", answer: "True" },
-    { question: "Sunscreen should be applied only once a day. ", answer: "False" },
-    { question: "Sunglasses protect your eyes from harmful UV rays.", answer: "True" },
-    { question: "The UV index is highest during the middle of the day. ", answer: "True" },
-    { question: "You don’t need to worry about UV rays on cloudy days. ", answer: "False" }
-];
+let questionsNovice = [];
+let questionsExpert = [];
+let questions = [];
 
-const questionsExpert = [
-    { question: "A UV index of 2 means there is no need for sun protection.", answer: "False" },
-    { question: "Sunscreen should be reapplied every two hours when you're outside. ", answer: "True" },
-    { question: "Snow can reflect UV rays and increase sun exposure.  ", answer: "True" },
-    { question: "UV rays cannot penetrate water, so you don/'t need sunscreen while swimming.  ", answer: "False" },
-    { question: "Sunscreen with SPF 30 blocks all UV rays.", answer: "False" },
-    { question: "The UV index measures both UV-A and UV-B rays.  ", answer: "True" },
-    { question: "Clothing labeled with UPF (Ultraviolet Protection Factor) offers extra protection from UV rays.", answer: "True" },
-    { question: "People with darker skin don’t need to use sunscreen. ", answer: "False" }
-];
-document.addEventListener('DOMContentLoaded', function() {
+Promise.all([
+    fetch('https://fit5120-quiz-questions.s3.amazonaws.com/novicequestions.json').then(response => response.json()),
+    fetch('https://fit5120-quiz-questions.s3.amazonaws.com/expertquestions.json').then(response => response.json())
+])
+.then(([noviceData, expertData]) => {
+    questionsNovice = noviceData;
+    questionsExpert = expertData;
+    initializeQuiz();
+})
+.catch(error => console.error('Error fetching questions:', error));
+
+function initializeQuiz() {
     const btnNovice = document.querySelector('.btn-1 button');
     const btnExpert = document.querySelector('.btn-2 button');
     const firstBox = document.querySelector('.first-box');
@@ -31,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const answerButtons = document.querySelectorAll('.whole .answer-btn');
     const resultsContainer = document.querySelector('.results');
 
-    let questions = questionsNovice;
     let currentQuestionIndex = 0;
     let userAnswers = [];
 
@@ -130,7 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
         currentQuestionIndex = 0;
         userAnswers = [];
     });
-});
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const learnMoreButton = document.querySelector('.learn-more');
 
@@ -138,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'protect%20_your_skin.html'; // 替换为您想要跳转的网址
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const backHomeButton = document.querySelector('.back-home');
 

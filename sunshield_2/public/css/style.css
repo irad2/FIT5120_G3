@@ -1347,7 +1347,7 @@ iframe {
 }
 
 .dia img {
-    aspect-ratio: 1.8 / 1;
+    /* aspect-ratio: 1.8 / 1; */
     width: 50%;
 }
 
@@ -1399,7 +1399,7 @@ iframe {
     position: absolute;
     top: 55%;
     left: 35%;
-    width: 13%;
+    width: 10%;
     cursor: pointer;
 }
 
@@ -1407,7 +1407,7 @@ iframe {
     position: absolute;
     top: 55%;
     left: 50%;
-    width: 13%;
+    width: 9%;
     cursor: pointer;
 }
 
@@ -1443,9 +1443,9 @@ iframe {
     text-align: center;
 }
 
-.fb-dia img {
-    width: 30%;
-}
+/* .fb-dia img {
+    height: 10%;
+} */
 
 .fb-dia .fb-content {
     position: absolute;
