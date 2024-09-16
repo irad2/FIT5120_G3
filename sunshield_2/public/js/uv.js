@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", async() => {
     // Function to fetch API key
     async function fetchApiKey() {
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     // Fetches the current UV index
     async function getUVIndexes(lat, lon, targetDates) {
-        console.log(lat, lon, apiKey);
         return fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=minutely,hourly,current,alerts`)
             .then((response) => {
                 if (!response.ok) {
@@ -148,17 +148,17 @@ document.addEventListener("DOMContentLoaded", async() => {
 
 
     // Function to display the current UV index
-    async function displayCurrentUVIndex() {
+    async function displayCurrentUVIndex(lat, lon) {
         try {
             const currentUVElement = document.getElementById('current-uv-index');
             if (currentUVElement) {
                 currentUVElement.innerHTML = `
                 <p>
-                Location,CurrentUV:Loading...</p>
+                Location, Current UV: Loading...</p>
 
                 `;
             }
-            const { lat, lon } = await getGeolocation();
+
             const currentUVIndex = await getCurrentUVIndex(lat, lon);
             console.log(lat, lon, currentUVIndex);
 
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                         locationNameMain.textContent = locationName;
                     }
                     currentUVElement.innerHTML = `
-                        <p>${locationName},CurrentUV:${currentUVIndex.toFixed(1)}</p>
+                        <p>${locationName}, Current UV: ${currentUVIndex.toFixed(1)}</p>
                     `;
                     const locationNameElement = document.getElementById('location-name');
                     if (locationNameElement) {
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
     }
 
-    async function displayCurrentUVI() {
+    async function displayCurrentUVI(lat, lon) {
         try {
             const currentUVElement = document.getElementById('cur-uv');
             const levelElement = document.getElementById('box-level-1');
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 console.error('UI element for displaying current UV index or level not found');
                 return;
             }
-            const { lat, lon } = await getGeolocation();
+
             const currentUVIndex = await getCurrentUVIndex(lat, lon);
             if (currentUVIndex !== null) {
                 currentUVElement.textContent = currentUVIndex.toFixed(1);
@@ -287,9 +287,9 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
     }
 
-    async function displayTodaysUV() {
+    async function displayTodaysUV(lat, lon) {
         try {
-            const { lat, lon } = await getGeolocation();
+  
             const tdUVElement = document.getElementById('td-uv');
             const tdLevelElement = document.getElementById('box-level-td');
             const tdBoxElement = document.getElementById('td-uv-box');
@@ -342,9 +342,9 @@ document.addEventListener("DOMContentLoaded", async() => {
             console.error('Error displaying today\'s UV data:', error);
         }
     }
-    async function displayTomorrowsUV() {
+    async function displayTomorrowsUV(lat, lon) {
         try {
-            const { lat, lon } = await getGeolocation();
+
 
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
@@ -386,9 +386,9 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
         return dates;
     }
-    async function displayNextThreeDaysUV() {
+    async function displayNextThreeDaysUV(lat, lon) {
         try {
-            const { lat, lon } = await getGeolocation();
+            
             const nextDays = getNextThreeDays();
             const uvIndexes = await getUVIndexes(lat, lon, nextDays);
 
@@ -454,32 +454,70 @@ document.addEventListener("DOMContentLoaded", async() => {
         return data.address.city || data.address.town || data.address.village || 'Unknown Location';
     }
 
-    document.querySelectorAll('#dropdownMenu li').forEach(item => {
-        item.addEventListener('click', function() {
-            const lat = this.getAttribute('data-lat');
-            const lon = this.getAttribute('data-lon');
-            displayCurrentUVIndex1(lat, lon);
-        });
-    });
 
-    async function displayCurrentUVIndex1(lat, lon) {
-        const currentUVElement = document.getElementById('current-uv-index');
-        try {
-            currentUVElement.innerHTML = `
-                <p>
-                Location,CurrentUV:Loading...</p>
+    const locations = {
+        "Western Australia": [
+            { name: "Perth", lat: -31.9505, lon: 115.8613 },
+            { name: "Broome", lat: -17.9614, lon: 122.2359 },
+            { name: "Albany", lat: -35.0275, lon: 117.8840 }
+        ],
+        "Northern Territory": [
+            { name: "Darwin", lat: -12.4634, lon: 130.8456 },
+            { name: "Alice Springs", lat: -23.6980, lon: 133.8807 },
+            { name: "Katherine", lat: -14.4647, lon: 132.2661 }
+        ],
+        "Queensland": [
+            { name: "Brisbane", lat: -27.5705, lon: 153.0260 },
+            { name: "Cairns", lat: -16.9186, lon: 145.7781 },
+            { name: "Gold Coast", lat: -28.0167, lon: 153.4000 }
+        ],
+        "New South Wales": [
+            { name: "Sydney", lat: -33.8688, lon: 151.2093 },
+            { name: "Newcastle", lat: -32.9283, lon: 151.7817 }
+        ],
+        "Victoria": [
+            { name: "Melbourne", lat: -37.8136, lon: 144.9631 },
+            { name: "Geelong", lat: -38.1499, lon: 144.3617 },
+            { name: "Ballarat", lat: -37.5622, lon: 143.8503 }
+        ],
+        "South Australia": [
+            { name: "Adelaide", lat: -34.9285, lon: 138.6007 },
+            { name: "Port Augusta", lat: -32.4936, lon: 137.7636 },
+            { name: "Mount Gambier", lat: -37.8279, lon: 140.7830 }
+        ],
+        "Tasmania": [
+            { name: "Hobart", lat: -42.8821, lon: 147.3250 },
+            { name: "Launceston", lat: -41.4332, lon: 147.1441 },
+            { name: "Devonport", lat: -41.1806, lon: 146.3464 }
+        ],
+        "ACT": [
+            { name: "Canberra", lat: -35.2809, lon: 149.1289 }
+        ]
+    };
 
-                `;
-            const currentUVIndex = await getCurrentUVIndex(lat, lon);
-            const locationName = await getLocationName(lat, lon);
-            currentUVElement.innerHTML = `
-            <p>${locationName},CurrentUV:${currentUVIndex.toFixed(1)}</p>
-        `;;
-        } catch (error) {
-            console.error('Error displaying current UV index:', error);
-            currentUVElement.innerHTML = '<p>Unable to fetch location and UV index</p>';
+    function populateLocationDropdown() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const ul = dropdownMenu.querySelector('ul');
+        ul.innerHTML = ''; // Clear existing items
+
+        for (const state in locations) {
+            const stateLi = document.createElement('li');
+            stateLi.textContent = state;
+            stateLi.classList.add('state-category'); 
+            ul.appendChild(stateLi);
+
+            locations[state].forEach(city => {
+                const cityLi = document.createElement('li');
+                cityLi.textContent = city.name;
+                cityLi.dataset.lat = city.lat;
+                cityLi.dataset.lon = city.lon;
+                cityLi.classList.add('city-item');
+                ul.appendChild(cityLi);
+            });
         }
     }
+
+    populateLocationDropdown();
 
     document.querySelector('.change-btn p').addEventListener('click', function() {
         var dropdown = document.getElementById('dropdownMenu').querySelector('ul');
@@ -489,10 +527,44 @@ document.addEventListener("DOMContentLoaded", async() => {
             dropdown.style.display = 'none';
         }
     });
-    displayCurrentUVIndex();
-    displayCurrentUVI();
-    displayTodaysUV();
-    displayTomorrowsUV();
-    displayNextThreeDaysUV();
+
+    document.querySelectorAll('.city-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const lat = this.getAttribute('data-lat');
+            const lon = this.getAttribute('data-lon');
+            displayCurrentUVIndex1(lat, lon);
+            displayCurrentUVIndex(lat, lon);
+            displayCurrentUVI(lat, lon);
+            displayTodaysUV(lat, lon);
+            displayTomorrowsUV(lat, lon);
+            displayNextThreeDaysUV(lat, lon);
+        });
+    });
+
+    async function displayCurrentUVIndex1(lat, lon) {
+        const currentUVElement = document.getElementById('current-uv-index');
+        try {
+            currentUVElement.innerHTML = `
+                <p>
+                Location, Current UV: Loading...</p>
+
+                `;
+            const currentUVIndex = await getCurrentUVIndex(lat, lon);
+            const locationName = await getLocationName(lat, lon);
+            currentUVElement.innerHTML = `
+            <p>${locationName}, Current UV: ${currentUVIndex.toFixed(1)}</p>
+        `;;
+        } catch (error) {
+            console.error('Error displaying current UV index:', error);
+            currentUVElement.innerHTML = '<p>Unable to fetch location and UV index</p>';
+        }
+    }
+
+    var {lat, lon} = await getGeolocation();
+    displayCurrentUVIndex(lat, lon);
+    displayCurrentUVI(lat, lon);
+    displayTodaysUV(lat, lon);
+    displayTomorrowsUV(lat, lon);
+    displayNextThreeDaysUV(lat, lon);
     setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
 });

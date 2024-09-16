@@ -64,6 +64,7 @@ body {
     z-index: 1000;
     font-size: 1vw;
     opacity: 0.9;
+    font-family: "Finger Paint", sans-serif;
 }
 
 #sidebar.active {
@@ -207,6 +208,10 @@ body {
 .ab-btn:hover {
     background-color: #f9d978;
     color: #fff;
+}
+
+header {
+    font-family: "Open Sans", sans-serif;
 }
 
 .mid-head {
@@ -660,22 +665,33 @@ iframe {
 
 #current-uv-index {
     text-align: center;
+    font-weight: bold;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .change-btn {
     position: absolute;
-    top: 0%;
-    left: 60%;
+    top: 4px;
+    left: 63%;
+    padding: 0px 5px;
     align-items: center;
     justify-content: center;
     line-height: 60%;
+    background-color: #ff9100;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .change-btn p {
-    font-size: 1.3vw;
+    font-size: 1.2vw;
     font-weight: bold;
-    color: #4a90e2;
-    text-decoration: underline;
+
 }
 
 .change-btn :hover {
@@ -1144,9 +1160,14 @@ iframe {
 #dropdownMenu {
     position: absolute;
     z-index: 1000;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    color: black;
 }
 
 #dropdownMenu ul {
+    text-align: left;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -1156,16 +1177,31 @@ iframe {
     display: none;
 }
 
-#dropdownMenu li {
-    padding: 8px 16px;
+.state-category {
+    font-weight: bold;
+}
+
+
+
+#dropdownMenu li { 
     border-bottom: 1px solid #ddd;
 }
 
-#dropdownMenu li:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
+.city-item {
+    padding: 8px 16px 8px 36px; 
 }
 
+.city-item:hover {
+    background-color: #ccc9c9;
+    cursor: pointer;
+}
+.state-category {
+    padding: 8px 16px;
+}
+.state-category:hover {
+    background-color: white;
+    cursor: default;
+}
 .quiz {
     background-color: #1B7F7A;
     position: relative;
