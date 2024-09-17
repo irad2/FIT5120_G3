@@ -667,7 +667,14 @@ iframe {
     bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
     animation: bounce 2s infinite;
+}
+
+.scroll-prompt svg {
+    width: 200%;
+    height: 200%;
 }
 
 #current-uv-index {
