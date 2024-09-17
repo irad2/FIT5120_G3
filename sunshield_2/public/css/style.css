@@ -664,7 +664,7 @@ iframe {
 }
 .scroll-prompt {
     position: absolute;
-    bottom: 120px;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
