@@ -567,4 +567,31 @@ document.addEventListener("DOMContentLoaded", async() => {
     displayTomorrowsUV(lat, lon);
     displayNextThreeDaysUV(lat, lon);
     setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
+    const changeBtn = document.querySelector('.change-btn p');
+    const dropdownMenu = document.getElementById('dropdownMenu').querySelector('ul');
+    let isDropdownOpen = false;
+
+    changeBtn.addEventListener('click', function(event) {
+        event.stopPropagation();
+          if (isDropdownOpen) {
+          dropdownMenu.style.display = 'none';
+           } else {
+          dropdownMenu.style.display = 'block';
+          }
+          isDropdownOpen = !isDropdownOpen;
+    });
+
+    document.addEventListener('click', function(event) {
+        if (isDropdownOpen && !dropdownMenu.contains(event.target) && event.target !== changeBtn) {
+            dropdownMenu.style.display = 'none';
+            isDropdownOpen = false;
+        }
+    });
+
+    dropdownMenu.querySelectorAll('li').forEach(item => {
+        item.addEventListener('click', function() {
+            dropdownMenu.style.display = 'none';
+            isDropdownOpen = false;
+        });
+    });
 });
