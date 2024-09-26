@@ -1660,13 +1660,9 @@ iframe {
 
 #backToTop {
     display: none;
-    /* 初始隐藏按钮 */
     position: fixed;
-    /* 使用 fixed 定位 */
     bottom: 20px;
-    /* 距离底部 20px */
     right: 20px;
-    /* 距离右侧 20px */
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
@@ -1674,5 +1670,52 @@ iframe {
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
-    /* 确保按钮在其他内容之上 */
 }
+
+footer {
+    background-color: #f0f8ff;
+    padding: 15px 0;
+    border: 2px solid #b6cee7;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  footer nav {
+    margin-bottom: 10px;
+  }
+  
+  footer nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 5px 0;
+    text-align: center;
+  }
+  
+  footer nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  footer nav ul li a {
+    text-decoration: none;
+    color: #070707;
+    font-family: "Finger Paint", sans-serif;
+    font-size: 14px;
+  }
+  
+  footer .copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  footer .copyright img {
+    vertical-align: middle;
+    height: 20px;
+    margin-right: 10px;
+  }
