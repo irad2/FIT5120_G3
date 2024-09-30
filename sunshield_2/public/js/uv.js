@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", async() => {
     // Function to fetch API key
     async function fetchApiKey() {
@@ -25,27 +24,37 @@ document.addEventListener("DOMContentLoaded", async() => {
             lat: -33.8688,
             lon: 151.2093
         };
-        //sydney for test
+        // Check if there's a saved location
+        const savedLocation = JSON.parse(localStorage.getItem('userLocation'));
+        if (savedLocation) {
+            return savedLocation;
+        }
         return new Promise((resolve) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        resolve({
+                        const location = {
                             lat: position.coords.latitude,
                             lon: position.coords.longitude
-                        });
+                        };
+                        // Save the location
+                        localStorage.setItem('userLocation', JSON.stringify(location));
+                        resolve(location);
                     },
                     (error) => {
                         console.error("Geolocation error:", error);
+                        localStorage.setItem('userLocation', JSON.stringify(defaultLocation));
                         resolve(defaultLocation);
                     }
                 );
             } else {
                 console.error("Geolocation is not supported by this browser.");
+                localStorage.setItem('userLocation', JSON.stringify(defaultLocation));
                 resolve(defaultLocation);
             }
         });
     }
+
 
     // Fetches the current UV index
     async function getUVIndexes(lat, lon, targetDates) {
@@ -289,7 +298,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     async function displayTodaysUV(lat, lon) {
         try {
-  
+
             const tdUVElement = document.getElementById('td-uv');
             const tdLevelElement = document.getElementById('box-level-td');
             const tdBoxElement = document.getElementById('td-uv-box');
@@ -388,7 +397,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
     async function displayNextThreeDaysUV(lat, lon) {
         try {
-            
+
             const nextDays = getNextThreeDays();
             const uvIndexes = await getUVIndexes(lat, lon, nextDays);
 
@@ -503,7 +512,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         for (const state in locations) {
             const stateLi = document.createElement('li');
             stateLi.textContent = state;
-            stateLi.classList.add('state-category'); 
+            stateLi.classList.add('state-category');
             ul.appendChild(stateLi);
 
             locations[state].forEach(city => {
@@ -532,15 +541,22 @@ document.addEventListener("DOMContentLoaded", async() => {
         item.addEventListener('click', function() {
             const lat = this.getAttribute('data-lat');
             const lon = this.getAttribute('data-lon');
-            displayCurrentUVIndex1(lat, lon);
-            displayCurrentUVIndex(lat, lon);
-            displayCurrentUVI(lat, lon);
-            displayTodaysUV(lat, lon);
-            displayTomorrowsUV(lat, lon);
-            displayNextThreeDaysUV(lat, lon);
+            // Save the selected location
+            localStorage.setItem('userLocation', JSON.stringify({ lat, lon }));
+            // Update displays
+            updateAllDisplays(lat, lon);
         });
     });
-
+    async function updateAllDisplays(lat, lon) {
+        const locationName = await getLocationName(lat, lon);
+        localStorage.setItem('locationName', locationName);
+        displayCurrentUVIndex1(lat, lon);
+        displayCurrentUVIndex(lat, lon);
+        displayCurrentUVI(lat, lon);
+        displayTodaysUV(lat, lon);
+        displayTomorrowsUV(lat, lon);
+        displayNextThreeDaysUV(lat, lon);
+    }
     async function displayCurrentUVIndex1(lat, lon) {
         const currentUVElement = document.getElementById('current-uv-index');
         try {
@@ -560,25 +576,21 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
     }
 
-    var {lat, lon} = await getGeolocation();
-    displayCurrentUVIndex(lat, lon);
-    displayCurrentUVI(lat, lon);
-    displayTodaysUV(lat, lon);
-    displayTomorrowsUV(lat, lon);
-    displayNextThreeDaysUV(lat, lon);
-    setInterval(displayCurrentUVIndex, 5 * 60 * 1000);
+    var { lat, lon } = await getGeolocation();
+    updateAllDisplays(lat, lon);
+    setInterval(() => updateAllDisplays(lat, lon), 5 * 60 * 1000);
     const changeBtn = document.querySelector('.change-btn p');
     const dropdownMenu = document.getElementById('dropdownMenu').querySelector('ul');
     let isDropdownOpen = false;
 
     changeBtn.addEventListener('click', function(event) {
         event.stopPropagation();
-          if (isDropdownOpen) {
-          dropdownMenu.style.display = 'none';
-           } else {
-          dropdownMenu.style.display = 'block';
-          }
-          isDropdownOpen = !isDropdownOpen;
+        if (isDropdownOpen) {
+            dropdownMenu.style.display = 'none';
+        } else {
+            dropdownMenu.style.display = 'block';
+        }
+        isDropdownOpen = !isDropdownOpen;
     });
 
     document.addEventListener('click', function(event) {

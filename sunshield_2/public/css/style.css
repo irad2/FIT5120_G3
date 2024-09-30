@@ -662,6 +662,7 @@ iframe {
     height: 100%;
     box-sizing: border-box;
 }
+
 .scroll-prompt {
     position: absolute;
     bottom: 10%;
@@ -704,7 +705,6 @@ iframe {
 .change-btn p {
     font-size: 1.2vw;
     font-weight: bold;
-
 }
 
 .change-btn :hover {
@@ -1194,27 +1194,28 @@ iframe {
     font-weight: bold;
 }
 
-
-
-#dropdownMenu li { 
+#dropdownMenu li {
     border-bottom: 1px solid #ddd;
 }
 
 .city-item {
-    padding: 8px 16px 8px 36px; 
+    padding: 8px 16px 8px 36px;
 }
 
 .city-item:hover {
     background-color: #ccc9c9;
     cursor: pointer;
 }
+
 .state-category {
     padding: 8px 16px;
 }
+
 .state-category:hover {
     background-color: white;
     cursor: default;
 }
+
 .quiz {
     background-color: #1B7F7A;
     position: relative;
@@ -1456,6 +1457,7 @@ iframe {
     text-align: center;
 }
 
+
 /* .fb-dia img {
     height: 10%;
 } */
@@ -1676,46 +1678,46 @@ footer {
     background-color: #f0f8ff;
     padding: 15px 0;
     border: 2px solid #b6cee7;
-  }
-  
-  .footer-content {
+}
+
+.footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  footer nav {
-    margin-bottom: 10px;
-  }
-  
-  footer nav ul {
+    padding: 0 2%;
+}
+
+footer nav {
+    margin-bottom: 1%;
+}
+
+footer nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0 0 5px 0;
+    margin: 0 0 1% 0;
     text-align: center;
-  }
-  
-  footer nav ul li {
+}
+
+footer nav ul li {
     display: inline-block;
-    margin: 0 10px;
-  }
-  
-  footer nav ul li a {
+    margin: 0 2%;
+}
+
+footer nav ul li a {
     text-decoration: none;
     color: #070707;
     font-family: "Finger Paint", sans-serif;
-    font-size: 14px;
-  }
-  
-  footer .copyright {
+    font-size: 1vw;
+}
+
+footer .copyright {
     text-align: center;
-    font-size: 12px;
+    font-size: 0.9vw;
     color: #666;
-    margin-top: 10px;
-  }
-  
-  footer .copyright img {
+    margin-top: 1%;
+}
+
+footer .copyright img {
     vertical-align: middle;
     height: 20px;
-    margin-right: 10px;
-  }
+    margin-right: 1%;
+}
