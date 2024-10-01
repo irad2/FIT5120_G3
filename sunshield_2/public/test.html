@@ -1,136 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>问题答题流程</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* styles.css */
-        
-        .question-container {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .feedback-container {
-            background-color: #dff0d8;
-            border: 1px solid #3c763d;
-            padding: 20px;
-            margin-top: 10px;
-        }
-        
-        .question-content p {
-            font-size: 16px;
-        }
-        
-        .feedback-container p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #3c763d;
-        }
-        
-        button {
-            padding: 10px 15px;
-            font-size: 14px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        
-        .in {
-            cursor: pointer;
-            transition: fill 0.3s ease;
-        }
-        
-        .in:hover {
-            fill: #ff0;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <title>大气动态背景404错误页面html源码</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Sample content" name="description" />
+    <meta content="sample-author" name="author" />
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
-    <div id="questionContainer" class="question-container">
-        <div class="question-content">
-            <p id="questionText">这里是问题内容。</p>
+<body id="body-main">
+    <div class="pi-wrapper">
+        <div class="main-wrapper">
+            <div id="particles-js" class="canvas-maker1 zindex1"></div>
+            <section>
+                <div class="spinner">
+                    <div class="loader">
+                        <div class="bounce loader1 "></div>
+                        <div class="bounce loader2 "></div>
+                    </div>
+                </div>
+            </section>
+            <div class="account-pages"></div>
+            <div class="clearfix"></div>
+            <div class="wrapper-page relative zindex2">
+                <div class="ex-page-content text-center">
+                    <div class="text-error floating">4 0 4</div>
+                    <h3 class="text-uppercase font-600 text-white">对不起的！页面未找到</h3>
+                    <div class="text-center">
+                        <a class="btn  btn-warning btn-rounded  m-t-20 m-b-30" href="/"><i class="fa fa-long-arrow-left"></i>返回首页</a>
+                    </div>
+                    <p class="text-white">Eon Admin © 2020. All Rights Reserved </p>
+                </div>
+            </div>
         </div>
-        <button onclick="submitAnswer('correct')">正确</button>
-        <button onclick="submitAnswer('incorrect')">错误</button>
     </div>
-
-    <div id="feedbackContainer" class="feedback-container" style="display:none;">
-        <p id="feedbackText">这里显示反馈。</p>
-        <button onclick="nextQuestion()">下一题</button>
-    </div>
-
-    <svg class="in" xmlns="http://www.w3.org/2000/svg" version="1.1" width="177px" height="165px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <g><path style="opacity:1" fill="#151515" d="M 51.5,14.5 C 56.5,21.5 62.5,27.5 69.5,32.5C 71.1667,36.1667 73.8333,38.8333 77.5,40.5C 79.1667,44.1667 81.8333,46.8333 85.5,48.5C 86.2026,50.7157 87.5359,52.549 89.5,54C 90.4368,54.6917 91.1034,54.525 91.5,53.5C 91.8333,52.5 92.5,51.8333 93.5,51.5C 96.5,51.1667 98.1667,49.5 98.5,46.5C 100.5,46.5 101.5,45.5 101.5,43.5C 104.5,43.1667 106.167,41.5 106.5,38.5C 108.5,38.5 109.5,37.5 109.5,35.5C 112.5,35.1667 114.167,33.5 114.5,30.5C 116.5,30.5 117.5,29.5 117.5,27.5C 120.5,27.1667 122.167,25.5 122.5,22.5C 124.5,22.5 125.5,21.5 125.5,19.5C 134.297,8.81023 144.964,6.64356 157.5,13C 166.471,21.8788 167.805,31.7122 161.5,42.5C 160.504,42.5858 159.671,42.2524 159,41.5C 149.449,52.0917 139.615,62.4251 129.5,72.5C 126.28,74.6029 123.28,76.9362 120.5,79.5C 119.193,80.865 119.193,82.1984 120.5,83.5C 121.167,86.1667 122.833,87.8333 125.5,88.5C 127.167,92.1667 129.833,94.8333 133.5,96.5C 137.833,102.833 143.167,108.167 149.5,112.5C 152.436,117.105 156.102,121.105 160.5,124.5C 162.474,126.428 163.974,128.761 165,131.5C 166.509,138.794 165.176,145.46 161,151.5C 159.871,153.141 158.371,154.141 156.5,154.5C 154.011,154.241 152.344,155.241 151.5,157.5C 144.83,159.36 138.496,158.527 132.5,155C 118.613,141.113 104.779,127.279 91,113.5C 90.6174,114.056 90.1174,114.389 89.5,114.5C 88.5041,114.586 87.6708,114.252 87,113.5C 84.9464,115.058 83.4464,117.058 82.5,119.5C 72.5494,129.323 62.3827,138.99 52,148.5C 51.51,149.793 51.3433,151.127 51.5,152.5C 47.8362,156.661 43.1696,158.661 37.5,158.5C 24.1667,157.833 17.1667,150.833 16.5,137.5C 16.1742,131.46 18.1742,126.46 22.5,122.5C 25.142,122.512 26.4754,121.179 26.5,118.5C 28.5,118.5 29.5,117.5 29.5,115.5C 32.5,115.167 34.1667,113.5 34.5,110.5C 36.5,110.5 37.5,109.5 37.5,107.5C 40.5,107.167 42.1667,105.5 42.5,102.5C 44.5,102.5 45.5,101.5 45.5,99.5C 48.5,99.1667 50.1667,97.5 50.5,94.5C 52.5,94.5 53.5,93.5 53.5,91.5C 56.5,91.1667 58.1667,89.5 58.5,86.5C 60.4841,86.516 61.4841,85.516 61.5,83.5C 61.2528,82.2867 60.5862,81.62 59.5,81.5C 46.2015,68.7019 33.0348,55.7019 20,42.5C 14.2313,31.5587 15.7313,21.7254 24.5,13C 33.9004,7.96826 42.9004,8.46826 51.5,14.5 Z"/></g>
-            <g><path style="opacity:0.627" fill="#afafaf" d="M 51.5,14.5 C 57.8333,20.1667 63.8333,26.1667 69.5,32.5C 62.5,27.5 56.5,21.5 51.5,14.5 Z"/></g>
-            <g><path style="opacity:0.812" fill="#7d7d7d" d="M 125.5,19.5 C 125.5,21.5 124.5,22.5 122.5,22.5C 123.167,21.1667 124.167,20.1667 125.5,19.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#6c6c6c" d="M 122.5,22.5 C 122.167,25.5 120.5,27.1667 117.5,27.5C 118.833,25.5 120.5,23.8333 122.5,22.5 Z"/></g>
-            <g><path style="opacity:0.812" fill="#7c7c7c" d="M 117.5,27.5 C 117.5,29.5 116.5,30.5 114.5,30.5C 115.167,29.1667 116.167,28.1667 117.5,27.5 Z"/></g>
-            <g><path style="opacity:0.624" fill="#b0b0b0" d="M 69.5,32.5 C 72.5,34.8333 75.1667,37.5 77.5,40.5C 73.8333,38.8333 71.1667,36.1667 69.5,32.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#6c6c6c" d="M 114.5,30.5 C 114.167,33.5 112.5,35.1667 109.5,35.5C 110.833,33.5 112.5,31.8333 114.5,30.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#7c7c7c" d="M 109.5,35.5 C 109.5,37.5 108.5,38.5 106.5,38.5C 107.167,37.1667 108.167,36.1667 109.5,35.5 Z"/></g>
-            <g><path style="opacity:0.627" fill="#afafaf" d="M 77.5,40.5 C 80.5,42.8333 83.1667,45.5 85.5,48.5C 81.8333,46.8333 79.1667,44.1667 77.5,40.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#6c6c6c" d="M 106.5,38.5 C 106.167,41.5 104.5,43.1667 101.5,43.5C 102.833,41.5 104.5,39.8333 106.5,38.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#7c7c7c" d="M 101.5,43.5 C 101.5,45.5 100.5,46.5 98.5,46.5C 99.1667,45.1667 100.167,44.1667 101.5,43.5 Z"/></g>
-            <g><path style="opacity:0.631" fill="#afafaf" d="M 85.5,48.5 C 87.5,50.1667 89.5,51.8333 91.5,53.5C 91.1034,54.525 90.4368,54.6917 89.5,54C 87.5359,52.549 86.2026,50.7157 85.5,48.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#6b6b6b" d="M 98.5,46.5 C 98.1667,49.5 96.5,51.1667 93.5,51.5C 94.8333,49.5 96.5,47.8333 98.5,46.5 Z"/></g>
-            <g><path style="opacity:1" fill="#2d2d2d" d="M 161.5,42.5 C 148.167,56.1667 134.833,69.8333 121.5,83.5C 121.167,83.5 120.833,83.5 120.5,83.5C 119.193,82.1984 119.193,80.865 120.5,79.5C 123.28,76.9362 126.28,74.6029 129.5,72.5C 139.615,62.4251 149.449,52.0917 159,41.5C 159.671,42.2524 160.504,42.5858 161.5,42.5 Z"/></g>
-            <g><path style="opacity:1" fill="#616161" d="M 59.5,81.5 C 60.5862,81.62 61.2528,82.2867 61.5,83.5C 61.4841,85.516 60.4841,86.516 58.5,86.5C 60.4011,85.065 60.7345,83.3983 59.5,81.5 Z"/></g>
-            <g><path style="opacity:0.608" fill="#b0b0b0" d="M 120.5,83.5 C 120.833,83.5 121.167,83.5 121.5,83.5C 122.833,85.1667 124.167,86.8333 125.5,88.5C 122.833,87.8333 121.167,86.1667 120.5,83.5 Z"/></g>
-            <g><path style="opacity:0.627" fill="#afafaf" d="M 125.5,88.5 C 128.5,90.8333 131.167,93.5 133.5,96.5C 129.833,94.8333 127.167,92.1667 125.5,88.5 Z"/></g>
-            <g><path style="opacity:0.812" fill="#6c6c6c" d="M 58.5,86.5 C 58.1667,89.5 56.5,91.1667 53.5,91.5C 54.8333,89.5 56.5,87.8333 58.5,86.5 Z"/></g>
-            <g><path style="opacity:0.812" fill="#7d7d7d" d="M 53.5,91.5 C 53.5,93.5 52.5,94.5 50.5,94.5C 51.1667,93.1667 52.1667,92.1667 53.5,91.5 Z"/></g>
-            <g><path style="opacity:0.627" fill="#afafaf" d="M 133.5,96.5 C 139.167,101.5 144.5,106.833 149.5,112.5C 143.167,108.167 137.833,102.833 133.5,96.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#6c6c6c" d="M 50.5,94.5 C 50.1667,97.5 48.5,99.1667 45.5,99.5C 46.8333,97.5 48.5,95.8333 50.5,94.5 Z"/></g>
-            <g><path style="opacity:0.816" fill="#7c7c7c" d="M 45.5,99.5 C 45.5,101.5 44.5,102.5 42.5,102.5C 43.1667,101.167 44.1667,100.167 45.5,99.5 Z"/></g>
-            <g><path style="opacity:0.82" fill="#6c6c6c" d="M 42.5,102.5 C 42.1667,105.5 40.5,107.167 37.5,107.5C 38.8333,105.5 40.5,103.833 42.5,102.5 Z"/></g>
-            <g><path style="opacity:0.82" fill="#7c7c7c" d="M 37.5,107.5 C 37.5,109.5 36.5,110.5 34.5,110.5C 35.1667,109.167 36.1667,108.167 37.5,107.5 Z"/></g>
-            <g><path style="opacity:0.635" fill="#aeaeae" d="M 149.5,112.5 C 153.898,115.895 157.564,119.895 160.5,124.5C 156.102,121.105 152.436,117.105 149.5,112.5 Z"/></g>
-            <g><path style="opacity:0.824" fill="#6c6c6c" d="M 34.5,110.5 C 34.1667,113.5 32.5,115.167 29.5,115.5C 30.8333,113.5 32.5,111.833 34.5,110.5 Z"/></g>
-            <g><path style="opacity:0.824" fill="#7d7d7d" d="M 29.5,115.5 C 29.5,117.5 28.5,118.5 26.5,118.5C 27.1667,117.167 28.1667,116.167 29.5,115.5 Z"/></g>
-            <g><path style="opacity:1" fill="#5c5c5c" d="M 26.5,118.5 C 26.4754,121.179 25.142,122.512 22.5,122.5C 23.5,120.833 24.8333,119.5 26.5,118.5 Z"/></g>
-            <g><path style="opacity:1" fill="#2e2e2e" d="M 89.5,114.5 C 77.1667,127.5 64.5,140.167 51.5,152.5C 51.3433,151.127 51.51,149.793 52,148.5C 62.3827,138.99 72.5494,129.323 82.5,119.5C 83.4464,117.058 84.9464,115.058 87,113.5C 87.6708,114.252 88.5041,114.586 89.5,114.5 Z"/></g>
-            <g><path style="opacity:1" fill="#5f5f5f" d="M 156.5,154.5 C 155.341,156.25 153.674,157.25 151.5,157.5C 152.344,155.241 154.011,154.241 156.5,154.5 Z"/></g>
-            </svg>
-
-    <script>
-        const questions = [{
-                question: "问题1: 地球是平的吗？",
-                answer: "incorrect"
-            }, {
-                question: "问题2: 2+2等于4吗？",
-                answer: "correct"
-            },
-            // 更多问题...
-        ];
-        let currentQuestionIndex = 0;
-
-        function displayQuestion() {
-            const question = questions[currentQuestionIndex];
-            document.getElementById('questionText').textContent = question.question;
-            document.getElementById('questionContainer').style.display = 'block';
-            document.getElementById('feedbackContainer').style.display = 'none';
-        }
-
-        function submitAnswer(userAnswer) {
-            const correctAnswer = questions[currentQuestionIndex].answer;
-            const feedbackText = userAnswer === correctAnswer ? "回答正确！" : "回答错误！";
-            document.getElementById('feedbackText').textContent = feedbackText;
-            document.getElementById('questionContainer').style.display = 'none';
-            document.getElementById('feedbackContainer').style.display = 'block';
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
-            displayQuestion();
-        }
-
-        window.onload = displayQuestion;
-    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/particlesapp_bubble.js"></script>
+    <script src="assets/js/jquery.app.js"></script>
 </body>
 
 </html>
