@@ -12,11 +12,13 @@
             color: #FF6347;
             text-align: center;
             padding: 50px;
+            overflow: hidden;
         }
         
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
+            animation: wobble 2s ease-in-out infinite;
         }
         
         p {
@@ -31,7 +33,7 @@
             border-radius: 50%;
             margin: 0 auto 30px;
             box-shadow: 0 0 50px #FFA500;
-            animation: pulse 2s infinite alternate;
+            animation: pulse 2s infinite alternate, rotate 20s linear infinite;
         }
         
         .button {
@@ -41,11 +43,44 @@
             text-decoration: none;
             border-radius: 25px;
             font-size: 1.2em;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
         }
         
         .button:hover {
             background-color: #FF6347;
+            transform: scale(1.1);
+        }
+        
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        .cloud:nth-child(1) {
+            width: 100px;
+            height: 40px;
+            top: 20%;
+            left: -100px;
+            animation: moveCloud 15s linear infinite;
+        }
+        
+        .cloud:nth-child(2) {
+            width: 60px;
+            height: 25px;
+            top: 40%;
+            left: -60px;
+            animation: moveCloud 12s linear infinite 2s;
+        }
+        
+        .cloud:nth-child(3) {
+            width: 80px;
+            height: 30px;
+            top: 60%;
+            left: -80px;
+            animation: moveCloud 18s linear infinite 5s;
         }
         
         @keyframes pulse {
@@ -56,10 +91,44 @@
                 transform: scale(1.1);
             }
         }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes wobble {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+            75% {
+                transform: translateX(5px) rotate(5deg);
+            }
+        }
+        
+        @keyframes moveCloud {
+            from {
+                left: -100px;
+            }
+            to {
+                left: 100%;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
     <div class="sun"></div>
     <h1>Oops! The page is lost.</h1>
     <p>Don't worry, kid! Let's go find some other interesting places together!</p>
