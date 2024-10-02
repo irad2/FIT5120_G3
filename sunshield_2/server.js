@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
+// Add this after your other routes
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', 'error.html'));
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
