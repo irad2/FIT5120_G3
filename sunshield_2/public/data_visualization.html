@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小朋友防晒数据统计</title>
+    <title>Kids Sun Protection Statistics</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,62 @@
             background: #Fc9731;
             border-radius: 20px;
             padding: 20px;
+            padding-bottom: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-container {
+            display: none;
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            padding: 15px;
+            background-color: white;
+        }
+        
+        .image-container img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .annotation {
+            position: absolute;
+            display: flex;
+            align-items: center;
+        }
+        
+        .annotation-dot {
+            width: 16px;
+            height: 16px;
+            background-color: #3a8f9c;
+            border-radius: 50%;
+        }
+        
+        .annotation-text {
+            margin-left: 8px;
+            color: #3a8f9c;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .annotation-stats {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #3a8f9c;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 12px;
+            color: #333;
+            z-index: 10;
+        }
+        
+        .annotation:hover .annotation-stats {
+            display: block;
         }
         
         .header {
@@ -61,6 +116,35 @@
             font-size: 16px;
         }
         
+        .data-popup {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #3a8f9c;
+            border-radius: 4px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            width: 200px;
+        }
+        
+        .data-popup h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #3a8f9c;
+        }
+        
+        .data-popup p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .data-bar {
+            background-color: #3a8f9c;
+            height: 20px;
+            margin-top: 5px;
+        }
+        
         .chart-container {
             position: relative;
             height: 400px;
@@ -71,32 +155,32 @@
             background-color: white;
             background-image: url('data:image/svg+xml;utf8,\
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">\
-                    <!-- 天空背景 -->\
+                    \
                     <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">\
                         <stop offset="0%" style="stop-color:%23B2EBF2;stop-opacity:0.2"/>\
                         <stop offset="100%" style="stop-color:%23E0F7FA;stop-opacity:0.2"/>\
                     </linearGradient>\
                     <rect width="800" height="400" fill="url(%23skyGradient)"/>\
                     \
-                    <!-- 太阳 -->\
+                    \
                     <circle cx="700" cy="80" r="40" fill="%23FFD700" opacity="0.15"/>\
                     <circle cx="700" cy="80" r="30" fill="%23FFA500" opacity="0.1"/>\
                     \
-                    <!-- 云朵 -->\
+                    \
                     <path d="M600 60 Q620 40 640 60 Q660 40 680 60 Q690 60 690 70 Q680 80 660 80 Q640 80 620 80 Q600 80 600 60" fill="%23FFFFFF" opacity="0.2"/>\
                     <path d="M100 100 Q120 80 140 100 Q160 80 180 100 Q190 100 190 110 Q180 120 160 120 Q140 120 120 120 Q100 120 100 100" fill="%23FFFFFF" opacity="0.2"/>\
                     \
-                    <!-- 泳池 -->\
+                    \
                     <path d="M0 250 L800 250 L800 400 L0 400 Z" fill="%234FC3F7" opacity="0.1"/>\
-                    <!-- 泳池波浪纹 -->\
+                    \
                     <path d="M0 280 Q200 260 400 280 Q600 300 800 280" stroke="%2329B6F6" fill="none" stroke-width="2" opacity="0.1"/>\
                     <path d="M0 320 Q200 300 400 320 Q600 340 800 320" stroke="%2329B6F6" fill="none" stroke-width="2" opacity="0.1"/>\
                     \
-                    <!-- 沙滩椅 -->\
+                    \
                     <path d="M50 200 L100 250 L150 250 L100 200 Z" stroke="%23FFB74D" fill="%23FFB74D" opacity="0.2"/>\
                     <path d="M650 200 L700 250 L750 250 L700 200 Z" stroke="%23FFB74D" fill="%23FFB74D" opacity="0.2"/>\
                     \
-                    <!-- 遮阳伞 -->\
+                    \
                     <path d="M120 180 Q70 200 170 200" stroke="%23FF4081" fill="%23FF4081" opacity="0.15"/>\
                     <line x1="120" y1="180" x2="120" y2="250" stroke="%23FF4081" stroke-width="2" opacity="0.15"/>\
                     \
@@ -139,6 +223,8 @@
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
+            width: 90%;
+            margin: 20px auto;
         }
         
         .tips-title {
@@ -188,15 +274,10 @@
             <button class="nav-button active" data-chart="location">
                 🏖️ Sunburn-prone locations
             </button>
-            <button class="nav-button" data-chart="time">
-                🕐 High risk of sunburn
+            <button class="nav-button" data-chart="body">
+                🩹 Sunburn-prone body parts
             </button>
-            <button class="nav-button" data-chart="age">
-                👶 Age distribution statistics
-            </button>
-            <button class="nav-button" data-chart="protection">
-                🧴 Use of sun protection measures
-            </button>
+
         </div>
         <div class="header">
             <h1 class="title">
@@ -207,41 +288,62 @@
 
         <div class="chart-container">
             <canvas id="sunburnChart"></canvas>
+            <div class="icon-legend">
+                <div class="legend-item">
+                    <span class="legend-icon">🏊‍♂️</span>
+                    <span class="legend-text">Water-based activity</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon">🏠</span>
+                    <span class="legend-text">Private residence</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon">⚽</span>
+                    <span class="legend-text">Structured outdoor</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon">🎡</span>
+                    <span class="legend-text">Unstructured outdoor </span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon">🏫</span>
+                    <span class="legend-text">School or Creche</span>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="Resource/boy-girl1.png" alt="Children in swimwear">
+            <div class="annotation" style="top: 20%; left: 33%;" data-part="Head or face">
+                <div class="annotation-dot"></div>
+                <span class="annotation-text">——————Head or face</span>
+            </div>
+            <div class="annotation" style="top: 52%; left: 68%;" data-part="Neck">
+                <div class="annotation-dot"></div>
+                <span class="annotation-text">——————Neck</span>
+            </div>
+            <div class="annotation" style="top: 55%; left: 14%;" data-part="Shoulders">
+                <span class="annotation-text">Shoulders—————— </span>
+                <div class="annotation-dot"></div>
+            </div>
+            <div class="annotation" style="top: 60%; left: 69%;" data-part="Chest or back">
+                <div class="annotation-dot"></div>
+                <span class="annotation-text">——————Chest or back</span>
+            </div>
+            <div class="annotation" style="top: 62%; left: 9%;" data-part="Arms or hands">
+                <span class="annotation-text">Arms or hands—————— </span>
+                <div class="annotation-dot"></div>
+            </div>
+            <div class="annotation" style="top: 83%; left: 71%;" data-part="Legs or feet">
+                <div class="annotation-dot"></div>
+                <span class="annotation-text">——————Legs or feet</span>
+            </div>
+            <div class="data-popup"></div>
         </div>
 
-        <div class="icon-legend">
-            <div class="legend-item">
-                <span class="legend-icon">🏊‍♂️</span>
-                <span class="legend-text">Water-based activity</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-icon">🏠</span>
-                <span class="legend-text">Private residence</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-icon">⚽</span>
-                <span class="legend-text">Structured outdoor activity</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-icon">🎡</span>
-                <span class="legend-text">Unstructured outdoor activity</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-icon">🏫</span>
-                <span class="legend-text">School or Creche or Work</span>
-            </div>
-        </div>
+    </div>
 
-        <div class="tips">
-            <h3 class="tips-title">💡 Tips</h3>
-            <p class="tips-content">
-                Be especially careful to protect yourself from the sun while swimming and playing in the water! Because nearly 70% of children will get sunburned while playing in the water. Remember to:
-                <br>• sunscreen 🧴
-                <br>• Put on the hat 🧢
-                <br>• Wear sun-protective clothing. 👕
-                <br>• Bring your sunglasses. 🕶️
-            </p>
-        </div>
+
+
     </div>
 
     <script>
@@ -341,6 +443,96 @@
 
         const ctx = document.getElementById('sunburnChart').getContext('2d');
         new Chart(ctx, config);
+        const buttons = document.querySelectorAll('.nav-button');
+        const title = document.querySelector('.title');
+        const subtitle = document.querySelector('.subtitle');
+        const chartContainer = document.querySelector('.chart-container');
+        const imageContainer = document.querySelector('.image-container');
+        const iconLegend = document.querySelector('.icon-legend');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const chartType = button.getAttribute('data-chart');
+
+                if (chartType === 'body') {
+                    title.textContent = '🩹 What part of the body was sunburnt?';
+                    subtitle.textContent = "Let's see what part of body sun protection is most crucial.";
+                    chartContainer.style.display = 'none';
+                    imageContainer.style.display = 'flex';
+                    iconLegend.style.display = 'none';
+                } else if (chartType === 'location') {
+                    title.textContent = '☀️ Where kids tend to get sunburnt';
+                    subtitle.textContent = "Let's take a look at where you should pay special attention to sun protection.";
+                    chartContainer.style.display = 'block';
+                    imageContainer.style.display = 'none';
+                    iconLegend.style.display = 'flex';
+                } else {
+                    chartContainer.style.display = 'block';
+                    imageContainer.style.display = 'none';
+                    iconLegend.style.display = 'none';
+                }
+
+            });
+        });
+        const sunburnData = {
+            "Head or face": {
+                value: 55.2,
+                range: [51.5, 58.8]
+            },
+            "Shoulders": {
+                value: 33.7,
+                range: [30.2, 37.3]
+            },
+            "Chest or back": {
+                value: 16.9,
+                range: [14.3, 19.8]
+            },
+            "Neck": {
+                value: 20.1,
+                range: [17.4, 23.2]
+            },
+            "Arms or hands": {
+                value: 25.5,
+                range: [22.5, 28.8]
+            },
+            "Legs or feet": {
+                value: 11.2,
+                range: [9.1, 13.7]
+            }
+        };
+
+        const popup = document.querySelector('.data-popup');
+
+        document.querySelectorAll('.annotation').forEach(annotation => {
+            annotation.addEventListener('mouseenter', (e) => {
+                const part = annotation.getAttribute('data-part');
+                const data = sunburnData[part];
+                popup.innerHTML = `
+            <h3>% sunburnt</h3>
+            <p>Body part: ${part}</p>
+            <p>% (95% CI)</p>
+            <div class="data-bar" style="width: ${data.value}%;"></div>
+            <p>${data.value} (${data.range[0]}-${data.range[1]})</p>
+        `;
+
+                const annotationRect = annotation.getBoundingClientRect();
+                const containerRect = imageContainer.getBoundingClientRect();
+
+                const popupLeft = annotationRect.right - containerRect.left + 10;
+                const popupTop = annotationRect.top - containerRect.top;
+
+                popup.style.left = `${popupLeft}px`;
+                popup.style.top = `${popupTop}px`;
+                popup.style.display = 'block';
+            });
+
+            annotation.addEventListener('mouseleave', () => {
+                popup.style.display = 'none';
+            });
+        });
     </script>
 </body>
 
