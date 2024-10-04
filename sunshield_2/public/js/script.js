@@ -51,4 +51,5 @@ var config = { characterData: true, childList: true, subtree: true };
 
 observer.observe(document.getElementById('box-level-d1'), config);
 
+
 updateAdvice();
