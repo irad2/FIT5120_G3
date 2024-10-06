@@ -19,16 +19,21 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
 
 
-    async function getGeolocation() {
+    // Modify the getGeolocation function to force a new location fetch when needed
+    async function getGeolocation(forceNew = false) {
         const defaultLocation = {
             lat: -33.8688,
             lon: 151.2093
         };
-        // Check if there's a saved location
-        const savedLocation = JSON.parse(localStorage.getItem('userLocation'));
-        if (savedLocation) {
-            return savedLocation;
+        
+        if (!forceNew) {
+            // Check if there's a saved location
+            const savedLocation = JSON.parse(localStorage.getItem('userLocation'));
+            if (savedLocation) {
+                return savedLocation;
+            }
         }
+        
         return new Promise((resolve) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -508,6 +513,17 @@ document.addEventListener("DOMContentLoaded", async() => {
         const dropdownMenu = document.getElementById('dropdownMenu');
         const ul = dropdownMenu.querySelector('ul');
         ul.innerHTML = ''; // Clear existing items
+        
+        // Add "Current Location" option at the top
+        const currentLocationLi = document.createElement('li');
+        currentLocationLi.textContent = 'Current Location';
+        currentLocationLi.classList.add('current-location-item');
+        ul.appendChild(currentLocationLi);
+
+        // Add a separator
+        const separatorLi = document.createElement('li');
+        separatorLi.classList.add('dropdown-divider');
+        ul.appendChild(separatorLi);
 
         for (const state in locations) {
             const stateLi = document.createElement('li');
@@ -537,14 +553,21 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
     });
 
-    document.querySelectorAll('.city-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const lat = this.getAttribute('data-lat');
-            const lon = this.getAttribute('data-lon');
-            // Save the selected location
-            localStorage.setItem('userLocation', JSON.stringify({ lat, lon }));
-            // Update displays
-            updateAllDisplays(lat, lon);
+    document.querySelectorAll('.city-item, .current-location-item').forEach(item => {
+        item.addEventListener('click', async function() {
+            if (this.classList.contains('current-location-item')) {
+                // Always fetch the current geolocation
+                const { lat, lon } = await getGeolocation(true);
+                updateAllDisplays(lat, lon);
+                // Save the current location
+                localStorage.setItem('userLocation', JSON.stringify({ lat, lon }));
+            } else {
+                const lat = parseFloat(this.getAttribute('data-lat'));
+                const lon = parseFloat(this.getAttribute('data-lon'));
+                updateAllDisplays(lat, lon);
+                // Save the selected location
+                localStorage.setItem('userLocation', JSON.stringify({ lat, lon }));
+            }
         });
     });
     async function updateAllDisplays(lat, lon) {

@@ -1198,11 +1198,11 @@ iframe {
     border-bottom: 1px solid #ddd;
 }
 
-.city-item {
+.city-item, .current-location-item {
     padding: 8px 16px 8px 36px;
 }
 
-.city-item:hover {
+.city-item:hover, .current-location-item:hover {
     background-color: #ccc9c9;
     cursor: pointer;
 }
