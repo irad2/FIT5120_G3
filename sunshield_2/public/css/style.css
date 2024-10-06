@@ -622,8 +622,19 @@ header {
     width: 100%;
     align-items: center;
 }
+.scroll-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
 
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+}
 .tip-text {
+    font-family: "Open Sans", sans-serif;
     width: 40%;
     font-size: 1.3vw;
     align-items: center;
