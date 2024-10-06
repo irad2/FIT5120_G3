@@ -1162,10 +1162,10 @@ iframe {
 
 #reg-tips {
     position: absolute;
-    top: 17%;
-    left: 21%;
+    top: 20%;
+    left: 20%;
     width: 60%;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     font-family: "Finger Paint", sans-serif;
     text-align: left;
 }
