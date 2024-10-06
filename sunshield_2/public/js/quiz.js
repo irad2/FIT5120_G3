@@ -78,7 +78,7 @@ function initializeQuiz() {
         const correctAnswer = questions[currentQuestionIndex].answer;
         userAnswers.push(selectedAnswer);
         const answerTitle = document.querySelector('.fb-title p');
-        answerTitle.textContent = `Question ${currentQuestionIndex + 1} Of ${questions.length}`;
+        // answerTitle.textContent = `Question ${currentQuestionIndex + 1} Of ${questions.length}`;
         fbContent.textContent = (selectedAnswer === correctAnswer) ? 'Correct' : 'Incorrect';
         feedback.style.display = 'block';
         whole.style.display = 'none';
@@ -104,7 +104,9 @@ function initializeQuiz() {
             if (correct) correctCount++;
             resultContainer.innerHTML += `
                 <div class="result-item">
-                    <p><b>Question ${index + 1}:</b> ${question.question} </p> <p>Your answer: ${userAnswer} </p> <p>Correct answer: ${question.answer}</p>
+                    <p><b>Question ${index + 1}:</b> ${question.question} </p> 
+                    <p style="color: ${userAnswer === question.answer ? 'green' : 'red'};">Your answer: ${userAnswer}</p> 
+                    <p>Correct answer: ${question.answer}</p>
                 </div>`;
         });
 

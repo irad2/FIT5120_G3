@@ -1201,6 +1201,9 @@ iframe {
 .city-item, .current-location-item {
     padding: 8px 16px 8px 36px;
 }
+.current-location-item {
+    color: darkblue;
+}
 
 .city-item:hover, .current-location-item:hover {
     background-color: #ccc9c9;
@@ -1458,9 +1461,9 @@ iframe {
 }
 
 
-/* .fb-dia img {
-    height: 10%;
-} */
+.fb-dia img {
+    width: 50%;
+}
 
 .fb-dia .fb-content {
     position: absolute;
