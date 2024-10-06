@@ -62,6 +62,10 @@
                 <button class="nav-button" data-chart="body">
                 🩹 Sunburn-prone body parts
             </button>
+                <button class="nav-button" data-chart="trend">
+                📈 Sunburn trend over years
+            </button>
+
 
             </div>
             <div class="header">
@@ -96,6 +100,9 @@
                     </div>
                 </div>
             </div>
+            <div class="line-chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
             <div class="image-container">
                 <img src="Resource/boy-girl1.png" alt="Children in swimwear">
                 <div class="annotation" style="top: 20%; left: 33%;" data-part="Head or face">
@@ -123,6 +130,9 @@
                     <span class="annotation-text">——————Legs or feet</span>
                 </div>
                 <div class="data-popup"></div>
+            </div>
+            <div>
+
             </div>
 
         </div>

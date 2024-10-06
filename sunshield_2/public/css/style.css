@@ -1903,13 +1903,58 @@ footer .copyright img {
     font-family: "Finger Paint", sans-serif;
 }
 
+.line-chart-container {
+    display: none;
+    position: relative;
+    height: 400px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: white;
+    background-image: url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">\
+            \
+            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">\
+                <stop offset="0%" style="stop-color:%23B2EBF2;stop-opacity:0.2"/>\
+                <stop offset="100%" style="stop-color:%23E0F7FA;stop-opacity:0.2"/>\
+            </linearGradient>\
+            <rect width="800" height="400" fill="url(%23skyGradient)"/>\
+            \
+            \
+            <circle cx="700" cy="80" r="40" fill="%23FFD700" opacity="0.15"/>\
+            <circle cx="700" cy="80" r="30" fill="%23FFA500" opacity="0.1"/>\
+            \
+            \
+            <path d="M600 60 Q620 40 640 60 Q660 40 680 60 Q690 60 690 70 Q680 80 660 80 Q640 80 620 80 Q600 80 600 60" fill="%23FFFFFF" opacity="0.2"/>\
+            <path d="M100 100 Q120 80 140 100 Q160 80 180 100 Q190 100 190 110 Q180 120 160 120 Q140 120 120 120 Q100 120 100 100" fill="%23FFFFFF" opacity="0.2"/>\
+            \
+            \
+            <path d="M0 250 L800 250 L800 400 L0 400 Z" fill="%234FC3F7" opacity="0.1"/>\
+            \
+            <path d="M0 280 Q200 260 400 280 Q600 300 800 280" stroke="%2329B6F6" fill="none" stroke-width="2" opacity="0.1"/>\
+            <path d="M0 320 Q200 300 400 320 Q600 340 800 320" stroke="%2329B6F6" fill="none" stroke-width="2" opacity="0.1"/>\
+            \
+            \
+            <path d="M50 200 L100 250 L150 250 L100 200 Z" stroke="%23FFB74D" fill="%23FFB74D" opacity="0.2"/>\
+            <path d="M650 200 L700 250 L750 250 L700 200 Z" stroke="%23FFB74D" fill="%23FFB74D" opacity="0.2"/>\
+            \
+            \
+            <path d="M120 180 Q70 200 170 200" stroke="%23FF4081" fill="%23FF4081" opacity="0.15"/>\
+            <line x1="120" y1="180" x2="120" y2="250" stroke="%23FF4081" stroke-width="2" opacity="0.15"/>\
+            \
+            <path d="M720 180 Q670 200 770 200" stroke="%23FF4081" fill="%23FF4081" opacity="0.15"/>\
+            <line x1="720" y1="180" x2="720" y2="250" stroke="%23FF4081" stroke-width="2" opacity="0.15"/>\
+        </svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .chart-container {
     position: relative;
     height: 400px;
     margin-bottom: 30px;
     border-radius: 12px;
     padding: 15px;
-    z-index: 1;
     background-color: white;
     background-image: url('data:image/svg+xml;utf8,\
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">\
