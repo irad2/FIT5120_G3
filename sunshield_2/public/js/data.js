@@ -1,29 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     try {
         const icons = ['🏊‍♂️', '🏠', '⚽', '🎡', '🏫'];
-        const data = {
-            labels: icons,
-            datasets: [{
-                data: [69, 12, 8, 7, 3],
-                backgroundColor: [
-                    'rgba(96, 165, 250, 0.7)',
-                    'rgba(244, 114, 182, 0.7)',
-                    'rgba(52, 211, 153, 0.7)',
-                    'rgba(252, 211, 77, 0.7)',
-                    'rgba(167, 139, 250, 0.7)'
-                ],
-                borderRadius: 8,
-                borderColor: [
-                    'rgba(96, 165, 250, 0.9)',
-                    'rgba(244, 114, 182, 0.9)',
-                    'rgba(52, 211, 153, 0.9)',
-                    'rgba(252, 211, 77, 0.9)',
-                    'rgba(167, 139, 250, 0.9)'
-                ],
-                borderWidth: 2
-            }]
-        };
-
         const activities = [
             'Water-based activity',
             'Private residence',
@@ -32,76 +9,85 @@ document.addEventListener('DOMContentLoaded', function() {
             'School or Creche or Work'
         ];
 
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                return activities[context[0].dataIndex];
+        fetch('/api/sunburn-data')
+            .then(response => response.json())
+            .then(apiData => {
+                apiData.labels = apiData.labels.map((label, index) => icons[index] || label);
+
+                const config = {
+                    type: 'bar',
+                    data: apiData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
                             },
-                            label: function(context) {
-                                return `${context.parsed.y}% of the kids are prone to sunburn here`;
+                            tooltip: {
+                                callbacks: {
+                                    title: function(context) {
+                                        return activities[context[0].dataIndex] || context[0].label;
+                                    },
+                                    label: function(context) {
+                                        return `${context.parsed.y}% of the kids are prone to sunburn here`;
+                                    }
+                                },
+                                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                                titleColor: '#1e40af',
+                                bodyColor: '#1e40af',
+                                borderColor: '#93c5fd',
+                                borderWidth: 1,
+                                padding: 10
                             }
                         },
-                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                        titleColor: '#1e40af',
-                        bodyColor: '#1e40af',
-                        borderColor: '#93c5fd',
-                        borderWidth: 1,
-                        padding: 10
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.1)',
-                            drawBorder: false
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)',
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    },
+                                    font: {
+                                        size: 14
+                                    },
+                                    color: '#64748b'
+                                }
                             },
-                            font: {
-                                size: 14
-                            },
-                            color: '#64748b'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 24
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 24
+                                    }
+                                }
                             }
+                        },
+                        animation: {
+                            duration: 2000,
+                            easing: 'easeInOutQuart'
                         }
                     }
-                },
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutQuart'
+                };
+
+                const ctx = document.getElementById('sunburnChart');
+                if (ctx) {
+                    new Chart(ctx.getContext('2d'), config);
+                } else {
+                    console.error('Cannot find element with id "sunburnChart"');
                 }
-            }
-        };
+            })
+            .catch(error => {
+                console.error('Error fetching sunburn data:', error);
+            });
 
-        const ctx = document.getElementById('sunburnChart');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), config);
-        } else {
-            console.error('Cannot find element with id "sunburnChart"');
-        }
-
-
+        // 保持趋势图的代码不变（如果你还没有为趋势数据创建API）
         const trendData = {
             labels: ['04/05', '05/06', '06/07', '07/08', '08/09', '09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', '19/20', '20/21', '21/22'],
             datasets: [{
