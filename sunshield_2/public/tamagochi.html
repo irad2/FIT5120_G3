@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagochi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="Resource/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <script src="js/uv.js"></script>
+    <script src="js/advice.js"></script>
+    <script src="js/quiz.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+    <header class="menu-toggle">
+        <div class="hamburger-icon">
+            <img src="Resource/hamburger-icon.png" alt="" onclick="toggleMenu()">
+
+        </div>
+        <nav id="sidebar" class="hide">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="uv_analysis.html">UV</a></li>
+                <!-- <li><a href="find_your _skin_doctor.html">Find Your Skin Doctor</a></li> -->
+                <li><a href="protect _your_skin.html">Protect Your Skin</a></li>
+                <li><a href="data_visualization.html">Sunburnt Data</a></li>
+                <li><a href="skin_health _game.html">Sun Protection Challenge</a></li>
+                <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
+                <li><a href="tamagochi.html">Sun Safety Game</a></li>
+            </ul>
+        </nav>
+        <div class="uv-index-button">
+            <div id="current-uv-index"></div>
+        </div>
+        <div class="change-btn">
+            <p>Change Location</p>
+            <div id="dropdownMenu">
+                <ul>
+
+
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="overlay" onclick="toggleMenu()" class="overlay"></div>
+    <div class="page">
+        <div class="tama_iframe_container">
+            <iframe src="/tamagochi" id="tama_iframe"></iframe>
+        </div>
+    </div>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="uv_analysis.html">UV Analysis</a></li>
+                    <li><a href="daily_sun _protection_advice.html">Daily Sun Protection Advice</a></li>
+                    <li><a href="protect _your_skin.html">Skin Health Guide</a></li>
+                    <li><a href="sunburn_protection_dashboard.html">Sunburn Protection Dashboard</a></li>
+                    <li><a href="skin_health _game.html">Skin Health Game</a></li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                <img src="Resource/favicon.png" alt="Logo"> © 2024 TPD3 All Rights Reserved
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

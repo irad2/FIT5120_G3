@@ -189,7 +189,7 @@ body {
 
 .ab-btn {
     position: absolute;
-    top: 53%;
+    top: 65%;
     left: 25%;
     width: 20%;
     background-color: #FFC107;
@@ -198,6 +198,25 @@ body {
     padding: 1% 2%;
     font-size: 1.5vw;
     font-weight: bold;
+    font-family: "Finger Paint", sans-serif;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    display: inline-block;
+}
+.learn-more-btn {
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    width: 20%;
+    background-color: #FFC107;
+    color: #000;
+    border: none;
+    padding: 1% 2%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    font-family: "Finger Paint", sans-serif;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -629,6 +648,18 @@ header {
     outline: none;
 
 }
+.tama_iframe_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+}
+#tama_iframe {
+    width: 70%;
+    height: 85% ; 
+    
+
+}
 
 .scroll-btn:hover {
     opacity: 1;
@@ -648,7 +679,7 @@ header {
     padding-left: 10%;
 }
 
-iframe {
+.video_iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
 }
@@ -1915,6 +1946,8 @@ footer .copyright img {
     padding: 5%;
     background-color: #1B7F7A;
     font-family: "Finger Paint", sans-serif;
+    height: 100%
+
 }
 
 .line-chart-container {

@@ -36,6 +36,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
+app.use(
+    '/tamagochi',
+    express.static(path.join(__dirname, 'tamagotchi'))
+);
+
+app.get('/tamagochi/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'tamagotchi', 'index.html'));
+});
+
 // Add this after your other routes
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'public', 'error.html'));
@@ -80,6 +89,8 @@ app.get('/api/sunburn-data', async(req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching data' });
     }
 });
+
+
 // Correctly access and log the API Key and Password
 console.log('API Key:', process.env.API_KEY);
 console.log('Password:', process.env.PASSWORD);
