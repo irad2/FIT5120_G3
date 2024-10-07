@@ -207,14 +207,14 @@ body {
 }
 .learn-more-btn {
     position: absolute;
-    top: 90%;
-    left: 25%;
-    width: 20%;
+    top: 120%;
+    left: 14%;
+    width: 18%;
     background-color: #FFC107;
     color: #000;
     border: none;
     padding: 1% 2%;
-    font-size: 1.5vw;
+    font-size: 1.0vw;
     font-weight: bold;
     font-family: "Finger Paint", sans-serif;
     border-radius: 20px;
