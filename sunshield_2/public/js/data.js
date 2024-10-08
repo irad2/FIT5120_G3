@@ -306,9 +306,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     popup.innerHTML = `
                         <h3>% sunburnt</h3>
                         <p>Body part: ${part}</p>
-                        <p>% (95% CI)</p>
-                        <div class="data-bar" style="width: ${data.value}%;"></div>
-                        <p>${data.value} (${data.range[0]}-${data.range[1]})</p>
+                        <div class="data-bar" style="width: ${data.value}%; background-color: ${data.value > 50 ? 'red' : (data.value > 20 ? 'orange' : 'green')}"></div>
+                        <p>${data.value > 50 ? 'High' : (data.value > 20 ? 'Medium' : 'Low')} (${data.range[0]}-${data.range[1]})</p>
                     `;
 
                     const annotationRect = annotation.getBoundingClientRect();

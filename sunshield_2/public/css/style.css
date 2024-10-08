@@ -1725,10 +1725,13 @@ header {
 .t-btn {
     text-align: center;
     background-color: #1B7F7A;
+    gap: 20px;
+
 }
 
 .nav-quiz {
     margin-bottom: 5%;
+    margin-left: 20px;
     padding: 1% 2%;
     background-color: #FFA500;
     cursor: pointer;
@@ -1739,6 +1742,19 @@ header {
     border: none;
     text-decoration: none;
     font-family: "Finger Paint", sans-serif;
+}
+.nav-data {
+    margin-bottom: 5%;
+    padding: 1% 2%;
+    background-color: #FFA500;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1.3vw;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-family: "Finger Paint", sans-serif;
+    box-shadow: none; /* Ensure no shadow is applied */
 }
 
 .nav-quiz:hover {
