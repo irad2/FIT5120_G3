@@ -1,5 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     try {
+        const financialResponse = await fetch('/api/sunburn-financial');
+        const financialData = await financialResponse.json();
+
+        // const sunburnResponse = await fetch('/api/sunburn');
+        // const sunburnData2 = await sunburnResponse.json();
+
+        console.log(sunburnData2);
         const icons = ['🏊‍♂️', '🏠', '⚽', '🎡', '🏫'];
         const data = {
             labels: icons,
@@ -94,74 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        const ctx = document.getElementById('sunburnChart');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), config);
-        } else {
-            console.error('Cannot find element with id "sunburnChart"');
-        }
-
-
-        const trendData = {
-            labels: ['04/05', '05/06', '06/07', '07/08', '08/09', '09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', '19/20', '20/21', '21/22'],
-            datasets: [{
-                label: 'Number of Sunburn Presentations',
-                data: [163, 229, 138, 181, 315, 261, 330, 305, 226, 267, 216, 224, 367, 289, 342, 223, 359, 344],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 2,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                tension: 0.1
-            }]
-        };
-
-        const trendConfig = {
-            type: 'line',
-            data: trendData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Presentations'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Financial Year'
-                        }
-                    }
-                },
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutQuart'
-                }
-            }
-        };
-
-        const trendCtx = document.getElementById('trendChart');
-        if (trendCtx) {
-            new Chart(trendCtx.getContext('2d'), trendConfig);
-        } else {
-            console.error('Cannot find element with id "trendChart"');
-        }
-
-        // 保持按钮点击事件和其他交互代码不变
+        // Initialize charts and UI elements
+        let sunburnChart, trendChart;
         const buttons = document.querySelectorAll('.nav-button');
         const title = document.querySelector('.title');
         const subtitle = document.querySelector('.subtitle');
@@ -170,46 +111,147 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageContainer = document.querySelector('.image-container');
         const iconLegend = document.querySelector('.icon-legend');
 
-        if (buttons.length && title && subtitle && chartContainer && lineChartContainer && imageContainer && iconLegend) {
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    buttons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    const chartType = button.getAttribute('data-chart');
-
-                    if (chartType === 'body') {
-                        title.textContent = '🩹 What part of the body was sunburnt?';
-                        subtitle.textContent = "Let's see what part of body sun protection is most crucial.";
-                        chartContainer.style.display = 'none';
-                        lineChartContainer.style.display = 'none';
-                        imageContainer.style.display = 'flex';
-                        iconLegend.style.display = 'none';
-                    } else if (chartType === 'location') {
-                        title.textContent = '☀️ Where kids tend to get sunburnt';
-                        subtitle.textContent = "Let's take a look at where you should pay special attention to sun protection.";
-                        chartContainer.style.display = 'block';
-                        lineChartContainer.style.display = 'none';
-                        imageContainer.style.display = 'none';
-                        iconLegend.style.display = 'flex';
-                    } else if (chartType === 'trend') {
-                        title.textContent = '📈 Sunburn trend over years';
-                        subtitle.textContent = "Let's examine how sunburn cases have changed over the years.";
-                        chartContainer.style.display = 'none';
-                        lineChartContainer.style.display = 'block';
-                        imageContainer.style.display = 'none';
-                        iconLegend.style.display = 'none';
-                    } else {
-                        chartContainer.style.display = 'block';
-                        lineChartContainer.style.display = 'none';
-                        imageContainer.style.display = 'none';
-                        iconLegend.style.display = 'none';
-                    }
-                });
-            });
-        } else {
-            console.error('One or more required elements are missing');
+        function initializeSunburnChart() {
+            const ctx = document.getElementById('sunburnChart');
+            if (ctx) {
+                sunburnChart = new Chart(ctx.getContext('2d'), config);
+            } else {
+                console.error('Cannot find element with id "sunburnChart"');
+            }
         }
+
+        function initializeTrendChart() {
+            let labels = [];
+            let data = [];
+
+            try {
+                if (typeof financialData.body === 'string') {
+                    const parsedBody = JSON.parse(financialData.body);
+                    if (Array.isArray(parsedBody)) {
+                        labels = parsedBody.map(item => item.activity);
+                        data = parsedBody.map(item => item.percentage);
+                    } else {
+                        throw new Error('Parsed body is not an array');
+                    }
+                } else {
+                    throw new Error('financialData.body is not a string');
+                }
+            } catch (error) {
+                console.error('Error processing financialData:', error);
+                console.error('Raw financialData:', financialData);
+                // Use dummy data if there's an error
+                labels = ['No Data'];
+                data = [0];
+            }
+
+            const trendData = {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Sunburn Presentations',
+                    data: data,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    tension: 0.1
+                }]
+            };
+
+            const trendConfig = {
+                type: 'line',
+                data: trendData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Presentations'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Financial Year'
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            };
+
+            const trendCtx = document.getElementById('trendChart');
+            if (trendCtx) {
+                trendChart = new Chart(trendCtx.getContext('2d'), trendConfig);
+            } else {
+                console.error('Cannot find element with id "trendChart"');
+            }
+        }
+
+        function setupButtonListeners() {
+            if (buttons.length && title && subtitle && chartContainer && lineChartContainer && imageContainer && iconLegend) {
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        const chartType = button.getAttribute('data-chart');
+
+                        if (chartType === 'body') {
+                            title.textContent = '🩹 What part of the body was sunburnt?';
+                            subtitle.textContent = "Let's see what part of body sun protection is most crucial.";
+                            chartContainer.style.display = 'none';
+                            lineChartContainer.style.display = 'none';
+                            imageContainer.style.display = 'flex';
+                            iconLegend.style.display = 'none';
+                        } else if (chartType === 'location') {
+                            title.textContent = '☀️ Where kids tend to get sunburnt';
+                            subtitle.textContent = "Let's take a look at where you should pay special attention to sun protection.";
+                            chartContainer.style.display = 'block';
+                            lineChartContainer.style.display = 'none';
+                            imageContainer.style.display = 'none';
+                            iconLegend.style.display = 'flex';
+                            if (!sunburnChart) initializeSunburnChart();
+                        } else if (chartType === 'trend') {
+                            title.textContent = '📈 Sunburn trend over years';
+                            subtitle.textContent = "Let's examine how sunburn cases have changed over the years.";
+                            chartContainer.style.display = 'none';
+                            lineChartContainer.style.display = 'block';
+                            imageContainer.style.display = 'none';
+                            iconLegend.style.display = 'none';
+                            if (!trendChart) initializeTrendChart();
+                        } else {
+                            chartContainer.style.display = 'block';
+                            lineChartContainer.style.display = 'none';
+                            imageContainer.style.display = 'none';
+                            iconLegend.style.display = 'none';
+                        }
+                    });
+                });
+            } else {
+                console.error('One or more required elements are missing');
+            }
+        }
+
+        // Initialize UI and charts
+        setupButtonListeners();
+        initializeSunburnChart();
 
         // 保持身体部位数据和交互代码不变
         const sunburnData = {

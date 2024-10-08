@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const axios = require('axios');
 const port = 3000;
 const basicAuth = require('express-basic-auth');
 require('dotenv').config({ path: './keys.env' });
@@ -43,6 +44,37 @@ app.use(
 
 app.get('/tamagochi/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'tamagotchi', 'index.html'));
+});
+
+
+// Route for sunburn data
+app.get('/api/sunburn', async (req, res) => {
+    try {
+        const response = await axios.get('https://j8b3b5d5ki.execute-api.us-east-1.amazonaws.com/prod/data', {
+            headers: {
+                'x-api-key': 'PrhDoj1etT1Ece4WnLcudaB2wfjcbtP4a8i0pRKT'
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching sunburn data:', error);
+        res.status(500).json({ error: 'An error occurred while fetching sunburn data' });
+    }
+});
+
+// Route for sunburn financial data
+app.get('/api/sunburn-financial', async (req, res) => {
+    try {
+        const response = await axios.get('https://x4wvlo8ari.execute-api.us-east-1.amazonaws.com/default/lambda_data1', {
+            headers: {
+                'x-api-key': 'UvykPMrYvL2iP19vLszcU7u5x90w0NN0aEmnN2U8'
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching sunburn financial data:', error);
+        res.status(500).json({ error: 'An error occurred while fetching sunburn financial data' });
+    }
 });
 
 // Add this after your other routes
