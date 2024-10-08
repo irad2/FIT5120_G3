@@ -3,15 +3,36 @@ document.addEventListener('DOMContentLoaded', async function() {
         const financialResponse = await fetch('/api/sunburn-financial');
         const financialData = await financialResponse.json();
 
-        // const sunburnResponse = await fetch('/api/sunburn');
-        // const sunburnData2 = await sunburnResponse.json();
+        const sunburnResponse = await fetch('/api/sunburn');
+        const sunburnData2 = await sunburnResponse.json();
 
-        console.log(sunburnData2);
+
+        function parseSunburnData(rawData) {
+            try {
+                if (typeof rawData.body === 'string') {
+                    const parsedBody = JSON.parse(rawData.body);
+                    if (Array.isArray(parsedBody)) {
+                        return parsedBody;
+                    } else {
+                        throw new Error('Parsed body is not an array');
+                    }
+                } else {
+                    throw new Error('rawData.body is not a string');
+                }
+            } catch (error) {
+                console.error('Error processing sunburn data:', error);
+                console.error('Raw sunburn data:', rawData);
+                return [];
+            }
+        }
+
+        const parsedSunburnData = parseSunburnData(sunburnData2);
+        console.log('Parsed sunburn data:', parsedSunburnData);
         const icons = ['🏊‍♂️', '🏠', '⚽', '🎡', '🏫'];
         const data = {
             labels: icons,
             datasets: [{
-                data: [69, 12, 8, 7, 3],
+                data: parsedSunburnData.map(item => item.percentage),
                 backgroundColor: [
                     'rgba(96, 165, 250, 0.7)',
                     'rgba(244, 114, 182, 0.7)',
@@ -31,13 +52,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }]
         };
 
-        const activities = [
-            'Water-based activity',
-            'Private residence',
-            'Structured outdoor activity',
-            'Unstructured outdoor activity',
-            'School or Creche or Work'
-        ];
+        const activities = parsedSunburnData.map(item => item.activity);
 
         const config = {
             type: 'bar',
@@ -215,7 +230,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
                         if (chartType === 'body') {
                             title.textContent = '🩹 What part of the body was sunburnt?';
-                            subtitle.textContent = "Let's see what part of body sun protection is most crucial.";
+                            subtitle.textContent = "Let's see what part of body sun protection is most crucial. (Hover over the body parts!)";
                             chartContainer.style.display = 'none';
                             lineChartContainer.style.display = 'none';
                             imageContainer.style.display = 'flex';
