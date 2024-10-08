@@ -178,9 +178,9 @@ body {
     top: 52%;
     left: 25%;
     color: #000;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     text-align: left;
-    width: 23%;
+    width: 28%;
     font-weight: bold;
     font-family: "Open Sans", sans-serif;
     word-wrap: break-word;
@@ -189,7 +189,7 @@ body {
 
 .ab-btn {
     position: absolute;
-    top: 65%;
+    top: 72%;
     left: 25%;
     width: 20%;
     background-color: #FFC107;
