@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", async() => {
-    // Function to fetch API key
-    async function fetchApiKey() {
-        try {
-            const response = await fetch('/get-api-key');
-            const data = await response.json();
-            return data.apiKey;
-        } catch (error) {
-            console.error("Failed to fetch API key:", error);
-            return null; // Return null in case of an error
-        }
-    }
+    // // Function to fetch API key
+    // async function fetchApiKey() {
+    //     try {
+    //         const response = await fetch('/get-api-key');
+    //         const data = await response.json();
+    //         return data.apiKey;
+    //     } catch (error) {
+    //         console.error("Failed to fetch API key:", error);
+    //         return null; // Return null in case of an error
+    //     }
+    // }
 
-    // Store the API key in a variable
-    const apiKey = await fetchApiKey();
-    if (!apiKey) {
-        console.error('API Key is not available, functionality will be limited.');
-        return; // Early return if API Key couldn't be fetched
-    }
+    // // Store the API key in a variable
+    // const apiKey = await fetchApiKey();
+    // if (!apiKey) {
+    //     console.error('API Key is not available, functionality will be limited.');
+    //     return; // Early return if API Key couldn't be fetched
+    // }
 
 
     // Modify the getGeolocation function to force a new location fetch when needed
@@ -61,32 +61,32 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
 
 
-    // Fetches the current UV index
     async function getUVIndexes(lat, lon, targetDates) {
-        return fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=minutely,hourly,current,alerts`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch weather data');
+        try {
+            const response = await fetch(`/fetch-data?lat=${lat}&lon=${lon}`);
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            }
+            if (!data.daily) {
+                console.error("No daily data available in the response:", data);
+                return targetDates.map(() => null); // Return an array of nulls if daily data is missing
+            }
+            return targetDates.map(targetDate => {
+                // Filter daily data to find the day matching each target date
+                const dailyData = data.daily.find(day => new Date(day.dt * 1000).toDateString() === new Date(targetDate * 1000).toDateString());
+                if (dailyData && dailyData.uvi) {
+                    return dailyData.uvi; // Return the UVI for the target date
+                } else {
+                    return null; // Return null if no UVI data found for a particular date
                 }
-                return response.json();
-            })
-            .then((data) => {
-                return targetDates.map(targetDate => {
-                    // Filter daily data to find the day matching each target date
-                    const dailyData = data.daily.find(day => new Date(day.dt * 1000).toDateString() === new Date(targetDate * 1000).toDateString());
-                    if (dailyData && dailyData.uvi) {
-                        return dailyData.uvi; // Return the UVI for the target date
-                    } else {
-                        return null; // Return null if no UVI data found for a particular date
-                    }
-                });
-            })
-            .catch((error) => {
-                console.error(error);
-                return targetDates.map(() => null); // Return an array of nulls in case of an error
             });
+        } catch (error) {
+            console.error('Failed to fetch UV indexes:', error);
+            return targetDates.map(() => null); // Return an array of nulls in case of an error
+        }
     }
-
+    
 
     // Updates the UI
     async function updateUVIndexes(indexDict) {
@@ -150,9 +150,8 @@ document.addEventListener("DOMContentLoaded", async() => {
     // Function to get the current UV index
     async function getCurrentUVIndex(lat, lon) {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=daily,minutely,hourly,alerts`);
+            const response = await fetch(`/fetch-data?lat=${lat}&lon=${lon}`);
             const data = await response.json();
-            console.log(data);
             return data.current.uvi;
         } catch (error) {
             console.error('Error fetching current UV index:', error);

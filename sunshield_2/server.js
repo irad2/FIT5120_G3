@@ -2,10 +2,13 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const axios = require('axios');
-const port = 3000;
 const basicAuth = require('express-basic-auth');
 require('dotenv').config({ path: './keys.env' });
 const { Pool } = require('pg');
+// Dynamic import of node-fetch
+import('node-fetch').then(({ default: fetch }) => {
+    const app = express();
+    const port = 3000;
 
 
 const pool = new Pool({
@@ -27,9 +30,26 @@ app.use(basicAuth({
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Secure endpoint to get the API key
-app.get('/get-api-key', (req, res) => {
-    res.json({ apiKey: process.env.API_KEY });
+// Proxy endpoint to securely fetch data from the external API using the API key
+app.get('/fetch-data', async (req, res) => {
+    const { lat, lon, exclude = 'minutely,hourly,alerts' } = req.query; // Removed 'current' from the default exclude list
+    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${process.env.API_KEY}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error('Failed to fetch weather data');
+        }
+        if (!data.current && !data.daily) {
+            console.error('Unexpected data structure received from API:', data);
+            return res.status(500).json({ error: 'Data format error from API' });
+        }
+        res.json(data);
+    } catch (error) {
+        console.error('Server error fetching data:', error);
+        res.status(500).json({ error: 'Failed to fetch data' });
+    }
 });
 
 // Route for the home page
@@ -52,7 +72,7 @@ app.get('/api/sunburn', async (req, res) => {
     try {
         const response = await axios.get('https://j8b3b5d5ki.execute-api.us-east-1.amazonaws.com/prod/data', {
             headers: {
-                'x-api-key': 'PrhDoj1etT1Ece4WnLcudaB2wfjcbtP4a8i0pRKT'
+                'x-api-key': process.env.SUNBURN_API_KEY
             }
         });
         res.json(response.data);
@@ -67,7 +87,7 @@ app.get('/api/sunburn-financial', async (req, res) => {
     try {
         const response = await axios.get('https://x4wvlo8ari.execute-api.us-east-1.amazonaws.com/default/lambda_data1', {
             headers: {
-                'x-api-key': 'UvykPMrYvL2iP19vLszcU7u5x90w0NN0aEmnN2U8'
+                'x-api-key': process.env.SUNBURN_FINANCIAL_API_KEY
             }
         });
         res.json(response.data);
@@ -76,16 +96,11 @@ app.get('/api/sunburn-financial', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching sunburn financial data' });
     }
 });
-
 // Add this after your other routes
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'public', 'error.html'));
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
 
 app.get('/api/sunburn-data', async(req, res) => {
     try {
@@ -122,7 +137,13 @@ app.get('/api/sunburn-data', async(req, res) => {
     }
 });
 
+// 404 Error handler for undefined routes
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', 'error.html'));
+});
 
-// Correctly access and log the API Key and Password
-console.log('API Key:', process.env.API_KEY);
-console.log('Password:', process.env.PASSWORD);
+// Start the server after fetch is available
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
+});
