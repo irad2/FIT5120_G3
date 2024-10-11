@@ -9,6 +9,16 @@ function toggleMenu() {
     }
 }
 
+const navItems = [
+    { href: "home.html", text: "Home" },
+    { href: "uv_analysis.html", text: "Sunshine Forecast" },
+    { href: "protect_your_skin.html", text: "Protect Your Skin" },
+    { href: "data_visualization.html", text: "Sunburnt Data" },
+    { href: "skin_health_game.html", text: "Sun Protection Challenge" },
+    { href: "daily_sun_protection_advice.html", text: "Daily Sun Protection Advice" },
+    { href: "tamagochi.html", text: "Sun Safety Game" }
+];
+
 
 
 function updateAdvice() {
