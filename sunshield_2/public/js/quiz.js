@@ -139,6 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const backHomeButton = document.querySelector('.back-home');
 
     backHomeButton.addEventListener('click', function() {
-        window.location.href = 'home.html';
+        window.location.href = 'tamagochi.html';
     });
 });
